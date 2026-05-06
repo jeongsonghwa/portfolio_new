@@ -998,13 +998,19 @@
                     </div>
                   </summary>
                   <div class="issue-body">
-                    <p><strong>상황</strong><br>대여기구 수령/반납 업무는 실제 현장 사용자가 기구 정보를 확인하고, 수령 여부와 점검 결과를 입력해야 하는 실무 중심 화면이 필요했습니다.</p>
-        
-                    <p><strong>문제 분석</strong><br>사용자가 실제 업무 중 어떤 순서로 데이터를 확인하고 입력하는지 반영하지 않으면, 화면은 개발되더라도 업무 효율이 떨어질 수 있었습니다. 특히 조회, 선택, 상세 확인, 저장 흐름이 자연스럽게 연결되어야 했습니다.</p>
-        
-                    <p><strong>개선 및 조치</strong><br>사용자 업무 흐름을 기준으로 조회 조건, 목록 화면, 상세 입력 영역, 점검표 저장 구조를 설계했습니다. IBSheet 기반 목록 및 점검표 화면을 구성하고, 선택한 데이터가 상세 정보와 연결되도록 구현했습니다.</p>
-        
-                    <p><strong>결과</strong><br>사용자가 실제 업무 순서에 맞춰 수령 및 점검 처리를 진행할 수 있도록 화면 흐름을 개선했으며, 업무 처리 편의성과 데이터 입력 정확성을 높였습니다.</p>
+                    <p><strong>상황</strong><br>
+                      대여기구 수령/반납 업무는 현장 사용자가 기구 정보, 수령 상태, 점검 결과를 빠르게 확인하고 입력해야 하는 업무였습니다. 단순히 요청받은 항목을 화면에 배치하는 것만으로는 실제 업무 속도와 사용 편의성을 충분히 확보하기 어려운 구조였습니다.
+                    </p>
+                      
+                    <p><strong>문제 분석</strong><br>
+                    실무자는 조회, 선택, 상세 확인, 점검 결과 입력, 저장을 반복적으로 수행해야 했기 때문에 화면 흐름이 복잡하거나 입력 동선이 길어질 경우 업무 효율이 떨어질 수 있었습니다. 이에 따라 기능 구현뿐 아니라 사용자가 어떤 순서로 정보를 확인하고 어떤 항목을 자주 입력하는지까지 고려해 화면 구조를 설계할 필요가 있었습니다.
+                    </p>
+                    <p><strong>개선 및 조치</strong><br>
+                      실무자의 업무 흐름을 기준으로 조회, 선택, 상세 확인, 점검 결과 입력, 저장 순서가 자연스럽게 이어지도록 화면을 구성했습니다. SCM에서 연동되어 넘어온 주요 데이터는 데이터 정합성을 위해 사용자가 임의로 수정하지 못하도록 처리했고, 사용자가 직접 입력해야 하는 항목만 수정 가능하도록 구분했습니다. 또한 목록 선택 시 상세 정보가 자동으로 표시되도록 구성하여 불필요한 재조회나 화면 이동을 줄였으며, 자주 사용하는 점검 결과 입력 영역은 한 화면 안에서 바로 처리할 수 있도록 배치했습니다. 저장 전 필수값과 상태값을 확인하도록 하여 누락 입력이나 잘못된 처리 상태가 저장되는 것을 방지했습니다.
+                    </p>        
+                    <p><strong>결과</strong><br>
+                      사용자가 실제 업무 순서에 맞춰 수령 및 점검 처리를 진행할 수 있도록 화면 흐름을 개선했으며, 업무 처리 편의성과 데이터 입력 정확성을 높였습니다.
+                    </p>
                   </div>
                 </details>
               </div>
@@ -1030,11 +1036,11 @@
                 </div>
                 <div class="desc-row">
                   <div class="desc-label">환경</div>
-                  <div class="desc-value">Spring Framework / Oracle / IBSheet / UBIFORM</div>
+                  <div class="desc-value">Spring Framework / Java / Oracle / MyBatis / JSP / IBSheet / Nginx / Jenkins</div>
                 </div>
                 <div class="desc-row">
                   <div class="desc-label">활동</div>
-                  <div class="desc-value">운영 중심 + 신규 개발 + 사용자 직접 대응</div>
+                  <div class="desc-value">클라우드 운영 + SI 개발 + 장애 분석 + 데이터 정합성 개선</div>
                 </div>
               </div>
             </div>
@@ -1044,11 +1050,12 @@
             <div class="subbox">
               <h3>주요 수행 내용</h3>
               <ul class="list">
-                <li>병원 물류 프로세스 전반 기능 구현 및 운영</li>
-                <li>사용자와 직접 커뮤니케이션하며 요구사항 구조화</li>
-                <li>운영 중 발생하는 성능 저하 및 데이터 이슈 분석 후 안정화</li>
-                <li>장애 발생 시 사용자 대응과 원인 분석, 재발 방지 반영</li>
-                <li>기존 업무 및 운영 문서를 체계적으로 정리</li>
+                <li>병원 물류 ERP 클라우드 운영 환경에서 신규 기능 개발 및 유지보수 수행</li>
+                <li>사용자 요청사항을 분석하여 화면, 서비스 로직, SQL 수정 반영</li>
+                <li>운영 중 발생한 DB Timeout, 데이터 오류, 성능 저하 이슈 분석 및 개선</li>
+                <li>서버 로그와 SQL 실행 흐름을 기반으로 장애 원인 추적 및 재발 방지 반영</li>
+                <li>대용량 데이터 처리 및 배치성 작업의 안정성 개선</li>
+                <li>운영 문서, 처리 기준, 장애 대응 내용을 정리하여 유지보수 효율 개선</li>
               </ul>
             </div>
 
@@ -1061,23 +1068,23 @@
                 </div>
                 <div class="detail-row">
                   <div>신규 개발</div>
-                  <div>화면 및 기능 개발</div>
+                  <div>ERP 업무 화면 및 기능 개발, 기존 기능 고도화</div>
                 </div>
                 <div class="detail-row">
                   <div>DB</div>
-                  <div>테이블 설계, SQL 작성, 성능 튜닝</div>
+                  <div>SQL 작성, 성능 개선, DB Timeout 및 데이터 정합성 이슈 분석</div>
                 </div>
                 <div class="detail-row">
                   <div>운영</div>
-                  <div>장애 대응, 데이터 정비, 사용자 대응</div>
+                  <div>사용자 요청 대응, 장애 분석, 데이터 오류 처리, 운영 안정화</div>
                 </div>
                 <div class="detail-row">
                   <div>서버</div>
-                  <div>WAS / Nginx 관리, SSL 갱신</div>
+                  <div>로그 확인, WAS / Nginx 운영 점검, 배포 후 상태 확인</div>
                 </div>
                 <div class="detail-row">
                   <div>문서</div>
-                  <div>업무 문서 정비</div>
+                  <div>업무 처리 기준, 운영 이슈, 장애 대응 내용 정리</div>
                 </div>
               </div>
             </div>
@@ -1177,6 +1184,67 @@
                     <p><strong>결과</strong><br>서비스 중단 없이 SSL 인증서 교체를 완료하였으며, 인증서 적용 절차에 대한 이해를 기반으로 안정적인 운영 환경을 유지했습니다.</p>
                   </div>
                 </details>
+
+                <details class="issue-item">
+                  <summary>
+                    <div class="issue-title-wrap">
+                      <strong>DB Timeout 발생 이슈 분석 및 처리 방식 개선</strong>
+                      <div class="issue-tags">
+                        <span>DBTimeout</span>
+                        <span>로그분석</span>
+                        <span>성능개선</span>
+                      </div>
+                    </div>
+                  </summary>
+                  <div class="issue-body">
+                    <p><strong>상황</strong><br>
+                      운영 환경에서 특정 데이터 처리 중 DB Timeout이 발생하며 정상 처리가 완료되지 않는 문제가 발생했습니다. 해당 시점에는 여러 사용자의 요청 로그가 동시에 섞여 있어, 일반 로그만으로는 어떤 사용자 요청이나 어떤 업무 처리에서 문제가 발생했는지 즉시 특정하기 어려운 상황이었습니다.
+                      </p>
+                      
+                      <p><strong>문제 분석</strong><br>
+                      문제 발생 시점과 사용자 IP 주소를 기준으로 서버 로그를 분리하여 정리했습니다. 해당 IP에서 수행한 요청만 따로 추적해 별도 로그 흐름으로 재구성했고, 시간 순서대로 어떤 화면 요청, 서비스 로직, SQL이 실행되었는지 확인했습니다. 그 결과 특정 insert 처리 과정에서 한 테이블에 대한 작업이 약 6분 이상 지연된 뒤 DB Timeout 오류가 발생한 것을 확인했습니다. 이를 통해 단순 화면 오류가 아니라 대량 데이터 insert 처리 구간에서 DB 처리 시간이 길어지며 Timeout으로 이어진 문제임을 파악했습니다.
+                      </p>
+                      
+                      <p><strong>개선 및 조치</strong><br>
+                      for each 처리 구간의 데이터 처리 단위를 파티션 방식으로 분리하여 한 번에 처리되는 데이터 양을 줄였습니다. 이를 통해 특정 insert 구간에 부하가 집중되는 문제를 완화하고, 장시간 DB 처리가 Timeout으로 이어지는 구조를 개선했습니다.
+                      </p>
+                      
+                      <p><strong>결과</strong><br>
+                      대량 데이터 처리 중 발생하던 DB Timeout 문제를 해소했으며, 운영 환경에서 안정적으로 데이터 처리가 완료되도록 개선했습니다. 또한 여러 사용자의 로그가 섞인 상황에서도 문제 시점과 IP를 기준으로 요청 흐름을 재구성하여 원인을 추적하는 분석 방식을 정리했습니다.
+                      </p>
+                  </div>
+                </details>
+
+                <details class="issue-item">
+                  <summary>
+                    <div class="issue-title-wrap">
+                      <strong>API 연동 오류의 DB Connection Pool 원인 분석</strong>
+                      <div class="issue-tags">
+                        <span>ConnectionPool</span>
+                        <span>API연동</span>
+                        <span>WAS로그분석</span>
+                      </div>
+                    </div>
+                  </summary>
+                  <div class="issue-body">
+                    <p><strong>상황</strong><br>
+                    외부 프로그램으로 API를 호출하는 과정에서 정상 응답이 오지 않는 문제가 발생했습니다. 일반적인 애플리케이션 운영 로그에서는 우리 시스템과 수신 시스템 모두 명확한 오류가 확인되지 않아, 어느 구간에서 문제가 발생했는지 특정하기 어려운 상황이었습니다.
+                    </p>
+                
+                    <p><strong>문제 분석</strong><br>
+                    최초에는 API 요청/응답 흐름과 양쪽 애플리케이션 운영 로그를 기준으로 원인을 확인했으나, 관련 에러가 남아 있지 않았습니다. 이후 분석 범위를 일반 운영 로그에서 WAS 로그까지 확장하여 확인했고, 해당 로그에서 DB Connection Pool 관련 오류가 발생한 것을 확인했습니다. 이를 통해 단순 API 로직 오류나 요청 데이터 문제가 아니라, 수신 시스템의 DB 연결 자원이 정상적으로 확보되지 못해 API 처리에 실패한 문제임을 파악했습니다.
+                    </p>
+                
+                    <p><strong>개선 및 조치</strong><br>
+                    확인된 WAS 로그를 근거로 수신 시스템 담당자에게 DB Connection Pool 관련 설정 점검 및 조정을 요청했습니다. 또한 애플리케이션 로그에 오류가 남지 않는 경우에도 WAS 로그, Tomcat 로그, DB 연결 설정까지 함께 확인해야 한다는 분석 기준을 정리했습니다.
+                    </p>
+                
+                    <p><strong>결과</strong><br>
+                    양쪽 애플리케이션 운영 로그에서 확인되지 않던 API 연동 오류의 원인을 DB Connection Pool 문제로 특정할 수 있었으며, 수신 시스템의 설정 변경 방향을 안내하여 장애 원인 분석과 후속 조치가 가능하도록 했습니다.
+                    </p>
+                  </div>
+                </details>
+
               </div>
             </div>
           </div>
