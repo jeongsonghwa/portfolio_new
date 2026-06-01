@@ -5,1524 +5,552 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>정송화 포트폴리오</title>
 <style>
-  :root{
-    --bg:#f5f7fc;
-    --paper:#ffffff;
-    --soft:#f1f4fb;
-    --soft-2:#eef2ff;
-    --line:#e4e9f2;
-    --text:#1c2230;
-    --muted:#6b7485;
-    --primary:#5a64ff;
-    --primary-soft:#eceeff;
-    --shadow:0 10px 30px rgba(38, 56, 96, 0.08);
-    --radius:22px;
-  }
-  *{box-sizing:border-box}
-  html,body{margin:0;padding:0}
-  body{
-    font-family:"Pretendard","Apple SD Gothic Neo","Noto Sans KR","Segoe UI",sans-serif;
-    background:linear-gradient(180deg,#f8faff 0%,#f4f7fc 100%);
-    color:var(--text);
-    line-height:1.6;
-    letter-spacing:-0.02em;
-  }
-  .wrap{max-width:1240px;margin:34px auto;padding:0 18px 42px}
-  .layout{display:grid;grid-template-columns:290px 1fr;gap:20px;align-items:start}
-  .card{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
-  .side{position:sticky;top:24px;padding:22px}
-  .profile-box{text-align:center;padding-bottom:18px;border-bottom:1px solid var(--line);margin-bottom:18px}
-  .avatar{width:120px;height:120px;margin:0 auto 14px;border-radius:20px;background:linear-gradient(135deg,#fff2cb 0%,#ffd9a6 100%);border:1px solid #f1d6a3;display:flex;align-items:center;justify-content:center;font-size:52px}
-  .name{font-size:28px;font-weight:900;line-height:1.1;margin:0 0 6px}
-  .role{color:var(--muted);font-size:14px;font-weight:700;margin-bottom:10px}
-  .headline{background:var(--primary-soft);color:var(--primary);border-radius:16px;padding:12px 14px;font-size:13px;font-weight:700}
-  .side-section{margin-top:18px}
-  .side-title{font-size:13px;font-weight:900;color:var(--primary);margin:0 0 10px;text-transform:uppercase;letter-spacing:.08em}
-  .info-list{display:grid;gap:10px}
-  .info-item{padding:12px 14px;border-radius:14px;background:var(--soft);border:1px solid var(--line)}
-  .info-item small{display:block;font-size:11px;color:var(--muted);margin-bottom:4px;text-transform:uppercase;letter-spacing:.08em}
-  .info-item strong{font-size:14px;color:var(--text);word-break:break-all}
-  .tag-wrap{display:flex;flex-wrap:wrap;gap:8px}
-  .tag{padding:8px 11px;border-radius:999px;background:var(--soft-2);color:var(--primary);font-size:12px;font-weight:800;border:1px solid #dfe4ff}
-
-  .main{display:grid;gap:20px}
-  .hero{padding:24px 26px;overflow:hidden;position:relative}
-  .hero:after{content:"";position:absolute;right:-70px;top:-70px;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,rgba(90,100,255,0.12),transparent 65%);pointer-events:none}
-  .hero-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:18px;align-items:start}
-  .hero h1{margin:0 0 10px;font-size:42px;line-height:1.1;letter-spacing:-0.04em}
-  .hero .lead{font-size:16px;color:var(--muted);max-width:62ch;margin:0}
-  .mini-boxes{display:grid;gap:12px}
-  .mini{padding:14px 16px;border-radius:18px;background:var(--soft);border:1px solid var(--line)}
-  .mini small{display:block;margin-bottom:4px;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
-  .mini strong{font-size:15px}
-
-  .section-card{padding:22px 24px}
-  .card-title{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:14px}
-  .card-title h2{margin:0;font-size:26px;letter-spacing:-0.03em}
-  .card-title p{margin:0;color:var(--muted);font-size:14px}
-
-  .summary-table{display:grid;gap:12px}
-  .summary-row{
-    display:grid;
-    grid-template-columns:minmax(320px,1.18fr) minmax(180px,.62fr) minmax(290px,1fr);
-    gap:18px;
-    align-items:center;
-    padding:22px 26px;
-    border:1px solid var(--line);
-    border-radius:24px;
-    background:linear-gradient(180deg,#fff,#fbfcff);
-  }
-  .summary-row > :first-child{padding-left:6px}
-  .summary-row > :last-child{padding-right:6px}
-  .summary-row strong{display:block;font-size:18px;margin-bottom:8px;line-height:1.35}
-  .summary-row span{color:var(--muted);font-size:14px}
-  .summary-row > :nth-child(2){display:flex;justify-content:left;align-items:left}
-  .summary-row .pill{
-    display:inline-flex;
-    align-items:center;
-    justify-content:left;
-    min-width:90px;
-    text-align:left;
-    padding:12px 18px;
-    border-radius:600px;
-    background:var(--primary-soft);
-    color:var(--primary);
-    font-size:14px;
-    font-weight:900;
-  }
-
-  .skill-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
-  .skill-box{
-    padding:16px;
-    border-radius:18px;
-    background:linear-gradient(180deg,#f7f9ff 0%, #f2f5fc 100%);
-    border:1px solid var(--line);
-    transition:.25s ease;
-  }
-  .skill-box:hover{
-    transform:translateY(-2px);
-    box-shadow:0 10px 24px rgba(69, 89, 145, 0.08);
-  }
-  .skill-box h3{margin:0;font-size:15px}
-  .skill-caption{margin-top:8px;font-size:12px;color:var(--muted)}
-
-  .skill-accordion{display:grid;gap:10px;margin-top:14px}
-  .skill-item{
-    border:1px solid #dfe5f2;
-    border-radius:14px;
-    background:#fff;
-    overflow:hidden;
-    transition:.25s ease;
-  }
-  .skill-item:hover{
-    border-color:#cfd8ff;
-    box-shadow:0 8px 20px rgba(90,100,255,0.08);
-  }
-  .skill-toggle{
-    width:100%;
-    border:0;
-    background:transparent;
-    padding:14px 16px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:14px;
-    cursor:pointer;
-    text-align:left;
-    font:inherit;
-    color:var(--text);
-  }
-  .skill-toggle:focus-visible{
-    outline:2px solid rgba(90,100,255,0.35);
-    outline-offset:-2px;
-  }
-  .skill-main{
-    display:flex;
-    align-items:center;
-    gap:10px;
-    flex:1;
-  }
-  .skill-name{font-size:15px;font-weight:800;color:#2d3445}
-  .skill-arrow{
-    flex-shrink:0;
-    width:28px;height:28px;border-radius:999px;
-    display:flex;align-items:center;justify-content:center;
-    background:#f3f6fd;color:#7a84a0;font-size:13px;transition:.25s ease;
-  }
-  .skill-item.active .skill-arrow{
-    transform:rotate(180deg);
-    background:#eceeff;
-    color:var(--primary);
-  }
-  .skill-content{
-    max-height:0;
-    overflow:hidden;
-    transition:max-height .35s ease;
-    background:linear-gradient(180deg,#fcfdff 0%, #f8faff 100%);
-  }
-  .skill-content-inner{
-    padding:0 16px 16px 16px;
-    color:#566074;
-    font-size:13px;
-    line-height:1.7;
-  }
-  .skill-content-inner strong{
-    display:block;margin-bottom:6px;font-size:13px;color:#2a3142;
-  }
-  .skill-content-inner p{margin:0}
-
-  .project{padding:22px 24px}
-  .project + .project{margin-top:18px}
-  .project-head{display:flex;justify-content:space-between;gap:14px;align-items:flex-start;margin-bottom:16px}
-  .project-head h2{margin:0 0 6px;font-size:28px;letter-spacing:-0.03em}
-  .project-head p{margin:0;color:var(--muted);font-size:15px;max-width:72ch}
-  .period{
-    white-space:nowrap;
-    padding:8px 12px;
-    border-radius:999px;
-    background:var(--primary-soft);
-    color:var(--primary);
-    font-size:12px;
-    font-weight:900
-  }
-  .project-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:16px}
-  .subbox{padding:18px;border-radius:18px;background:var(--soft);border:1px solid var(--line)}
-  .subbox h3{margin:0 0 12px;font-size:16px}
-
-  .list{list-style:none;padding:0;margin:0;display:grid;gap:10px}
-  .list li{position:relative;padding-left:16px;font-size:14px;color:#424b5a}
-  .list li:before{content:"";width:7px;height:7px;border-radius:50%;background:var(--primary);position:absolute;left:0;top:8px}
-
-  .desc-table,
-  .detail-table{
-    border:1px solid var(--line);
-    border-radius:16px;
-    overflow:hidden;
-    background:#fff;
-  }
-  .desc-row,
-  .detail-head,
-  .detail-row{
-    display:grid;
-    grid-template-columns:93px 1fr;
-  }
-  .desc-row + .desc-row,
-  .detail-row{
-    border-top:1px solid var(--line);
-  }
-  .desc-label,
-  .desc-value,
-  .detail-head div,
-  .detail-row div{
-    padding:14px 16px;
-    font-size:14px;
-  }
-  .desc-label,
-  .detail-head div:first-child,
-  .detail-row div:first-child{
-    background:#fafbfd;
-    font-weight:800;
-    border-right:1px solid var(--line);
-  }
-  .detail-head{
-    background:#f7f9ff;
-    font-weight:900;
-  }
-
- 
-  .issue-guide{
-    display:flex;
-    align-items:center;
-    gap:10px;
-    margin-bottom:12px;
-    padding:10px 12px;
-    font-size:13px;
-  }
-  .issue-guide .guide-icon{
-    width:28px;
-    height:28px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    background:var(--primary-soft);
-    color:var(--primary);
-    font-size:14px;
-    flex-shrink:0;
-  }
-
-  .issue-list{display:grid;gap:12px}
-  .issue-item{
-    border:1px solid var(--line);
-    border-radius:16px;
-    background:#fff;
-    overflow:hidden;
-  }
-  .issue-item summary{
-    list-style:none;
-    cursor:pointer;
-    padding:16px 18px;
-  }
-  .issue-item summary::-webkit-details-marker{display:none}
-  .issue-title-wrap{
-    display:flex;
-    justify-content:space-between;
-    align-items:flex-start;
-    gap:16px;
-  }
-  .issue-title-wrap strong{
-    font-size:15px;
-    line-height:1.5;
-  }
-  .improve-head p{
-  max-width:none;
-  white-space:nowrap;
+:root{
+  --bg:#f7f9ff; --paper:#fff; --soft:#f3f5fc; --soft2:#eef1ff; --line:#e3e8f2;
+  --text:#202637; --muted:#70798b; --primary:#5a64ff; --primary2:#4650e7;
+  --shadow:0 12px 32px rgba(36,52,91,.075); --radius:20px; --nav:70px;
 }
-.improve-head p{
-  max-width:none;
-  overflow:hidden;
-  text-overflow:ellipsis;
-  white-space:nowrap;
+*{box-sizing:border-box} html,body{margin:0;padding:0} html{scroll-behavior:smooth}
+body{font-family:"Pretendard","Apple SD Gothic Neo","Noto Sans KR","Segoe UI",sans-serif;background:linear-gradient(180deg,#fbfcff 0%,var(--bg) 100%);color:var(--text);line-height:1.72;letter-spacing:-.025em;overflow-x:hidden}
+a,button{font:inherit;color:inherit} button{border:0;background:transparent;cursor:pointer} .hidden{display:none!important}
+.topbar{position:sticky;top:0;z-index:100;height:var(--nav);background:rgba(255,255,255,.94);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
+.nav-inner{max-width:1240px;margin:0 auto;height:100%;display:flex;align-items:center;gap:18px;padding:0 22px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;min-width:240px} .brand-mark{width:42px;height:42px;border-radius:15px;background:linear-gradient(135deg,#fff2cb,#ffd9a6);border:1px solid #f1d6a3;display:grid;place-items:center;font-size:21px} .brand b{font-size:21px;font-weight:900;letter-spacing:-.04em;white-space:nowrap}
+.nav{margin-left:auto;height:100%;display:flex;align-items:center;gap:4px} .nav-item{height:100%;position:relative;display:flex;align-items:center}
+.nav-link{height:100%;display:flex;align-items:center;padding:0 18px;text-decoration:none;font-size:17px;font-weight:850;color:#3e4657;white-space:nowrap;position:relative}
+.nav-link.active,.nav-link:hover{color:var(--primary)} .nav-link.active:after{content:"";position:absolute;left:18px;right:18px;bottom:0;height:4px;background:var(--primary);border-radius:999px 999px 0 0}
+.dropdown{position:absolute;top:64px;left:50%;transform:translateX(-50%) translateY(8px);width:310px;padding:12px;border:1px solid var(--line);border-radius:18px;background:#fff;box-shadow:var(--shadow);opacity:0;visibility:hidden;transition:.18s ease}
+.nav-item:hover .dropdown{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0)}
+.drop-title{font-size:12px;font-weight:900;color:var(--primary);padding:8px 10px 6px;letter-spacing:.04em} .drop-btn{width:100%;display:block;text-align:left;padding:10px 12px;border-radius:12px;font-size:14px;font-weight:750;color:#4c5568;text-decoration:none} .drop-btn:hover{background:var(--soft2);color:var(--primary)}
+.wrap{max-width:1240px;margin:0 auto;padding:30px 20px 54px} .card{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
+.page-title{margin:0 0 18px} .page-title .eyebrow{font-size:12px;font-weight:900;color:var(--primary);letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px} .page-title h1{margin:0;font-size:34px;line-height:1.18;letter-spacing:-.05em} .page-title p{margin:10px 0 0;color:var(--muted);font-size:15px}
+.hero{display:grid;grid-template-columns:1.05fr .95fr;gap:20px;align-items:stretch} .hero-main{padding:38px} .hero-main h1{margin:0;font-size:48px;line-height:1.03;letter-spacing:-.06em} .hero-main p{margin:18px 0 0;color:#667085;font-size:16px;max-width:680px} .hero-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px} .action{padding:12px 16px;border-radius:999px;background:var(--primary);color:#fff;text-decoration:none;font-weight:850;font-size:14px} .action.secondary{background:var(--primary-soft,#eceeff);color:var(--primary)}
+.profile-mini{padding:28px;display:grid;align-content:center;gap:18px} .profile-top{display:flex;gap:16px;align-items:center} .avatar{width:76px;height:76px;border-radius:23px;background:linear-gradient(135deg,#fff2cb,#ffd9a6);border:1px solid #f1d6a3;display:grid;place-items:center;font-size:34px;flex:0 0 auto} .profile-top h2{margin:0;font-size:28px;letter-spacing:-.05em} .profile-top p{margin:3px 0 0;color:var(--muted);font-weight:800} .headline{padding:18px 20px;border-radius:18px;background:var(--soft2);color:var(--primary);font-size:15px;font-weight:850}
+.quick-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:18px} .quick{padding:20px;border-radius:18px;background:#fff;border:1px solid var(--line)} .quick b{display:block;font-size:14px;color:#596174;margin-bottom:8px} .quick strong{display:block;font-size:22px;line-height:1.25;letter-spacing:-.04em} .quick span{display:block;margin-top:6px;color:var(--muted);font-size:13px}
+.section{margin-top:20px;padding:28px} .section h2{margin:0 0 14px;font-size:24px;letter-spacing:-.04em}
+.project-list{display:grid;gap:12px} .project-card{display:grid;grid-template-columns:1.15fr .8fr;gap:18px;align-items:start;padding:22px;border-radius:18px;border:1px solid var(--line);background:linear-gradient(180deg,#fff,#fbfcff)} .project-card h3{margin:0 0 8px;font-size:22px;line-height:1.35;letter-spacing:-.045em} .project-card p{margin:0;color:var(--muted);font-size:15px} .project-side-text{border-left:1px solid var(--line);padding-left:18px} .pill{display:inline-flex;align-items:center;padding:8px 11px;border-radius:999px;background:var(--soft2);color:var(--primary);font-size:12px;font-weight:900;margin-bottom:9px}
+.project-page{display:grid;gap:18px} .project-detail-card{padding:34px} .project-kicker{display:inline-flex;padding:8px 12px;border-radius:999px;background:var(--soft2);color:var(--primary);font-size:12px;font-weight:900;margin-bottom:13px} .project-detail-card h1{margin:0;font-size:32px;letter-spacing:-.05em;line-height:1.24} .project-summary{font-size:16px;color:var(--muted);margin:12px 0 22px;max-width:900px}
+.detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px} .subbox{padding:22px;border-radius:18px;background:var(--soft);border:1px solid var(--line)} .subbox.wide{grid-column:1/-1} .subbox h3{margin:0 0 12px;font-size:18px} .list{list-style:none;margin:0;padding:0;display:grid;gap:9px} .list li{position:relative;padding-left:15px;color:#485162;font-size:14px} .list li:before{content:"";position:absolute;left:0;top:.72em;width:6px;height:6px;border-radius:999px;background:var(--primary)}
+.info-table,.detail-table{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#fff} .info-row,.detail-head,.detail-row{display:grid;grid-template-columns:120px 1fr} .info-row+ .info-row,.detail-row{border-top:1px solid var(--line)} .info-row div,.detail-row div,.detail-head div{padding:13px 15px;font-size:14px} .info-row div:first-child,.detail-row div:first-child,.detail-head div:first-child{background:#fafbfd;border-right:1px solid var(--line);font-weight:900} .detail-head div{font-weight:900;background:#f7f9ff}
+.issue-layout{display:grid;grid-template-columns:280px 1fr;gap:18px;align-items:start} .issue-side{position:sticky;top:calc(var(--nav) + 18px);padding:20px} .issue-side h2{margin:0 0 6px;font-size:22px;letter-spacing:-.04em} .issue-side p{margin:0 0 16px;color:var(--muted);font-size:13px} .issue-cat-tabs{display:grid;gap:8px;margin-bottom:16px} .cat-btn{width:100%;padding:12px 14px;text-align:left;border-radius:13px;background:#fff;border:1px solid var(--line);font-weight:850;color:#4b5364} .cat-btn.active{background:var(--primary);color:#fff;border-color:var(--primary)} .issue-menu{display:grid;gap:8px} .issue-btn{width:100%;padding:11px 12px;border-radius:12px;text-align:left;background:var(--soft);border:1px solid var(--line);font-size:13px;font-weight:800;color:#515a6d} .issue-btn.active,.issue-btn:hover{background:var(--soft2);border-color:#d6dcff;color:var(--primary)} .issue-detail{padding:32px} .issue-detail h1{margin:0;font-size:30px;line-height:1.28;letter-spacing:-.05em} .project-label{margin-top:14px;font-size:12px;font-weight:900;color:var(--primary);letter-spacing:.08em} .meta{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 20px} .meta span{padding:7px 10px;border-radius:999px;background:var(--soft2);color:var(--primary);font-size:12px;font-weight:850}
+.story{display:grid;grid-template-columns:1fr;gap:14px} .story-block{padding:20px;border-radius:16px;border:1px solid var(--line);background:#fff} .story-block h3{margin:0 0 8px;font-size:16px;color:#202637} .story-block p{margin:0;color:#4d5668;font-size:15px}
+.skills-layout{display:grid;gap:16px} .skill-card{padding:24px;border-radius:20px;background:#fff;border:1px solid var(--line);box-shadow:var(--shadow)} .skill-head{display:flex;justify-content:space-between;gap:18px;align-items:flex-start;border-bottom:1px solid var(--line);padding-bottom:14px;margin-bottom:14px} .skill-head h2{margin:0;font-size:24px;letter-spacing:-.04em} .skill-stack{display:flex;flex-wrap:wrap;gap:8px;justify-content:flex-end} .skill-stack span{padding:7px 10px;border-radius:999px;background:var(--soft2);color:var(--primary);font-size:12px;font-weight:850} .skill-card ul{margin:0;padding:0;list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:9px 18px} .skill-card li{position:relative;padding-left:14px;color:#4c5566;font-size:14px} .skill-card li:before{content:"";position:absolute;left:0;top:.7em;width:5px;height:5px;border-radius:999px;background:var(--primary)}
+.about-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:18px} .about-profile,.about-deep{padding:30px} .about-profile h1{margin:12px 0 6px;font-size:38px;letter-spacing:-.06em} .contact-list{display:grid;gap:10px;margin-top:20px} .contact-item{padding:14px;border-radius:14px;background:var(--soft);border:1px solid var(--line)} .contact-item small{display:block;color:var(--muted);font-size:11px;letter-spacing:.12em;font-weight:900} .contact-item b{display:block;margin-top:3px;font-size:15px} .about-block{padding:20px;border-radius:17px;background:#fff;border:1px solid var(--line);margin-bottom:12px} .about-block h2{margin:0 0 8px;font-size:19px} .about-block p{margin:0;color:#4f5869;font-size:15px}
+.footer{text-align:center;color:var(--muted);font-size:12px;margin-top:24px}
+@media(max-width:1000px){.brand{min-width:auto}.brand b{display:none}.nav-link{font-size:15px;padding:0 10px}.hero,.about-grid,.issue-layout{grid-template-columns:1fr}.quick-grid{grid-template-columns:1fr 1fr}.issue-side{position:static}.detail-grid{grid-template-columns:1fr}.project-card{grid-template-columns:1fr}.project-side-text{border-left:0;border-top:1px solid var(--line);padding-left:0;padding-top:14px}}
+@media(max-width:640px){:root{--nav:62px}.wrap{padding:20px 12px 36px}.nav-inner{padding:0 12px}.nav{overflow-x:auto}.nav-link{font-size:14px;min-width:max-content}.dropdown{display:none}.hero-main,.profile-mini,.project-detail-card,.issue-detail,.section{padding:22px}.hero-main h1{font-size:36px}.page-title h1{font-size:28px}.quick-grid{grid-template-columns:1fr}.skill-head{display:block}.skill-stack{justify-content:flex-start;margin-top:10px}.skill-card ul{grid-template-columns:1fr}.info-row,.detail-head,.detail-row{grid-template-columns:1fr}.info-row div:first-child,.detail-row div:first-child,.detail-head div:first-child{border-right:0;border-bottom:1px solid var(--line)}}
+
+/* visual rework */
+.hero{grid-template-columns:1fr;gap:16px}
+.hero-main{padding:42px 44px;display:grid;grid-template-columns:1.05fr .95fr;gap:28px;align-items:center}
+.hero-main .page-title h1{font-size:54px;line-height:1.02;letter-spacing:-.065em}
+.hero-main .page-title p{font-size:17px;max-width:760px}
+.hero-focus{display:grid;gap:12px}
+.focus-card{padding:18px 20px;border:1px solid var(--line);border-radius:18px;background:linear-gradient(180deg,#f8f9ff,#f1f3ff)}
+.focus-card small{display:block;font-size:12px;font-weight:900;color:#737d91;letter-spacing:.08em;margin-bottom:6px;text-transform:uppercase}
+.focus-card b{display:block;font-size:18px;line-height:1.45;letter-spacing:-.035em;color:var(--text)}
+.home-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:18px}
+.home-stat{padding:18px 18px;border-radius:18px;border:1px solid var(--line);background:#fff;box-shadow:var(--shadow)}
+.home-stat small{display:block;color:var(--muted);font-size:12px;font-weight:900;letter-spacing:.08em;text-transform:uppercase}
+.home-stat strong{display:block;margin-top:6px;font-size:28px;line-height:1.1;color:var(--text)}
+.home-stat span{display:block;margin-top:5px;color:var(--muted);font-size:13px}
+.timeline{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:12px}
+.timeline:before{content:"";position:absolute;left:7%;right:7%;top:27px;height:2px;background:var(--line)}
+.t-node{position:relative;padding:54px 16px 18px;border:1px solid var(--line);border-radius:18px;background:#fff;box-shadow:var(--shadow)}
+.t-node:before{content:"";position:absolute;top:19px;left:18px;width:16px;height:16px;border-radius:50%;background:var(--primary);box-shadow:0 0 0 7px var(--soft2)}
+.t-year{position:absolute;top:13px;left:48px;color:var(--primary);font-size:13px;font-weight:900}
+.t-node h3{margin:0 0 8px;font-size:17px;line-height:1.35;letter-spacing:-.04em}
+.t-node p{margin:0;color:var(--muted);font-size:13px;line-height:1.6}
+.project-list.visual{gap:10px}
+.project-list.visual .project-card{grid-template-columns:72px 1fr .95fr;padding:20px 22px;align-items:center}
+.project-num{font-size:26px;font-weight:950;color:var(--primary);letter-spacing:-.04em}
+.issue-start{padding:32px}.issue-start h1{margin:0 0 8px;font-size:32px;letter-spacing:-.05em}.issue-start p{margin:0;color:var(--muted)}
+.issue-category-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:24px}
+.issue-category-card{padding:20px;border:1px solid var(--line);border-radius:18px;background:#fff;text-align:left;transition:.2s ease;box-shadow:var(--shadow)}
+.issue-category-card:hover{transform:translateY(-2px);border-color:#d2d8ff}.issue-category-card strong{display:block;font-size:20px;margin-bottom:6px}.issue-category-card span{color:var(--muted);font-size:13px}
+.back-btn{width:100%;padding:11px 12px;border-radius:12px;background:var(--soft2);color:var(--primary);font-size:13px;font-weight:900;text-align:left;margin-bottom:12px}
+.issue-cat-title{font-size:13px;color:var(--primary);font-weight:950;letter-spacing:.08em;text-transform:uppercase;margin:2px 0 10px}
+.visual-flow{margin:22px 0 18px;padding:18px;border:1px solid var(--line);border-radius:18px;background:linear-gradient(180deg,#fbfcff,#f6f8ff)}
+.flow-title{font-size:13px;font-weight:950;color:var(--primary);letter-spacing:.08em;text-transform:uppercase;margin-bottom:14px}
+.flow-track{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;align-items:stretch}
+.flow-step{position:relative;padding:16px 14px;border:1px solid #dfe4f4;border-radius:16px;background:#fff;min-height:116px}
+.flow-step:not(:last-child):after{content:"→";position:absolute;right:-13px;top:50%;transform:translateY(-50%);color:var(--primary);font-weight:950;background:#f8f9ff;padding:0 2px}
+.flow-step small{display:block;color:var(--primary);font-size:12px;font-weight:950;margin-bottom:8px;letter-spacing:.08em}.flow-step b{display:block;font-size:16px;line-height:1.35;margin-bottom:6px}.flow-step span{display:block;color:var(--muted);font-size:12px;line-height:1.55}
+.story{margin-top:14px}.story-block{padding:18px 20px}.story-block h3{font-size:15px;color:var(--primary)}
+.issue-side.mode-cases .issue-cat-tabs{margin:0}.issue-side.mode-cases p{display:none}
+@media(max-width:1000px){.hero-main{grid-template-columns:1fr}.home-stats,.timeline,.flow-track{grid-template-columns:1fr 1fr}.timeline:before{display:none}.project-list.visual .project-card{grid-template-columns:1fr}.issue-category-grid{grid-template-columns:1fr}}
+
+.work-summary-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.work-summary-card{padding:17px 18px;border-radius:16px;background:#fff;border:1px solid var(--line)}
+.work-summary-card b{display:block;margin-bottom:6px;font-size:15px;color:#22293a}
+.work-summary-card span{display:block;color:#5a6477;font-size:14px;line-height:1.65}
+.issue-side.mode-cases .issue-cat-tabs{display:none}
+.issue-category-card.tiny{padding:14px 16px}
+.issue-category-card.tiny strong{font-size:16px;margin-bottom:0}
+.flow-step span{font-size:14px;line-height:1.55;color:#5a6477;display:block;margin-top:8px}
+.issue-highlight{display:flex;flex-wrap:wrap;gap:9px;margin:4px 0 20px}
+.issue-highlight span{padding:9px 13px;border-radius:999px;background:var(--soft2);color:var(--primary);font-size:13px;font-weight:900}
+@media(max-width:760px){.work-summary-grid{grid-template-columns:1fr}}
+@media(max-width:760px){.hero-main{padding:28px 22px}.hero-main .page-title h1{font-size:38px}.home-stats,.timeline,.flow-track{grid-template-columns:1fr}.flow-step:not(:last-child):after{content:"↓";right:50%;top:auto;bottom:-16px;transform:translateX(50%)}.issue-layout{grid-template-columns:1fr}.issue-side{position:static}.project-list.visual .project-card{padding:18px}}
+
+
+/* v4 readability refinements */
+.timeline-section{overflow:hidden}
+.timeline{grid-template-columns:repeat(5,minmax(210px,1fr));gap:10px;overflow-x:auto;padding:4px 2px 8px;scrollbar-width:thin}
+.timeline:before{left:4%;right:4%;top:29px}
+.t-node{min-height:168px;padding:18px 16px}
+.t-node h3{font-size:17px;line-height:1.35;word-break:keep-all}
+.t-node p{font-size:13px;line-height:1.55;word-break:keep-all}
+.t-year{font-size:13px;white-space:nowrap}
+.about-rework{display:grid;grid-template-columns:.82fr 1.18fr;gap:18px;align-items:start}
+.about-intro{padding:32px;position:sticky;top:calc(var(--nav) + 18px)}
+.about-intro .avatar{width:82px;height:82px;font-size:36px;margin-bottom:16px}
+.about-intro h1{margin:0;font-size:40px;line-height:1.1;letter-spacing:-.06em}
+.about-intro .role-text{margin:7px 0 18px;color:var(--muted);font-weight:850}
+.about-intro .about-statement{padding:18px 20px;border-radius:18px;background:var(--soft2);color:var(--primary);font-weight:850;line-height:1.65}
+.about-contact{display:grid;gap:10px;margin-top:18px}
+.about-contact .contact-item{background:#fff}
+.about-main{display:grid;gap:14px}
+.about-section-card{padding:24px;border-radius:20px;background:#fff;border:1px solid var(--line);box-shadow:var(--shadow)}
+.about-section-card h2{margin:0 0 12px;font-size:22px;letter-spacing:-.045em}
+.about-section-card p{margin:0;color:#4f5869;font-size:15px;line-height:1.8}
+.about-two{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.about-mini-card{padding:20px;border-radius:18px;background:linear-gradient(180deg,#fff,#fbfcff);border:1px solid var(--line)}
+.about-mini-card small{display:block;color:var(--primary);font-weight:950;letter-spacing:.08em;margin-bottom:8px;font-size:12px}
+.about-mini-card b{display:block;font-size:17px;margin-bottom:8px;letter-spacing:-.035em}
+.about-mini-card span{display:block;color:#5f6878;font-size:14px;line-height:1.7}
+.process-line{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.process-step{padding:16px 14px;border-radius:16px;background:var(--soft);border:1px solid var(--line);position:relative}
+.process-step:not(:last-child):after{content:'→';position:absolute;right:-13px;top:50%;transform:translateY(-50%);color:var(--primary);font-weight:950;background:#fff;padding:0 2px}
+.process-step small{display:block;color:var(--primary);font-weight:950;margin-bottom:6px;font-size:12px}
+.process-step b{display:block;font-size:15px;line-height:1.45}
+@media(max-width:1000px){.timeline{grid-template-columns:repeat(5,minmax(230px,1fr))}.timeline:before{display:none}.about-rework{grid-template-columns:1fr}.about-intro{position:static}.process-line{grid-template-columns:1fr 1fr}.process-step:not(:last-child):after{display:none}}
+@media(max-width:760px){.about-two,.process-line{grid-template-columns:1fr}}
+
+
+/* v5 timeline and About refinements */
+.timeline-section{overflow:hidden; padding-bottom:24px}
+.timeline{
+  display:flex !important;
+  grid-template-columns:none !important;
+  flex-wrap:nowrap;
+  gap:12px;
+  overflow-x:auto;
+  padding:16px 4px 12px;
+  scrollbar-width:thin;
 }
-  .issue-tags{
-    display:flex;
-    flex-wrap:wrap;
-    gap:8px;
-    justify-content:flex-end;
-  }
-  .issue-tags span{
-    padding:6px 10px;
-    border-radius:999px;
-    background:var(--primary-soft);
-    color:var(--primary);
-    font-size:12px;
-    font-weight:800;
-    white-space:nowrap;
-  }
-  .issue-body{
-    border-top:1px solid var(--line);
-    padding:16px 18px;
-    background:linear-gradient(180deg,#fcfdff 0%, #f8faff 100%);
-  }
-  .issue-body p{
-    margin:0 0 14px;
-    font-size:14px;
-    color:#485162;
-  }
-  .issue-body p:last-child{margin-bottom:0}
-  .issue-body strong{color:#222b3a}
-
-  .footer{padding:16px 20px;font-size:13px;color:var(--muted);text-align:center}
-
-  .guide-icon img{
-  width:16px;
-  height:16px;
-  animation:clickPulse 1.5s infinite;
+.timeline:before{display:none !important}
+.t-node{
+  flex:0 0 226px;
+  min-height:156px;
+  padding:62px 16px 18px !important;
 }
-/* 04번 섹션 전용 스타일 */
-.improve-table .detail-head,
-.improve-table .detail-row{
-  display:grid;
-  grid-template-columns:160px 1fr;
+.t-node:before{top:22px !important;left:18px !important}
+.t-year{top:17px !important;left:50px !important;font-size:13px !important;white-space:nowrap;line-height:1.2}
+.t-node h3{font-size:16px !important;line-height:1.34 !important;margin:0 0 8px !important;word-break:keep-all}
+.t-node p{font-size:13px !important;line-height:1.5 !important;word-break:keep-all}
+.process-line{gap:12px}
+.process-step{padding:15px 16px;min-height:128px}
+.process-step b{font-size:14px;line-height:1.48;word-break:keep-all}
+
+
+/* v6 readability refinements */
+.page-title > p,
+.issue-side > p{display:none !important}
+.section-head{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:12px}
+.section-head h2{margin:0 !important}
+.timeline-controls{display:flex;gap:8px;flex:0 0 auto}
+.timeline-btn{width:38px;height:38px;border-radius:999px;background:var(--soft2);color:var(--primary);font-size:28px;line-height:1;font-weight:900;border:1px solid #d9defd;display:grid;place-items:center;box-shadow:0 8px 18px rgba(90,100,255,.08)}
+.timeline-btn:hover{background:var(--primary);color:#fff;border-color:var(--primary)}
+.timeline{scroll-behavior:smooth;padding-bottom:16px !important}
+.t-node{flex:0 0 330px !important;min-height:150px !important;padding:62px 18px 18px !important}
+.t-node h3{white-space:nowrap !important;overflow:hidden;text-overflow:ellipsis;font-size:17px !important;line-height:1.25 !important;word-break:keep-all !important}
+.t-node p{white-space:nowrap !important;overflow:hidden;text-overflow:ellipsis;word-break:keep-all !important}
+.issue-layout{grid-template-columns:200px 1fr !important}
+.issue-side{padding:18px !important}
+.issue-side h2{font-size:21px !important;line-height:1.25}
+.cat-btn{padding:11px 12px !important;font-size:14px !important}
+.issue-btn{padding:11px 12px !important;font-size:13px !important;line-height:1.45}
+.about-rework{grid-template-columns:.58fr 1.42fr !important}
+.about-section-card p,
+.about-mini-card span,
+.about-statement,
+.contact-item b{word-break:keep-all}
+.process-step{min-height:96px !important}
+.process-step b{font-size:14px !important;line-height:1.55 !important;word-break:keep-all !important}
+.dropdown .drop-btn{font-size:13px;line-height:1.35}
+@media(max-width:1000px){.issue-layout,.about-rework{grid-template-columns:1fr !important}.timeline-controls{display:flex}.t-node{flex-basis:300px !important}}
+@media(max-width:640px){.t-node{flex-basis:280px !important}.timeline-btn{width:34px;height:34px;font-size:24px}}
+
+
+
+/* v7 final layout refinements */
+.hero-main p{display:none!important}
+.hero-summary{margin-top:22px;display:grid;gap:10px;max-width:760px}
+.hero-summary-row{display:grid;grid-template-columns:150px 1fr;gap:14px;align-items:start;padding:13px 15px;border-radius:16px;background:#fff;border:1px solid var(--line)}
+.hero-summary-row b{font-size:14px;color:var(--primary);font-weight:950;white-space:nowrap}
+.hero-summary-row span{font-size:15px;color:#596274;line-height:1.65;word-break:keep-all}
+.issue-layout{grid-template-columns:280px 1fr !important}
+.issue-side h2{white-space:nowrap!important;font-size:22px!important;line-height:1.25!important;letter-spacing:-.055em}
+.issue-btn{font-size:13px!important;line-height:1.55!important;word-break:keep-all!important}
+.about-intro .about-statement{display:grid;gap:10px;background:var(--soft2);color:#4e59e8;padding:18px 20px}
+.about-statement-line{display:grid;grid-template-columns:86px 1fr;gap:10px;align-items:start}
+.about-statement-line b{font-size:13px;font-weight:950;color:var(--primary);white-space:nowrap}
+.about-statement-line span{font-size:15px;line-height:1.65;color:#4f59e8;word-break:keep-all}
+.cloud-split{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px}
+.cloud-card{padding:18px;border-radius:16px;background:#fff;border:1px solid var(--line)}
+.cloud-card small{display:inline-flex;padding:7px 10px;border-radius:999px;background:var(--soft2);color:var(--primary);font-weight:950;font-size:12px;margin-bottom:10px}
+.cloud-card b{display:block;font-size:17px;margin-bottom:7px;letter-spacing:-.035em}
+.cloud-card span{display:block;color:#5d6678;font-size:14px;line-height:1.7;word-break:keep-all}
+@media(max-width:1000px){.issue-layout{grid-template-columns:1fr!important}.cloud-split{grid-template-columns:1fr}.hero-summary-row{grid-template-columns:1fr;gap:4px}.about-statement-line{grid-template-columns:1fr}}
+
+
+
+/* v8 refinements: readable hero/about, hash tags, split cloud project */
+.hero-summary{margin-top:28px;display:grid;gap:14px;max-width:880px;border-top:1px solid var(--line);padding-top:22px}
+.hero-summary-row{display:grid;grid-template-columns:120px 1fr;gap:22px;align-items:start;padding:0;border:0;background:transparent;border-radius:0}
+.hero-summary-row b{font-size:15px;color:var(--primary);font-weight:950;white-space:nowrap;letter-spacing:-.02em}
+.hero-summary-row span{font-size:18px;color:#657084;line-height:1.75;word-break:keep-all}
+.about-intro .about-statement{display:grid;gap:14px;background:transparent;color:#596274;padding:20px 0 0;border-top:1px solid var(--line);border-radius:0}
+.about-statement-line{display:grid;grid-template-columns:92px 1fr;gap:16px;align-items:start}
+.about-statement-line b{font-size:14px;font-weight:950;color:var(--primary);white-space:nowrap}
+.about-statement-line span{font-size:15px;line-height:1.75;color:#596274;word-break:keep-all}
+.issue-hash{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 16px}
+.issue-hash span{display:inline-flex;color:var(--primary);font-size:14px;font-weight:950;letter-spacing:-.02em}
+.issue-detail .project-label{margin-top:18px}
+.cloud-work-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:20px}
+.cloud-work-card{padding:24px;border-radius:20px;background:#fff;border:1px solid var(--line);box-shadow:0 10px 24px rgba(36,52,91,.045)}
+.cloud-work-card small{display:inline-flex;padding:7px 10px;border-radius:999px;background:var(--soft2);color:var(--primary);font-size:12px;font-weight:950;margin-bottom:12px}
+.cloud-work-card h2{margin:0 0 8px;font-size:23px;line-height:1.3;letter-spacing:-.045em}
+.cloud-work-card p{margin:0;color:#626b7e;font-size:15px;line-height:1.75;word-break:keep-all}
+.cloud-detail-block{margin-top:16px;padding:24px;border-radius:20px;background:var(--soft);border:1px solid var(--line)}
+.cloud-detail-block h3{margin:0 0 14px;font-size:19px;letter-spacing:-.035em}
+.cloud-detail-block + .cloud-detail-block{margin-top:16px}
+.cloud-detail-block .detail-table{background:#fff}
+@media(max-width:1000px){.cloud-work-grid{grid-template-columns:1fr}.hero-summary-row,.about-statement-line{grid-template-columns:1fr;gap:4px}.hero-summary-row span{font-size:16px}}
+
+
+/* v9 refinements */
+.hero{display:block!important}
+.hero-main{max-width:none!important;padding:46px 48px!important}
+.hero-main .page-title p.hero-lead{max-width:920px!important;font-size:22px!important;line-height:1.9!important;color:#6b7284!important;margin-top:28px!important;word-break:keep-all!important}
+.hero-summary,.hero-focus{display:none!important}
+.icon-stats{grid-template-columns:repeat(4,1fr)!important;gap:14px!important}
+.icon-stats .home-stat{position:relative;padding:24px 24px 24px 96px!important;min-height:126px;border-radius:22px!important;overflow:hidden}
+.stat-icon{position:absolute;left:24px;top:50%;transform:translateY(-50%);width:54px;height:54px;border-radius:18px;background:linear-gradient(180deg,#f6f8fd,#e9edf5);border:1px solid #dce2ed;display:flex;align-items:center;justify-content:center;font-size:30px;filter:grayscale(.15)}
+.icon-stats .home-stat small{font-size:12px!important;letter-spacing:.12em!important}
+.icon-stats .home-stat strong{font-size:34px!important;line-height:1.05!important}
+.cloud-compare{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:28px;align-items:start}
+.cloud-panel{border:1px solid var(--line);border-radius:24px;background:#fff;box-shadow:0 14px 32px rgba(36,52,91,.055);overflow:hidden}
+.cloud-panel-head{padding:26px 28px;border-bottom:1px solid var(--line);background:linear-gradient(180deg,#fff,#fbfcff)}
+.cloud-panel-head small{display:inline-flex;padding:7px 10px;border-radius:999px;background:var(--soft2);color:var(--primary);font-weight:950;font-size:12px;margin-bottom:12px}
+.cloud-panel-head h2{margin:0 0 8px;font-size:24px;line-height:1.3;letter-spacing:-.045em}
+.cloud-panel-head p{margin:0;color:#626b7e;font-size:15px;line-height:1.75;word-break:keep-all}
+.cloud-panel-body{padding:24px 28px 28px;background:#fff}
+.cloud-panel-body h3{margin:0 0 12px;font-size:18px;letter-spacing:-.035em}
+.cloud-panel-body h3:not(:first-child){margin-top:20px}
+.info-table.compact .info-row{grid-template-columns:88px 1fr}
+.issue-detail .project-label{margin:0 0 8px!important;letter-spacing:.1em;color:var(--primary)}
+.issue-project-name{margin:0 0 20px;color:#4a5160;font-weight:850;font-size:19px;letter-spacing:-.035em}
+.issue-detail h1{margin-top:0!important;margin-bottom:24px!important;font-size:34px!important}
+.issue-hash{margin:0 0 14px!important}
+.issue-hash span{font-size:15px!important;color:var(--primary)!important;font-weight:900!important}
+.visual-flow.simple{padding:24px 28px!important;background:#fff!important}
+.visual-flow.simple .flow-title{color:#515a6d!important;font-size:15px!important;letter-spacing:-.02em!important;text-transform:none!important;margin-bottom:14px!important}
+.visual-flow.simple .flow-track{grid-template-columns:1fr 1fr!important;gap:14px!important}
+.visual-flow.simple .flow-step{min-height:120px;background:#fbfcff!important}
+.visual-flow.simple .flow-step small{display:none!important}
+.visual-flow.simple .flow-step b{color:#202637!important;font-size:21px!important;margin-bottom:10px!important}
+.visual-flow.simple .flow-step span{font-size:17px!important;line-height:1.65!important;color:#646d80!important;display:block!important}
+.visual-flow.simple .flow-step:not(:last-child):after{content:'→';right:-19px;color:var(--primary);font-size:22px;font-weight:900}
+.issue-btn{font-size:14px!important;line-height:1.35!important;padding:13px 14px!important}
+.about-intro .about-statement{display:none!important}
+.about-main .about-section-card:first-child p{font-size:17px;line-height:1.9;word-break:keep-all}
+@media(max-width:1000px){.icon-stats{grid-template-columns:1fr 1fr!important}.cloud-compare{grid-template-columns:1fr}.hero-main .page-title p.hero-lead{font-size:18px!important}.visual-flow.simple .flow-track{grid-template-columns:1fr!important}.visual-flow.simple .flow-step:not(:last-child):after{content:'↓';right:50%;top:auto;bottom:-20px;transform:translateX(50%)}}
+@media(max-width:640px){.icon-stats{grid-template-columns:1fr!important}.icon-stats .home-stat{padding-left:84px!important}.hero-main{padding:30px 24px!important}.hero-main .page-title h1{font-size:40px!important}}
+
+
+/* v10 refinements */
+.icon-stats .home-stat{display:grid!important;grid-template-columns:68px 1fr!important;grid-template-rows:auto auto auto!important;column-gap:18px!important;align-items:center!important;padding:22px 24px!important;min-height:126px!important}
+.icon-stats .stat-icon{position:static!important;grid-row:1 / span 3!important;transform:none!important;width:58px!important;height:58px!important;font-size:28px!important}
+.icon-stats .home-stat small,.icon-stats .home-stat strong,.icon-stats .home-stat span{grid-column:2!important;white-space:nowrap!important}
+.icon-stats .home-stat span{font-size:15px!important;line-height:1.35!important}
+.visual-flow.simple .flow-track{grid-template-columns:repeat(4,1fr)!important}
+.visual-flow.simple .flow-step b{color:#202637!important;font-size:18px!important;margin-bottom:8px!important}
+.visual-flow.simple .flow-step span{font-size:15px!important;line-height:1.55!important;color:#646d80!important}
+@media(max-width:1100px){.visual-flow.simple .flow-track{grid-template-columns:1fr 1fr!important}.icon-stats .home-stat small,.icon-stats .home-stat strong,.icon-stats .home-stat span{white-space:normal!important}}
+@media(max-width:640px){.visual-flow.simple .flow-track{grid-template-columns:1fr!important}}
+
+
+/* v11 refinements */
+.icon-stats .home-stat{
+  grid-template-columns:68px 1fr!important;
+  grid-template-rows:auto auto auto!important;
+  align-items:center!important;
+  min-height:148px!important;
+  padding:22px 24px!important;
 }
-
-.improve-head p{
-  max-width:none;
-  white-space:nowrap;
+.icon-stats .stat-icon{grid-row:1 / span 2!important}
+.icon-stats .home-stat small,.icon-stats .home-stat strong{grid-column:2!important;white-space:nowrap!important}
+.icon-stats .home-stat span{
+  grid-column:1 / -1!important;
+  white-space:normal!important;
+  margin-top:10px!important;
+  padding-left:0!important;
+  line-height:1.45!important;
+  max-width:100%!important;
+  overflow:visible!important;
 }
+@media(max-width:1100px){.icon-stats .home-stat small,.icon-stats .home-stat strong,.icon-stats .home-stat span{white-space:normal!important}}
 
-@keyframes clickPulse{
-  0%{ transform:scale(1); opacity:0.8; }
-  50%{ transform:scale(1.15); opacity:1; }
-  100%{ transform:scale(1); opacity:0.8; }
-}
-
-  @media (max-width:1100px){
-    .layout{grid-template-columns:1fr}
-    .side{position:static}
-    .hero-grid,.project-grid,.grid-2{grid-template-columns:1fr}
-    .skill-grid{grid-template-columns:1fr 1fr}
-    .summary-row{
-      grid-template-columns:1fr;
-      text-align:left;
-      padding:20px;
-    }
-    .summary-row > :first-child,
-    .summary-row > :last-child{
-      padding:0;
-    }
-    .summary-row > :nth-child(2){
-      justify-content:flex-start;
-    }
-    .summary-row .pill{
-      min-width:0;
-    }
-  }
-
-  @media (max-width:760px){
-    .wrap{margin:20px auto;padding:0 12px 28px}
-    .hero h1{font-size:32px}
-    .skill-grid{grid-template-columns:1fr}
-    .project-head{flex-direction:column}
-    .desc-row,
-    .detail-head,
-    .detail-row{
-      grid-template-columns:1fr;
-    }
-    .desc-label,
-    .detail-head div:first-child,
-    .detail-row div:first-child{
-      border-right:0;
-      border-bottom:1px solid var(--line);
-    }
-    .issue-title-wrap{
-      flex-direction:column;
-    }
-    .issue-tags{
-      justify-content:flex-start;
-    }
-  }
 </style>
 </head>
 <body>
-  <div class="wrap">
-    <div class="layout">
-      <aside class="card side">
-        <div class="profile-box">
-          <div class="avatar">🧑‍💻</div>
-          <h1 class="name">정송화</h1>
-          <div class="role">Backend / SI Engineer</div>
-          <div class="headline">병원 물류 ERP를 중심으로 운영, 개발, 데이터 안정화까지 연결하는 실무형 엔지니어</div>
-        </div>
-
-        <div class="side-section">
-          <div class="side-title">Contact</div>
-          <div class="info-list">
-            <div class="info-item">
-              <small>Email</small>
-              <strong>songha0504@naver.com</strong>
-            </div>
-            <div class="info-item">
-              <small>Phone</small>
-              <strong>010-9665-0771</strong>
-            </div>
-          </div>
-        </div>
-
-        <div class="side-section">
-          <div class="side-title">Core Domain</div>
-          <div class="tag-wrap">
-            <span class="tag">병원 물류 ERP</span>
-            <span class="tag">SI 개발</span>
-            <span class="tag">운영 안정화</span>
-            <span class="tag">DB</span>
-            <span class="tag">시스템 통합</span>
-            <span class="tag">장애 대응</span>
-          </div>
-        </div>
-
-        <div class="side-section">
-          <div class="side-title">About me</div>
-          <div class="info-list">
-            <div class="info-item">
-              <small>운영중심 개발자</small>
-              <strong>화면과 기능 구현에 그치지 않고 실제 현업 사용 과정과 운영 안정성까지 함께 고려하여 개발합니다.</strong>
-            </div>
-            <div class="info-item">
-              <small>문제해결형 개발자</small>
-              <strong>데이터 불일치, 성능 저하, 장애 상황에서 원인을 추적하고 구조적으로 정리하는 데 강점이 있습니다.</strong>
-            </div>
-            <div class="info-item">
-              <small>사용자 친화 개발자</small>
-              <strong>병원 실무 흐름을 바탕으로 요구사항을 정리하고 사용자와 직접 소통하며 개발을 진행합니다.</strong>
-            </div>
-          </div>
-        </div>
-      </aside>
-
-      <main class="main">
-        <section class="card hero">
-          <div class="hero-grid">
-            <div>
-              <h1>CAREER<br />PORTFOLIO</h1>
-              <p class="lead">
-                단순히 기능을 만드는 개발자가 아니라, 실제 운영에서 발생하는 문제를 추적하고 정리하고 안정화하는 개발자입니다.
-                사용자의 업무 흐름을 이해한 상태에서 신규 개발, 운영 대응, 데이터 정비, 통합 프로젝트를 수행해왔습니다.
-              </p>
-            </div>
-            <div class="mini-boxes">
-              <div class="mini">
-                <small>핵심 포지션</small>
-                <strong>운영과 개발을 함께 보는 Backend / SI Engineer</strong>
-              </div>
-              <div class="mini">
-                <small>개발 접근 방식</small>
-                <strong>문제 발생 이후 대응이 아니라, 발생 원인을 줄이는 구조 중심 개발</strong>
-              </div>
-              <div class="mini">
-                <small>일하는 방식</small>
-                <strong>문제 발견 → 원인 분석 → 개선 반영 → 재발 방지</strong>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section class="card section-card">
-          <div class="card-title">
-            <div>
-              <h2>전체 경험 요약</h2>
-            </div>
-          </div>
-
-          <div class="summary-table">
-            <div class="summary-row">
-              <div>
-                <strong>대여기구 수령/반납 연동 시스템 SI 개발</strong>
-                <span>SCM 프로그램과 ERP 프로그램 간 대여기구 업무 데이터 연동</span>
-              </div>
-              <div><span class="pill">SCM-ERP 연동 / DB Link / ERD</span></div>
-              <div>
-                <strong>연동 구조 설계 및 사용자 업무 반영</strong>
-                <span>DB Link·스키마 연결, ERwin 기반 ERD 작성, 타 팀 협업, 실제 사용자 흐름 기반 화면 개발</span>
-              </div>
-            </div>
-
-            <div class="summary-row">
-              <div>
-                <strong>클라우드 기반 ERP 운영 및 SI 개발</strong>
-                <span>병원 물류 프로세스 전반 기능 구현 및 운영</span>
-              </div>
-              <div><span class="pill">운영 / 개발 / 장애 대응</span></div>
-              <div>
-                <strong>End-to-End 실무 수행</strong>
-                <span>요구사항 정리, 신규 개발, 데이터 이슈 대응, 운영 안정화</span>
-              </div>
-            </div>
-
-            <div class="summary-row">
-              <div>
-                <strong>차세대 통합 프로젝트 (9개 병원)</strong>
-                <span>상이한 병원 환경을 공통 구조로 통합</span>
-              </div>
-              <div><span class="pill">통합 / 테스트 / 연동</span></div>
-              <div>
-                <strong>공통화와 검증 중심</strong>
-                <span>요구사항 통합, 테스트 문서화, 데이터 정합성 점검, 외부 API 협업</span>
-              </div>
-            </div>
-
-            <div class="summary-row">
-              <div>
-                <strong>MySQL → Oracle DB 변환 프로젝트</strong>
-                <span>기존 시스템의 DB 구조와 SQL을 재구성</span>
-              </div>
-              <div><span class="pill">마이그레이션 / SQL</span></div>
-              <div>
-                <strong>구조 차이 분석 및 정합성 검증</strong>
-                <span>문법 변환, 스크립트 준비, 데이터 무결성 확인</span>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section>
-          <div class="card section-card">
-            <div class="card-title">
-              <div>
-                <h2>Technical Skills</h2>
-              </div>
-            </div>
-        
-            <div class="skill-grid">
-              <div class="skill-box">
-                <h3>Backend</h3>
-                <div class="skill-caption">주로 서버 로직, 유지보수, 구조 설계에 사용</div>
-        
-                <div class="skill-accordion">
-                  <div class="skill-item">
-                    <button class="skill-toggle" type="button">
-                      <div class="skill-main">
-                        <span class="skill-name">Java</span>
-                      </div>
-                      <span class="skill-arrow">⌄</span>
-                    </button>
-                    <div class="skill-content">
-                      <div class="skill-content-inner">
-                        <strong>Spring Framework 기반 SI 프로젝트 전반 개발 및 유지보수</strong>
-                        <p>병원 ERP 운영 환경에서 비즈니스 로직 구현, 기능 개선, 장애 대응, 로직 수정에 가장 자주 사용한 핵심 언어입니다.</p>
-                      </div>
-                    </div>
-                  </div>
-        
-                  <div class="skill-item">
-                    <button class="skill-toggle" type="button">
-                      <div class="skill-main">
-                        <span class="skill-name">Spring Framework</span>
-                      </div>
-                      <span class="skill-arrow">⌄</span>
-                    </button>
-                    <div class="skill-content">
-                      <div class="skill-content-inner">
-                        <strong>Controller · Service · DAO 구조 기반 개발</strong>
-                        <p>기존 시스템 유지보수와 신규 화면 개발, 요청 흐름 구성, DB 연동 처리 등 실무 전반에서 지속적으로 사용했습니다.</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-        
-              <div class="skill-box">
-                <h3>Frontend</h3>
-                <div class="skill-caption">기존 시스템 화면 유지보수와 동적 제어 중심</div>
-        
-                <div class="skill-accordion">
-                  <div class="skill-item">
-                    <button class="skill-toggle" type="button">
-                      <div class="skill-main">
-                        <span class="skill-name">JavaScript</span>
-                      </div>
-                      <span class="skill-arrow">⌄</span>
-                    </button>
-                    <div class="skill-content">
-                      <div class="skill-content-inner">
-                        <strong>화면 이벤트 처리, 동적 UI 제어</strong>
-                        <p>조회 조건 처리, 버튼 이벤트, 예외 케이스 대응, 사용자 인터랙션 로직 구현에 실무적으로 자주 사용했습니다.</p>
-                      </div>
-                    </div>
-                  </div>
-        
-                  <div class="skill-item">
-                    <button class="skill-toggle" type="button">
-                      <div class="skill-main">
-                        <span class="skill-name">JSP</span>
-                      </div>
-                      <span class="skill-arrow">⌄</span>
-                    </button>
-                    <div class="skill-content">
-                      <div class="skill-content-inner">
-                        <strong>기존 시스템 유지보수 및 신규 화면 개발</strong>
-                        <p>화면 단 구성, 서버 데이터 바인딩, 공통 영역 처리, 운영 화면 수정 등 레거시 기반 실무에 지속적으로 사용했습니다.</p>
-                      </div>
-                    </div>
-                  </div>
-        
-                  <div class="skill-item">
-                    <button class="skill-toggle" type="button">
-                      <div class="skill-main">
-                        <span class="skill-name">jQuery</span>
-                      </div>
-                      <span class="skill-arrow">⌄</span>
-                    </button>
-                    <div class="skill-content">
-                      <div class="skill-content-inner">
-                        <strong>기존 화면 이벤트 제어 및 AJAX 처리</strong>
-                        <p>레거시 화면 환경에서 비동기 요청, DOM 제어, 폼 데이터 처리 등에 자주 사용했습니다.</p>
-                      </div>
-                    </div>
-                  </div>
-        
-                  <div class="skill-item">
-                    <button class="skill-toggle" type="button">
-                      <div class="skill-main">
-                        <span class="skill-name">IBSheet</span>
-                      </div>
-                      <span class="skill-arrow">⌄</span>
-                    </button>
-                    <div class="skill-content">
-                      <div class="skill-content-inner">
-                        <strong>그리드 기반 업무 화면 구현 및 데이터 처리</strong>
-                        <p>병원 ERP 특성상 목록/상세/일괄처리 중심 화면이 많아, 그리드 이벤트 제어와 IBSheet 전용 함수를 사용해 유지보수 진행했습니다.</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-        
-              <div class="skill-box">
-                <h3>Database / Infra</h3>
-                <div class="skill-caption">운영 DB, 성능, 마이그레이션, 배포 환경 경험 포함</div>
-        
-                <div class="skill-accordion">
-                  <div class="skill-item">
-                    <button class="skill-toggle" type="button">
-                      <div class="skill-main">
-                        <span class="skill-name">Oracle</span>
-                      </div>
-                      <span class="skill-arrow">⌄</span>
-                    </button>
-                    <div class="skill-content">
-                      <div class="skill-content-inner">
-                        <strong>운영 DB, 튜닝, 프로시저/트리거/잡 활용</strong>
-                        <p>실제 운영 데이터 기준으로 쿼리 작성, 정합성 검증, 장애 원인 추적, 성능 개선 업무를 수행했습니다.</p>
-                      </div>
-                    </div>
-                  </div>
-        
-                  <div class="skill-item">
-                    <button class="skill-toggle" type="button">
-                      <div class="skill-main">
-                        <span class="skill-name">MySQL</span>
-                      </div>
-                      <span class="skill-arrow">⌄</span>
-                    </button>
-                    <div class="skill-content">
-                      <div class="skill-content-inner">
-                        <strong>운영 DB 활용 및 Oracle 마이그레이션 경험</strong>
-                        <p>기존 시스템 구조 분석, SQL 문법 차이 검토, 이관 스크립트 준비 및 정합성 점검 경험이 있습니다.</p>
-                      </div>
-                    </div>
-                  </div>
-        
-                  <div class="skill-item">
-                    <button class="skill-toggle" type="button">
-                      <div class="skill-main">
-                        <span class="skill-name">Nginx</span>
-                      </div>
-                      <span class="skill-arrow">⌄</span>
-                    </button>
-                    <div class="skill-content">
-                      <div class="skill-content-inner">
-                        <strong>WAS 연동, 로그 확인, 기본 설정 관리</strong>
-                        <p>직접적인 인프라 전담은 아니지만, 운영 환경에서 서비스 연결 및 로그 기반 점검 업무를 경험했습니다.</p>
-                      </div>
-                    </div>
-                  </div>
-        
-                  <div class="skill-item">
-                    <button class="skill-toggle" type="button">
-                      <div class="skill-main">
-                        <span class="skill-name">Jenkins</span>
-                      </div>
-                      <span class="skill-arrow">⌄</span>
-                    </button>
-                    <div class="skill-content">
-                      <div class="skill-content-inner">
-                        <strong>빌드 및 배포 파이프라인 활용</strong>
-                        <p>운영 반영 과정에서 배포 흐름을 이해하고, 빌드 결과 확인 및 배포 관련 실무를 경험했습니다.</p>
-                      </div>
-                    </div>
-                  </div>
-        
-                  <div class="skill-item">
-                    <button class="skill-toggle" type="button">
-                      <div class="skill-main">
-                        <span class="skill-name">PuTTY</span>
-                      </div>
-                      <span class="skill-arrow">⌄</span>
-                    </button>
-                    <div class="skill-content">
-                      <div class="skill-content-inner">
-                        <strong>운영 및 개발 서버 접속, DB 직접 접근 환경 활용</strong>
-                        <p>운영/개발 서버 또는 DB에 직접 접속이 필요한 상황에서 사용했으며, Linux 명령어를 활용해 서버 환경을 확인하고 필요한 작업을 수행했습니다.</p>
-                      </div>
-                    </div>
-                  </div>
-        
-                  <div class="skill-item">
-                    <button class="skill-toggle" type="button">
-                      <div class="skill-main">
-                        <span class="skill-name">FileZilla</span>
-                      </div>
-                      <span class="skill-arrow">⌄</span>
-                    </button>
-                    <div class="skill-content">
-                      <div class="skill-content-inner">
-                        <strong>서버 파일 전송 및 파일 구조 확인</strong>
-                        <p>리포트 파일, 이미지 저장 파일, 로그 파일 등을 서버에 전송하거나 확인하는 업무에 사용했으며, 서버 내 파일 구조를 이해하고 필요한 경로를 찾아 작업했습니다.</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-        
-              <div class="skill-box">
-                <h3>Tools / Report</h3>
-                <div class="skill-caption">테스트, 모니터링, 리포트 출력, 설계 도구 중심</div>
-        
-                <div class="skill-accordion">
-                  <div class="skill-item">
-                    <button class="skill-toggle" type="button">
-                      <div class="skill-main">
-                        <span class="skill-name">Postman</span>
-                      </div>
-                      <span class="skill-arrow">⌄</span>
-                    </button>
-                    <div class="skill-content">
-                      <div class="skill-content-inner">
-                        <strong>API 테스트 및 외부 연동 검증</strong>
-                        <p>요청/응답 확인, 파라미터 테스트, 외부 시스템 연동 검증 과정에서 지속적으로 사용했습니다.</p>
-                      </div>
-                    </div>
-                  </div>
-        
-                  <div class="skill-item">
-                    <button class="skill-toggle" type="button">
-                      <div class="skill-main">
-                        <span class="skill-name">Scouter</span>
-                      </div>
-                      <span class="skill-arrow">⌄</span>
-                    </button>
-                    <div class="skill-content">
-                      <div class="skill-content-inner">
-                        <strong>서버 모니터링 및 장애 사전 감지</strong>
-                        <p>응답 지연, 자원 사용량, 병목 구간 확인 등 운영 이슈 추적에 활용했습니다.</p>
-                      </div>
-                    </div>
-                  </div>
-        
-                  <div class="skill-item">
-                    <button class="skill-toggle" type="button">
-                      <div class="skill-main">
-                        <span class="skill-name">UBIFORM</span>
-                      </div>
-                      <span class="skill-arrow">⌄</span>
-                    </button>
-                    <div class="skill-content">
-                      <div class="skill-content-inner">
-                        <strong>병원 출력물 및 문서 생성</strong>
-                        <p>기존 리포트 유지보수, 출력 오류 대응, 문서 양식 반영 등 실무에서 사용했습니다.</p>
-                      </div>
-                    </div>
-                  </div>
-        
-                  <div class="skill-item">
-                    <button class="skill-toggle" type="button">
-                      <div class="skill-main">
-                        <span class="skill-name">CLIP Report</span>
-                      </div>
-                      <span class="skill-arrow">⌄</span>
-                    </button>
-                    <div class="skill-content">
-                      <div class="skill-content-inner">
-                        <strong>차세대 프로젝트 리포트 출력</strong>
-                        <p>통합 프로젝트 환경에서 문서 출력 및 화면 연계 업무에 활용했습니다.</p>
-                      </div>
-                    </div>
-                  </div>
-        
-                  <div class="skill-item">
-                    <button class="skill-toggle" type="button">
-                      <div class="skill-main">
-                        <span class="skill-name">ERwin</span>
-                      </div>
-                      <span class="skill-arrow">⌄</span>
-                    </button>
-                    <div class="skill-content">
-                      <div class="skill-content-inner">
-                        <strong>ERD 작성 및 테이블 관계 설계</strong>
-                        <p>SCM-ERP 연동 시스템 개발 과정에서 테이블 구조, 주요 키, 데이터 흐름을 ERD로 정리하고 설계 기준을 문서화하는 데 사용했습니다.</p>
-                      </div>
-                    </div>
-                  </div>
-        
-                  <div class="skill-item">
-                    <button class="skill-toggle" type="button">
-                      <div class="skill-main">
-                        <span class="skill-name">Petra</span>
-                      </div>
-                      <span class="skill-arrow">⌄</span>
-                    </button>
-                    <div class="skill-content">
-                      <div class="skill-content-inner">
-                        <strong>보안 정책 기반 운영 DB 접근</strong>
-                        <p>보안 정책이 적용된 운영 DB 환경에 접근하기 위해 사용했으며, 운영 데이터 확인 및 이슈 분석을 위한 DB 접속 과정에서 활용했습니다.</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section class="card project">
-          <div class="project-head">
-            <div>
-              <h2>01. 대여기구 수령/반납 연동 시스템 SI 개발</h2>
-              <p>SCM 프로그램과 ERP 프로그램 간 대여기구 업무 데이터를 연동하는 시스템을 구축하며, DB Link 기반 연동 구조 설계부터 화면 개발, ERD 작성, 사용자 업무 흐름 반영까지 수행한 SI 개발 프로젝트</p>
-            </div>
-            <div class="period">2026.03 - Present</div>
-          </div>
-        
-          <div class="project-grid" style="grid-template-columns:1fr; margin-top:8px;">
-            <div class="subbox">
-              <h3>프로젝트 설명</h3>
-              <div class="desc-table">
-                <div class="desc-row">
-                  <div class="desc-label">기간</div>
-                  <div class="desc-value">2026.03 - Present</div>
-                </div>
-                <div class="desc-row">
-                  <div class="desc-label">환경</div>
-                  <div class="desc-value">Spring Framework / Oracle / MyBatis / JSP / IBSheet / DB Link / ERwin</div>
-                </div>
-                <div class="desc-row">
-                  <div class="desc-label">활동</div>
-                  <div class="desc-value">SCM-ERP 연동 개발 + DB 설계 + 타 팀 협업 + 사용자 업무 흐름 반영</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        
-          <div class="project-grid" style="margin-top:16px;">
-            <div class="subbox">
-              <h3>주요 수행 내용</h3>
-              <ul class="list">
-                <li>SCM 프로그램과 ERP 프로그램 간 대여기구 수령/반납 업무 연동 시스템 개발</li>
-                <li>DB Link 및 스키마 연결 구조를 활용한 시스템 간 데이터 연계 처리</li>
-                <li>대여기구 업무 흐름을 분석하여 수령, 점검, 반납 처리 화면 및 기능 구현</li>
-                <li>ERwin을 활용한 ERD 작성 및 테이블 구조 설계</li>
-                <li>타 개발팀과 연동 기준, 데이터 항목, 처리 시점 등을 협의하며 인터페이스 구조 정리</li>
-                <li>실제 사용자 업무 방식을 기반으로 입력 항목, 조회 조건, 저장 흐름 개선</li>
-              </ul>
-            </div>
-        
-            <div class="subbox">
-              <h3>상세 업무 영역</h3>
-              <div class="detail-table">
-                <div class="detail-head">
-                  <div>영역</div>
-                  <div>수행 내용</div>
-                </div>
-                <div class="detail-row">
-                  <div>연동 개발</div>
-                  <div>SCM-ERP 간 대여기구 데이터 연동 구조 구현</div>
-                </div>
-                <div class="detail-row">
-                  <div>DB</div>
-                  <div>DB Link, 스키마 연결, 테이블 설계, SQL 작성</div>
-                </div>
-                <div class="detail-row">
-                  <div>설계</div>
-                  <div>ERwin 기반 ERD 작성 및 데이터 흐름 정리</div>
-                </div>
-                <div class="detail-row">
-                  <div>화면 개발</div>
-                  <div>대여기구 수령, 점검, 반납 관련 화면 및 저장 로직 개발</div>
-                </div>
-                <div class="detail-row">
-                  <div>협업</div>
-                  <div>타 팀과 연동 항목, 데이터 기준, 처리 방식 협의</div>
-                </div>
-                <div class="detail-row">
-                  <div>사용자 대응</div>
-                  <div>실제 업무 흐름을 반영한 화면 구성 및 기능 개선</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        
-          <div class="project-grid" style="grid-template-columns:1fr; margin-top:16px;">
-            <div class="subbox">
-              <h3>핵심 경험 & 개선 사례</h3>
-              <div class="issue-guide">
-                <div class="guide-icon"><img src="./cursor_no_bg.png" alt="click" /></div>
-                <div>사례 제목을 클릭하면 상세 설명이 펼쳐집니다.</div>
-              </div>
-        
-              <div class="issue-list">
-                <details class="issue-item">
-                  <summary>
-                    <div class="issue-title-wrap">
-                      <strong>SCM-ERP 간 대여기구 연동 구조 설계 및 개발</strong>
-                      <div class="issue-tags">
-                        <span>SCM-ERP연동</span>
-                        <span>DBLink</span>
-                        <span>인터페이스개발</span>
-                      </div>
-                    </div>
-                  </summary>
-                  <div class="issue-body">
-                    <p><strong>상황</strong><br>대여기구 업무는 SCM 프로그램과 ERP 프로그램 양쪽의 데이터 흐름이 연결되어야 하는 구조였으며, 수령 및 반납 처리 과정에서 시스템 간 데이터 정합성이 중요한 업무였습니다.</p>
-        
-                    <p><strong>문제 분석</strong><br>SCM과 ERP가 서로 다른 스키마 및 데이터 구조를 사용하고 있어, 단순 화면 개발만으로는 업무 처리가 어려웠습니다. 연동 대상 데이터, 기준 키, 처리 시점, 상태값 관리 방식 등을 명확히 정리해야 했습니다.</p>
-        
-                    <p><strong>개선 및 조치</strong><br>DB Link 및 스키마 연결 구조를 활용하여 SCM-ERP 간 데이터를 조회하고 처리할 수 있도록 연동 구조를 구성했습니다. 연동 기준이 되는 출고 ID, 수령 ID, 업체 정보, 기구 정보, 상태값 등을 기준으로 데이터 흐름을 정리하고, 화면 및 저장 로직에 반영했습니다.</p>
-        
-                    <p><strong>결과</strong><br>SCM과 ERP 간 대여기구 업무 데이터가 하나의 흐름으로 처리될 수 있도록 연동 구조를 구축했으며, 사용자가 ERP 화면에서 수령 및 반납 업무를 안정적으로 처리할 수 있도록 개선했습니다.</p>
-                  </div>
-                </details>
-        
-                <details class="issue-item">
-                  <summary>
-                    <div class="issue-title-wrap">
-                      <strong>ERwin 기반 ERD 작성 및 데이터 구조 설계</strong>
-                      <div class="issue-tags">
-                        <span>ERD</span>
-                        <span>ERwin</span>
-                        <span>DB설계</span>
-                      </div>
-                    </div>
-                  </summary>
-                  <div class="issue-body">
-                    <p><strong>상황</strong><br>대여기구 수령/반납 업무를 신규로 개발하기 위해서는 기존 SCM 데이터와 ERP 데이터 간 관계를 먼저 명확히 정의해야 했습니다.</p>
-        
-                    <p><strong>문제 분석</strong><br>업무 흐름상 수령, 점검, 반납, 업체, 기구, 사용자 정보가 서로 연결되어 있었고, 각 테이블 간 관계를 명확히 정리하지 않으면 중복 데이터나 상태 불일치가 발생할 가능성이 있었습니다.</p>
-        
-                    <p><strong>개선 및 조치</strong><br>ERwin을 활용하여 주요 테이블과 컬럼 관계를 ERD로 정리했습니다. 업무 기준이 되는 키 값과 연관 테이블 구조를 시각화하고, 수령/반납 처리 시 필요한 데이터 흐름을 기준으로 테이블 구조를 설계했습니다.</p>
-        
-                    <p><strong>결과</strong><br>개발 전 데이터 구조를 명확히 정리하여 화면, 서비스 로직, SQL 작성 기준을 통일할 수 있었으며, 이후 유지보수 및 타 팀 협업 시에도 기준 문서로 활용 가능한 구조를 마련했습니다.</p>
-                  </div>
-                </details>
-        
-                <details class="issue-item">
-                  <summary>
-                    <div class="issue-title-wrap">
-                      <strong>타 팀 협업을 통한 연동 기준 정리</strong>
-                      <div class="issue-tags">
-                        <span>협업</span>
-                        <span>요구사항정리</span>
-                        <span>연동기준수립</span>
-                      </div>
-                    </div>
-                  </summary>
-                  <div class="issue-body">
-                    <p><strong>상황</strong><br>SCM과 ERP가 함께 사용되는 업무였기 때문에, 단일 시스템 기준으로만 개발할 수 없었고 타 팀과의 연동 기준 협의가 필수였습니다.</p>
-        
-                    <p><strong>문제 분석</strong><br>각 시스템에서 사용하는 데이터 명칭, 상태값, 처리 순서가 다를 수 있어 개발 전 기준을 맞추지 않으면 연동 오류나 사용자 혼선이 발생할 수 있었습니다.</p>
-        
-                    <p><strong>개선 및 조치</strong><br>타 팀과 연동 대상 항목, 조회 기준, 저장 시점, 상태 변경 기준을 협의하며 인터페이스 흐름을 정리했습니다. 협의된 내용을 바탕으로 화면 입력값, 조회 조건, 저장 파라미터, SQL 조건을 맞추어 구현했습니다.</p>
-        
-                    <p><strong>결과</strong><br>시스템 간 데이터 기준을 사전에 정리하여 연동 오류 가능성을 줄였고, SCM과 ERP가 하나의 업무 흐름처럼 동작할 수 있도록 개발 안정성을 확보했습니다.</p>
-                  </div>
-                </details>
-        
-                <details class="issue-item">
-                  <summary>
-                    <div class="issue-title-wrap">
-                      <strong>사용자 업무 흐름 기반 화면 및 기능 구현</strong>
-                      <div class="issue-tags">
-                        <span>사용자중심개발</span>
-                        <span>업무분석</span>
-                        <span>화면개발</span>
-                      </div>
-                    </div>
-                  </summary>
-                  <div class="issue-body">
-                    <p><strong>상황</strong><br>
-                      대여기구 수령/반납 업무는 현장 사용자가 기구 정보, 수령 상태, 점검 결과를 빠르게 확인하고 입력해야 하는 업무였습니다. 단순히 요청받은 항목을 화면에 배치하는 것만으로는 실제 업무 속도와 사용 편의성을 충분히 확보하기 어려운 구조였습니다.
-                    </p>
-                      
-                    <p><strong>문제 분석</strong><br>
-                    실무자는 조회, 선택, 상세 확인, 점검 결과 입력, 저장을 반복적으로 수행해야 했기 때문에 화면 흐름이 복잡하거나 입력 동선이 길어질 경우 업무 효율이 떨어질 수 있었습니다. 이에 따라 기능 구현뿐 아니라 사용자가 어떤 순서로 정보를 확인하고 어떤 항목을 자주 입력하는지까지 고려해 화면 구조를 설계할 필요가 있었습니다.
-                    </p>
-                    <p><strong>개선 및 조치</strong><br>
-                      실무자의 업무 흐름을 기준으로 조회, 선택, 상세 확인, 점검 결과 입력, 저장 순서가 자연스럽게 이어지도록 화면을 구성했습니다. SCM에서 연동되어 넘어온 주요 데이터는 데이터 정합성을 위해 사용자가 임의로 수정하지 못하도록 처리했고, 사용자가 직접 입력해야 하는 항목만 수정 가능하도록 구분했습니다. 또한 목록 선택 시 상세 정보가 자동으로 표시되도록 구성하여 불필요한 재조회나 화면 이동을 줄였으며, 자주 사용하는 점검 결과 입력 영역은 한 화면 안에서 바로 처리할 수 있도록 배치했습니다. 저장 전 필수값과 상태값을 확인하도록 하여 누락 입력이나 잘못된 처리 상태가 저장되는 것을 방지했습니다.
-                    </p>        
-                    <p><strong>결과</strong><br>
-                      사용자가 실제 업무 순서에 맞춰 수령 및 점검 처리를 진행할 수 있도록 화면 흐름을 개선했으며, 업무 처리 편의성과 데이터 입력 정확성을 높였습니다.
-                    </p>
-                  </div>
-                </details>
-              </div>
-            </div>
-          </div>
-        </section>
-        <section class="card project">
-          <div class="project-head">
-            <div>
-              <h2>02. 클라우드 기반 ERP 운영 및 SI 개발</h2>
-              <p>병원 물류 ERP 시스템의 운영 안정성을 책임지며, 신규 개발부터 사용자 대응, 데이터 이슈 처리, 장애 대응까지 실무 전반을 End-to-End로 수행한 핵심 프로젝트</p>
-            </div>
-            <div class="period">2024.01 - Present</div>
-          </div>
-
-          <div class="project-grid" style="grid-template-columns:1fr; margin-top:8px;">
-            <div class="subbox">
-              <h3>프로젝트 설명</h3>
-              <div class="desc-table">
-                <div class="desc-row">
-                  <div class="desc-label">기간</div>
-                  <div class="desc-value">2024.01 - Present</div>
-                </div>
-                <div class="desc-row">
-                  <div class="desc-label">환경</div>
-                  <div class="desc-value">Spring Framework / Java / Oracle / MyBatis / JSP / IBSheet / Nginx / Jenkins</div>
-                </div>
-                <div class="desc-row">
-                  <div class="desc-label">활동</div>
-                  <div class="desc-value">클라우드 운영 + SI 개발 + 장애 분석 + 데이터 정합성 개선</div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="project-grid" style="margin-top:16px;">
-            <div class="subbox">
-              <h3>주요 수행 내용</h3>
-              <ul class="list">
-                <li>병원 물류 ERP 클라우드 운영 환경에서 신규 기능 개발 및 유지보수 수행</li>
-                <li>사용자 요청사항을 분석하여 화면, 서비스 로직, SQL 수정 반영</li>
-                <li>운영 중 발생한 DB Timeout, 데이터 오류, 성능 저하 이슈 분석 및 개선</li>
-                <li>서버 로그와 SQL 실행 흐름을 기반으로 장애 원인 추적 및 재발 방지 반영</li>
-                <li>대용량 데이터 처리 및 배치성 작업의 안정성 개선</li>
-                <li>운영 문서, 처리 기준, 장애 대응 내용을 정리하여 유지보수 효율 개선</li>
-              </ul>
-            </div>
-
-            <div class="subbox">
-              <h3>상세 업무 영역</h3>
-              <div class="detail-table">
-                <div class="detail-head">
-                  <div>영역</div>
-                  <div>수행 내용</div>
-                </div>
-                <div class="detail-row">
-                  <div>신규 개발</div>
-                  <div>ERP 업무 화면 및 기능 개발, 기존 기능 고도화</div>
-                </div>
-                <div class="detail-row">
-                  <div>DB</div>
-                  <div>SQL 작성, 성능 개선, DB Timeout 및 데이터 정합성 이슈 분석</div>
-                </div>
-                <div class="detail-row">
-                  <div>운영</div>
-                  <div>사용자 요청 대응, 장애 분석, 데이터 오류 처리, 운영 안정화</div>
-                </div>
-                <div class="detail-row">
-                  <div>서버</div>
-                  <div>로그 확인, WAS / Nginx 운영 점검, 배포 후 상태 확인</div>
-                </div>
-                <div class="detail-row">
-                  <div>문서</div>
-                  <div>업무 처리 기준, 운영 이슈, 장애 대응 내용 정리</div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="project-grid" style="grid-template-columns:1fr; margin-top:16px;">
-            <div class="subbox">
-              <h3>운영 이슈 & 개선 사례</h3>
-              <div class="issue-guide">
-                <div class="guide-icon"><img src="./cursor_no_bg.png" alt="click" /></div>
-                <div>사례 제목을 클릭하면 상세 설명이 펼쳐집니다.</div>
-              </div>
-
-              <div class="issue-list">
-                <details class="issue-item">
-                  <summary>
-                    <div class="issue-title-wrap">
-                      <strong>대용량 데이터 성능 개선</strong>
-                      <div class="issue-tags">
-                        <span>대용량조회</span>
-                        <span>성능튜닝</span>
-                        <span>운영성능개선</span>
-                      </div>
-                    </div>
-                  </summary>
-                  <div class="issue-body">
-                    <p><strong>상황</strong><br>특정 물류·재고 조회 화면에서 응답 시간이 과도하게 오래 걸린다는 문의가 접수되었고, 쿼리 분석 결과 비효율적인 SQL 구조로 인해 성능 저하가 심화된 상태였습니다.</p>
-
-                    <p><strong>문제 분석</strong><br>스칼라 서브쿼리와 사용자 정의 함수가 다수 포함되어 있었고, IN 조건 남용과 인덱스 컬럼 변형 함수 사용으로 인덱스 미사용 구간이 발생하고 있었습니다. 또한 반복 처리와 다중 update 문 수행이 성능 저하를 가중시키고 있었습니다.</p>
-                    
-                    <p><strong>개선 및 조치</strong><br>스칼라 서브쿼리와 함수를 JOIN 기반 구조로 변경하고, 조건절을 EXISTS 및 JOIN 방식으로 재검토했습니다. 인덱스 컬럼 변형 함수를 제거했으며, loop 기반 다수건 update는 임시 테이블을 활용한 단일 update 방식으로 개선했습니다.</p>
-                    
-                    <p><strong>결과</strong><br>대용량 데이터 조회 성능 문제를 해결하고 사용자 체감 속도 및 운영 안정성을 개선했습니다.</p>
-                  </div>
-                </details>
-
-                <details class="issue-item">
-                  <summary>
-                    <div class="issue-title-wrap">
-                      <strong>Oracle 일반 Job 실행 중단 이슈 → DBMS_SCHEDULER 전환</strong>
-                      <div class="issue-tags">
-                        <span>Batch</span>
-                        <span>Oracle</span>
-                        <span>안정화</span>
-                      </div>
-                    </div>
-                  </summary>
-                  <div class="issue-body">
-                    <p><strong>상황</strong><br>일정 주기로 실행되는 Oracle Job이 TOAD 환경의 일반 Job 형태로 운영되고 있었으며, 데이터 처리량 증가로 인해 실행 시간이 길어지면서 간헐적으로 Job이 중단되는 문제가 발생했습니다.</p>
-
-                    <p><strong>문제 분석</strong><br>TOAD 일반 Job은 실행 시간이 길어질 경우 세션 및 실행 환경 제약으로 인해 안정적으로 완료되지 못하는 구조였고, 실행 중 중단 시 재시도 없이 실패 처리되는 한계가 있었습니다. 단순 로직 수정만으로는 해결이 어려운 구조적 문제였습니다.</p>
-                    
-                    <p><strong>개선 및 조치</strong><br>DBMS_SCHEDULER 기반 Job이 보다 안정적인 백그라운드 실행 환경을 제공하는 것을 확인하고, 기존 Job을 DBMS_SCHEDULER.CREATE_JOB 방식으로 재구성했습니다. 세션 의존도를 낮춘 구조로 전환하여 장시간 실행에도 중단되지 않도록 개선했습니다.</p>
-                    
-                    <p><strong>결과</strong><br>장시간 배치 작업에서도 Job 중단 없이 안정적으로 수행되도록 개선하였으며, 배치 실행 신뢰성과 운영 안정성을 크게 향상시켰습니다.</p>
-                  </div>
-                </details>
-
-                <details class="issue-item">
-                  <summary>
-                    <div class="issue-title-wrap">
-                      <strong>대량 조회로 인한 WAS 서버 다운 이슈</strong>
-                      <div class="issue-tags">
-                        <span>힙덤프파일분석</span>
-                        <span>서버로그확인</span>
-                      </div>
-                    </div>
-                  </summary>
-                  <div class="issue-body">
-                    <p><strong>상황</strong><br>조회 화면에서 1개월 기준 약 25만 건 이상의 데이터가 한 번에 조회되며, 특정 시점에 WAS 서버가 다운되는 장애가 발생했습니다. 사용자 요청 직후 발생하는 고위험 운영 장애였습니다.</p>
-
-                    <p><strong>문제 분석</strong><br>대량 데이터 조회 이후 서버가 비정상 종료되었으며, 로그만으로는 어떤 요청이 원인이었는지 추적이 어려운 상황이었습니다. Heap Dump 파일을 통해 분석한 결과, OutOfMemory 오류로 인한 JVM 메모리 부족이 원인이었습니다.</p>
-                    
-                    <p><strong>개선 및 조치</strong><br>WAS 서버 내 Heap Dump 파일을 분석하여 특정 조회 요청과의 연관성을 확인하고, 대량 데이터 조회 구조가 메모리에 과부하를 주는 문제를 식별했습니다. 이후 조회 범위 제한 및 처리 방식 개선을 통해 메모리 사용 구조를 최적화하고 운영 기준을 정비했습니다.</p>
-                    
-                    <p><strong>결과</strong><br>대량 조회 상황에서도 서버 다운이 재발하지 않도록 안정성을 확보했으며, 장애 발생 시 원인 추적 및 대응 체계를 개선했습니다.</p>
-                  </div>
-                </details>
-
-                <details class="issue-item">
-                  <summary>
-                    <div class="issue-title-wrap">
-                      <strong>Nginx 환경에서 SSL 인증서 교체 및 적용</strong>
-                      <div class="issue-tags">
-                        <span>SSL인증서</span>
-                        <span>Nginx</span>
-                        <span>서버설정</span>
-                      </div>
-                    </div>
-                  </summary>
-                  <div class="issue-body">
-                    <p><strong>상황</strong><br>운영 중인 서비스에서 SSL 인증서 만료 시점이 도래하여, Nginx 기반 서버 환경에서 인증서 교체 작업이 필요했습니다. 작업 실패 시 서비스 접속 불가로 이어질 수 있는 상황이었습니다.</p>
-
-                    <p><strong>문제 분석</strong><br>인증서 파일 구성(cert, key)과 적용 방식에 대한 이해 부족 시 설정 오류 및 서비스 중단 가능성이 있었으며, 인증서 변환(OpenSSL) 및 적용 절차에 대한 문서가 부족한 상태였습니다.</p>
-                    
-                    <p><strong>개선 및 조치</strong><br>SSL 인증서 구조(cert.pem, key.pem)를 명확히 이해하고, OpenSSL을 활용하여 인증서 처리 작업을 수행했습니다. 이후 Nginx 설정에 정확히 반영하고, 적용 후 서비스 정상 동작 여부를 검증했습니다.</p>
-                    
-                    <p><strong>결과</strong><br>서비스 중단 없이 SSL 인증서 교체를 완료하였으며, 인증서 적용 절차에 대한 이해를 기반으로 안정적인 운영 환경을 유지했습니다.</p>
-                  </div>
-                </details>
-
-                <details class="issue-item">
-                  <summary>
-                    <div class="issue-title-wrap">
-                      <strong>DB Timeout 발생 이슈 분석 및 처리 방식 개선</strong>
-                      <div class="issue-tags">
-                        <span>DBTimeout</span>
-                        <span>로그분석</span>
-                        <span>성능개선</span>
-                      </div>
-                    </div>
-                  </summary>
-                  <div class="issue-body">
-                    <p><strong>상황</strong><br>
-                      운영 환경에서 특정 데이터 처리 중 DB Timeout이 발생하며 정상 처리가 완료되지 않는 문제가 발생했습니다. 해당 시점에는 여러 사용자의 요청 로그가 동시에 섞여 있어, 일반 로그만으로는 어떤 사용자 요청이나 어떤 업무 처리에서 문제가 발생했는지 즉시 특정하기 어려운 상황이었습니다.
-                      </p>
-                      
-                      <p><strong>문제 분석</strong><br>
-                      문제 발생 시점과 사용자 IP 주소를 기준으로 서버 로그를 분리하여 정리했습니다. 해당 IP에서 수행한 요청만 따로 추적해 별도 로그 흐름으로 재구성했고, 시간 순서대로 어떤 화면 요청, 서비스 로직, SQL이 실행되었는지 확인했습니다. 그 결과 특정 insert 처리 과정에서 한 테이블에 대한 작업이 약 6분 이상 지연된 뒤 DB Timeout 오류가 발생한 것을 확인했습니다. 이를 통해 단순 화면 오류가 아니라 대량 데이터 insert 처리 구간에서 DB 처리 시간이 길어지며 Timeout으로 이어진 문제임을 파악했습니다.
-                      </p>
-                      
-                      <p><strong>개선 및 조치</strong><br>
-                      for each 처리 구간의 데이터 처리 단위를 파티션 방식으로 분리하여 한 번에 처리되는 데이터 양을 줄였습니다. 이를 통해 특정 insert 구간에 부하가 집중되는 문제를 완화하고, 장시간 DB 처리가 Timeout으로 이어지는 구조를 개선했습니다.
-                      </p>
-                      
-                      <p><strong>결과</strong><br>
-                      대량 데이터 처리 중 발생하던 DB Timeout 문제를 해소했으며, 운영 환경에서 안정적으로 데이터 처리가 완료되도록 개선했습니다. 또한 여러 사용자의 로그가 섞인 상황에서도 문제 시점과 IP를 기준으로 요청 흐름을 재구성하여 원인을 추적하는 분석 방식을 정리했습니다.
-                      </p>
-                  </div>
-                </details>
-
-                <details class="issue-item">
-                  <summary>
-                    <div class="issue-title-wrap">
-                      <strong>API 연동 오류의 DB Connection Pool 원인 분석</strong>
-                      <div class="issue-tags">
-                        <span>ConnectionPool</span>
-                        <span>API연동</span>
-                        <span>WAS로그분석</span>
-                      </div>
-                    </div>
-                  </summary>
-                  <div class="issue-body">
-                    <p><strong>상황</strong><br>
-                    외부 프로그램으로 API를 호출하는 과정에서 정상 응답이 오지 않는 문제가 발생했습니다. 일반적인 애플리케이션 운영 로그에서는 우리 시스템과 수신 시스템 모두 명확한 오류가 확인되지 않아, 어느 구간에서 문제가 발생했는지 특정하기 어려운 상황이었습니다.
-                    </p>
-                
-                    <p><strong>문제 분석</strong><br>
-                    최초에는 API 요청/응답 흐름과 양쪽 애플리케이션 운영 로그를 기준으로 원인을 확인했으나, 관련 에러가 남아 있지 않았습니다. 이후 분석 범위를 일반 운영 로그에서 WAS 로그까지 확장하여 확인했고, 해당 로그에서 DB Connection Pool 관련 오류가 발생한 것을 확인했습니다. 이를 통해 단순 API 로직 오류나 요청 데이터 문제가 아니라, 수신 시스템의 DB 연결 자원이 정상적으로 확보되지 못해 API 처리에 실패한 문제임을 파악했습니다.
-                    </p>
-                
-                    <p><strong>개선 및 조치</strong><br>
-                    확인된 WAS 로그를 근거로 수신 시스템 담당자에게 DB Connection Pool 관련 설정 점검 및 조정을 요청했습니다. 또한 애플리케이션 로그에 오류가 남지 않는 경우에도 WAS 로그, Tomcat 로그, DB 연결 설정까지 함께 확인해야 한다는 분석 기준을 정리했습니다.
-                    </p>
-                
-                    <p><strong>결과</strong><br>
-                    양쪽 애플리케이션 운영 로그에서 확인되지 않던 API 연동 오류의 원인을 DB Connection Pool 문제로 특정할 수 있었으며, 수신 시스템의 설정 변경 방향을 안내하여 장애 원인 분석과 후속 조치가 가능하도록 했습니다.
-                    </p>
-                  </div>
-                </details>
-
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section class="card project">
-          <div class="project-head">
-            <div>
-              <h2>03. 차세대 통합 프로젝트 (9개 병원)</h2>
-              <p>기존 시스템을 최대한 활용하면서 9개 병원이 동시에 사용할 수 있도록 병원별 상이한 프로세스를 공통 구조로 통합하고 검증한 프로젝트</p>
-            </div>
-            <div class="period">2024.01 - 2025.09</div>
-          </div>
-
-          <div class="project-grid" style="grid-template-columns:1fr; margin-top:8px;">
-            <div class="subbox">
-              <h3>프로젝트 설명</h3>
-              <div class="desc-table">
-                <div class="desc-row">
-                  <div class="desc-label">기간</div>
-                  <div class="desc-value">2024.01 - 2025.09</div>
-                </div>
-                <div class="desc-row">
-                  <div class="desc-label">환경</div>
-                  <div class="desc-value">Spring / MySQL / IBSheet / CLIP Report</div>
-                </div>
-                <div class="desc-row">
-                  <div class="desc-label">목표</div>
-                  <div class="desc-value">9개 병원 프로세스 및 전산 통합, 테스트 체계 정비, 오픈 초기 안정화 지원</div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="project-grid" style="margin-top:16px;">
-            <div class="subbox">
-              <h3>주요 수행 내용</h3>
-              <ul class="list">
-                <li>병원별 상이한 요구사항을 공통 구조로 정리하고 반영</li>
-                <li>테스트 케이스 문서 작성 및 단위 테스트 수행</li>
-                <li>데이터 마이그레이션 정합성 검증 및 초기 세팅 지원</li>
-                <li>외부 업체와 협업하여 API 연동 진행</li>
-                <li>오픈 직전 및 직후 이슈 대응 흐름 정리</li>
-              </ul>
-            </div>
-
-            <div class="subbox">
-              <h3>상세 업무 영역</h3>
-              <div class="detail-table">
-                <div class="detail-head">
-                  <div>영역</div>
-                  <div>수행 내용</div>
-                </div>
-                <div class="detail-row">
-                  <div>통합 설계</div>
-                  <div>병원별 프로세스 차이를 정리하고 공통 구조로 통합</div>
-                </div>
-                <div class="detail-row">
-                  <div>테스트</div>
-                  <div>테스트 케이스 문서화, 단위 테스트 수행, 결과 점검</div>
-                </div>
-                <div class="detail-row">
-                  <div>데이터</div>
-                  <div>초기 데이터 이관 점검, 정합성 검증, 오픈 준비 지원</div>
-                </div>
-                <div class="detail-row">
-                  <div>연동</div>
-                  <div>외부 업체와 협업하여 API 연동 스펙 확인 및 검증</div>
-                </div>
-                <div class="detail-row">
-                  <div>리포트</div>
-                  <div>차세대 환경에 맞춘 출력물 점검 및 화면 연계 확인</div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="project-grid" style="grid-template-columns:1fr; margin-top:16px;">
-            <div class="subbox">
-              <h3>운영 이슈 & 개선 사례</h3>
-              <div class="issue-guide">
-                <div class="guide-icon"><img src="./cursor_no_bg.png" alt="click" /></div>
-                <div>사례 제목을 클릭하면 상세 설명이 펼쳐집니다.</div>
-              </div>
-
-              <div class="issue-list">
-                <details class="issue-item">
-                  <summary>
-                    <div class="issue-title-wrap">
-                      <strong>외부 시스템 연동을 위한 API 설계 및 검증</strong>
-                      <div class="issue-tags">
-                        <span>외부시스템_API연동</span>
-                        <span>Postman_API테스트</span>
-                      </div>
-                    </div>
-                  </summary>
-                  <div class="issue-body">
-                    <p><strong>상황</strong><br>재고 이관 업무를 위해 외부 타사 시스템과의 연동이 필요했으며, 양사 간 데이터 구조와 처리 방식이 달라 API 최초 설계 단계부터 협업이 필요한 상황이었습니다.</p>
-
-                    <p><strong>문제 분석</strong><br>필수 파라미터, 상태값, 처리 기준이 명확히 정의되지 않을 경우 데이터 오류 발생 가능성이 높았으며, 처리 결과 및 예외 케이스에 대한 양사 간 기준 차이가 존재했습니다.</p>
-                    
-                    <p><strong>개선 및 조치</strong><br>타사 개발자와 직접 협업하여 API 목적과 데이터 흐름, 처리 시나리오를 정의하고, 요청/응답 구조 및 상태 코드를 공동 설계했습니다. Postman을 활용해 다양한 테스트 케이스를 검증하며 설계를 보완하고, 스테이징 환경에서 실제 이관 시나리오 기반 테스트를 통해 연동 안정성을 확보했습니다.</p>
-                    
-                    <p><strong>결과</strong><br>API 설계 단계부터 협업하여 데이터 처리 기준을 명확히 정립하고, 안정적인 외부 시스템 연동을 구현했습니다.</p>
-                  </div>
-                </details>
-
-                <details class="issue-item">
-                  <summary>
-                    <div class="issue-title-wrap">
-                      <strong>오픈 시 데이터 마이그레이션 검증 및 초기 데이터 프로세스 정립</strong>
-                      <div class="issue-tags">
-                        <span>데이터마이그레이션_검증</span>
-                        <span>초기데이터_세팅</span>
-                      </div>
-                    </div>
-                  </summary>
-                  <div class="issue-body">
-                    <p><strong>상황</strong><br>병원 신규 오픈 시마다 데이터 마이그레이션과 초기 데이터 세팅 작업이 반복적으로 발생했으며, 오픈 직후 정상 운영을 위해 사전 검증이 필수적인 상황이었습니다.</p>
-
-                    <p><strong>문제 분석</strong><br>데이터 이관 및 초기 세팅이 수작업 중심으로 진행되었고, 검증 기준과 절차가 명확하지 않아 담당자마다 방식이 달라 비효율이 발생했습니다.</p>
-                    
-                    <p><strong>개선 및 조치</strong><br>이관 데이터 검증 대상과 기준을 정의하고 정합성 검증 프로세스를 수립했습니다. 또한 반복적으로 필요한 초기 데이터를 정리하고, 수작업 SQL 대신 관리자 화면을 통해 데이터 입력 및 관리가 가능하도록 구조를 개선했습니다. 전체 과정을 문서화하여 표준화했습니다.</p>
-                    
-                    <p><strong>결과</strong><br>데이터 마이그레이션과 초기 세팅 작업을 구조화하여 병원 오픈 시 일관된 기준으로 빠르고 안정적인 운영이 가능하도록 개선했습니다.</p>
-                  </div>
-                </details>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section class="card project">
-          <div class="project-head">
-            <div>
-              <h2>04. MySQL → Oracle DB 변환 프로젝트</h2>
-              <p>기존 시스템의 DB를 Oracle 환경으로 이전하며 데이터 구조, SQL 문법, 정합성 검증 포인트를 점검한 마이그레이션 프로젝트</p>
-            </div>
-            <div class="period">2022.08 - 2022.12</div>
-          </div>
-
-          <div class="project-grid" style="grid-template-columns:1fr; margin-top:8px;">
-            <div class="subbox">
-              <h3>프로젝트 설명</h3>
-              <div class="desc-table">
-                <div class="desc-row">
-                  <div class="desc-label">기간</div>
-                  <div class="desc-value">2022.08 - 2022.12</div>
-                </div>
-                <div class="desc-row">
-                  <div class="desc-label">유형</div>
-                  <div class="desc-value">DB 마이그레이션 / SQL 재구성 / 정합성 검증</div>
-                </div>
-                <div class="desc-row">
-                  <div class="desc-label">핵심 목표</div>
-                  <div class="desc-value">기존 MySQL 기반 구조를 Oracle 환경에 맞게 재구성하고, 데이터 및 쿼리의 동작 일관성을 확인</div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="project-grid" style="margin-top:16px;">
-            <div class="subbox">
-              <h3>주요 수행 내용</h3>
-              <ul class="list">
-                <li>MySQL ↔ Oracle 구조 및 문법 차이 분석</li>
-                <li>테이블 구조 덤프 및 변환 스크립트 준비</li>
-                <li>운영에 필요한 주요 SQL 전면 재작성</li>
-                <li>데이터 정합성 및 예외 케이스 검증</li>
-                <li>이관 관점에서 확인해야 할 체크 포인트 정리</li>
-              </ul>
-            </div>
-
-            <div class="subbox">
-              <h3>핵심 작업 포인트</h3>
-              <div class="detail-table">
-                <div class="detail-head">
-                  <div>영역</div>
-                  <div>수행 내용</div>
-                </div>
-                <div class="detail-row">
-                  <div>구조 분석</div>
-                  <div>DBMS별 테이블 구조, 타입, 제약조건 차이를 점검</div>
-                </div>
-                <div class="detail-row">
-                  <div>SQL 변환</div>
-                  <div>기존 SQL을 Oracle 문법 기준으로 재작성하고 동작 여부 확인</div>
-                </div>
-                <div class="detail-row">
-                  <div>검증</div>
-                  <div>주요 화면 및 배치 기준으로 조회 결과와 데이터 일관성 확인</div>
-                </div>
-                <div class="detail-row">
-                  <div>예외 대응</div>
-                  <div>함수 차이, 날짜 처리, NULL 처리 등 변환 시 예외 포인트 정리</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section class="card project">
-          <div class="project-head improve-head">
-            <div>
-              <h2>04. 더 나은 코드 품질을 위한 개선 노력</h2>
-              <p>기능 구현에만 머무르지 않고, 유지보수성·일관성·보안성을 높이기 위해 기존 코드와 개발 방식을 지속적으로 정리하고 개선했습니다.</p>
-            </div>
-          </div>
-        
-          <div class="project-grid" style="grid-template-columns:1fr; margin-top:8px;">
-            <div class="subbox">
-              <h3>개선 내용</h3>
-              <div class="detail-table improve-table">
-                <div class="detail-head">
-                  <div>구분</div>
-                  <div>내용</div>
-                </div>
-        
-                <div class="detail-row">
-                  <div>의존성 주입 개선</div>
-                  <div>
-                    필드 주입 방식으로 혼재되어 있던 코드를 생성자 주입 방식으로 정리했습니다.<br>
-                    생성자 주입은 객체 생성 시점에 필요한 의존성이 함께 전달되어 구조가 더 명확하게 드러나고, 코드 흐름을 이해하고 관리하기 쉬운 방식이라고 판단했습니다.
-                  </div>
-                </div>
-        
-                <div class="detail-row">
-                  <div>HTTP Method 정리</div>
-                  <div>
-                    GET / POST가 혼재되어 사용되던 요청 구조를 점검했습니다.<br>
-                    조회는 GET, 저장·수정은 POST로 구분하여 API 의도를 명확히 하고, REST 관점에서 일관된 구조로 정리했습니다.
-                  </div>
-                </div>
-        
-                <div class="detail-row">
-                  <div>예외처리 구조 정비</div>
-                  <div>
-                    컨트롤러와 서비스에 분산되어 있던 예외처리를 서비스 레이어 중심으로 정리했습니다.<br>
-                    비즈니스 로직과 가까운 위치에서 예외를 처리함으로써 흐름을 단순화하고, 예외 메시지 관리와 유지보수성을 개선했습니다.
-                  </div>
-                </div>
-        
-                <div class="detail-row">
-                  <div>출력 보안 대응</div>
-                  <div>
-                    JSP 출력 구문을 점검하고 c:out으로 변경했습니다.<br>
-                    c:if는 값을 그대로 출력하는 반면, c:out은 안전하게 변환하여 보안 위험을 줄일 수 있어 개선했습니다.
-                  </div>
-                </div>
-        
-              </div>
-            </div>
-          </div>
-        </section>
-
-      </main>
+<header class="topbar"><div class="nav-inner"><a class="brand" href="#home" data-view="home"><span class="brand-mark">🧑‍💻</span><b>정송화 포트폴리오</b></a><nav class="nav">
+  <div class="nav-item"><a class="nav-link" href="#home" data-view="home">Home</a></div>
+  <div class="nav-item"><a class="nav-link" href="#projects" data-view="projects">프로젝트</a><div class="dropdown" id="projectDrop"><div class="drop-title">PROJECT</div></div></div>
+  <div class="nav-item"><a class="nav-link" href="#issues" data-view="issues">운영 이슈 & 개선 사례</a><div class="dropdown" id="issueDrop"><div class="drop-title">CASE CATEGORY</div></div></div>
+  <div class="nav-item"><a class="nav-link" href="#skills" data-view="skills">Technical Skills</a></div>
+  <div class="nav-item"><a class="nav-link" href="#about" data-view="about">About</a></div>
+</nav></div></header>
+<div class="wrap">
+<section id="home" class="view">
+  <div class="hero">
+    <div class="card hero-main">
+      <div class="page-title">
+        <div class="eyebrow">Backend / SI Engineer</div>
+        <h1>CAREER<br>PORTFOLIO</h1>
+        <p class="hero-lead">병원 물류 ERP 운영 환경에서 신규 개발, 장애 분석, DB 성능 개선, 시스템 전환까지 수행한 Backend / SI Engineer입니다. 사용자의 업무 흐름을 이해하고 운영 문제를 구조적으로 정리해 안정화하는 데 집중해왔습니다.</p>
+      </div>
     </div>
   </div>
+  <div class="home-stats icon-stats">
+    <div class="home-stat"><div class="stat-icon">📄</div><small>Project</small><strong>4</strong><span>연동 / 클라우드 / 통합 / 마이그레이션</span></div>
+    <div class="home-stat"><div class="stat-icon">🛠️</div><small>Issue Cases</small><strong id="issueCount">-</strong><span>인프라 / DB / API / 화면</span></div>
+    <div class="home-stat"><div class="stat-icon">🏥</div><small>Core Domain</small><strong>ERP</strong><span>병원 물류 프로세스</span></div>
+    <div class="home-stat"><div class="stat-icon">☕</div><small>Main Stack</small><strong>Java</strong><span>Spring / Oracle / MyBatis</span></div>
+  </div>
+  <section class="card section timeline-section"><div class="section-head"><h2>Timeline</h2><div class="timeline-controls"><button type="button" class="timeline-btn" id="timelinePrev" aria-label="이전 타임라인">‹</button><button type="button" class="timeline-btn" id="timelineNext" aria-label="다음 타임라인">›</button></div></div><div class="timeline" id="homeTimeline"></div></section>
+</section>
+<section id="projects" class="view hidden"><div class="page-title"><div class="eyebrow">Projects</div><h1>프로젝트</h1><p>프로젝트별 설명, 기간, 환경, 활동, 상세 업무 영역을 중심으로 정리했습니다.</p></div><main class="project-page" id="projectDetail"></main></section>
+<section id="issues" class="view hidden"><div class="issue-layout"><aside class="card issue-side" id="issueSide"><h2>운영 이슈 & 개선 사례</h2><p>분류를 선택하면 해당 분류의 사례만 표시됩니다.</p><div class="issue-cat-tabs" id="issueCatTabs"></div><div class="issue-menu" id="issueMenu"></div></aside><main class="card issue-detail" id="issueDetail"></main></div></section>
+<section id="skills" class="view hidden"><div class="page-title"><div class="eyebrow">Technical Skills</div><h1>기술 스택</h1><p>실무에서 사용한 위치와 역할이 바로 보이도록 정리했습니다.</p></div><div class="skills-layout" id="skillsGrid"></div></section>
+<section id="about" class="view hidden">
+  <div class="page-title">
+    <div class="eyebrow">About Me</div>
+    <h1>About</h1>
+    <p>병원 ERP 운영 환경에서 문제를 발견하고, 원인을 좁히고, 재발을 줄이는 방식으로 일해왔습니다.</p>
+  </div>
+  <div class="about-rework">
+    <aside class="card about-intro">
+      <div class="avatar">🧑‍💻</div>
+      <h1>정송화</h1>
+      <p class="role-text">Backend / SI Engineer</p>
+      <div class="about-contact">
+        <div class="contact-item"><small>EMAIL</small><b>songha0504@naver.com</b></div>
+        <div class="contact-item"><small>PHONE</small><b>010-9665-0771</b></div>
+      </div>
+    </aside>
+    <main class="about-main">
+      <section class="about-section-card">
+        <h2>제가 맡아온 일</h2>
+        <p>신규 화면 개발, 기존 기능 고도화, 데이터 오류 처리, 장애 원인 분석, 배포 후 운영 확인을 수행했습니다.<br>요청받은 기능을 만드는 것에서 끝내지 않고, 실제 사용자가 어떤 순서로 조회·입력·저장하는지와 데이터가 맞게 남는지까지 확인합니다.</p>
+      </section>
+      <section class="about-two">
+        <div class="about-mini-card"><small>STRENGTH 01</small><b>운영 이슈를 구조화합니다</b><span>DB Timeout, WAS 다운, 대용량 조회 지연처럼 원인이 바로 보이지 않는 문제를 로그, SQL, 데이터 흐름 기준으로 쪼개어 확인합니다.</span></div>
+        <div class="about-mini-card"><small>STRENGTH 02</small><b>사용자 업무 흐름을 반영합니다</b><span>병원 실무자가 어떤 순서로 조회, 입력, 저장하는지 확인하고 화면 흐름과 입력 기준을 정리해 업무 혼선을 줄입니다.</span></div>
+        <div class="about-mini-card"><small>STRENGTH 03</small><b>DB와 데이터 정합성을 중시합니다</b><span>SQL 성능, 마이그레이션, Job, 연동 기준을 함께 보며 화면 결과와 실제 데이터가 맞는지 확인합니다.</span></div>
+        <div class="about-mini-card"><small>STRENGTH 04</small><b>협업 기준을 문서화합니다</b><span>타 팀 연동 항목, 처리 시점, 상태값, 운영 처리 기준을 정리해 이후 유지보수자가 같은 기준으로 볼 수 있게 합니다.</span></div>
+      </section>
+      <section class="about-section-card">
+        <h2>문제를 해결하는 방식</h2>
+        <div class="process-line">
+          <div class="process-step"><small>01</small><b>현상 확인 · 문의·로그·데이터 확인</b></div>
+          <div class="process-step"><small>02</small><b>원인 분리 · 화면·SQL·서버 구간 분리</b></div>
+          <div class="process-step"><small>03</small><b>개선 반영 · 쿼리·로직·설정 수정</b></div>
+          <div class="process-step"><small>04</small><b>재발 방지 · 검증·문서화</b></div>
+        </div>
+      </section>
+      <section class="about-section-card">
+        <h2>제가 지향하는 개발</h2>
+        <p>기능이 동작하는 것보다 중요한 것은 운영 중에도 흔들리지 않는 구조라고 생각합니다.<br>ERP 환경에서는 작은 오류도 사용자 업무와 데이터에 영향을 줄 수 있기 때문에, 문제를 임시로 덮기보다 원인을 확인하고 기준을 남기는 방향으로 일합니다.</p>
+      </section>
+    </main>
+  </div>
+</section>
+<div class="footer">© 정송화 Portfolio</div></div>
+<script>
+const projects=[
+{title:'대여기구 수령/반납 연동 시스템 SI 개발',period:'2026.04 - Present',summary:'SCM 프로그램과 ERP 프로그램 간 대여기구 업무 데이터를 연동하는 시스템을 구축하며, DB Link 기반 연동 구조 설계부터 화면 개발, ERD 작성, 사용자 업무 흐름 반영까지 수행한 SI 개발 프로젝트',desc:'SCM 프로그램과 ERP 프로그램 간 대여기구 업무 데이터 연동',pill:'SCM-ERP 연동 / DB Link / ERD',point:'연동 구조 설계 및 사용자 업무 반영',pointDesc:'DB Link·스키마 연결, ERwin 기반 ERD 작성, 타 팀 협업, 실제 사용자 흐름 기반 화면 개발',env:'Spring Framework / Oracle / MyBatis / JSP / IBSheet / DB Link / ERwin',activity:'SCM-ERP 연동 개발 + DB 설계 + 타 팀 협업 + 사용자 업무 흐름 반영',items:['SCM 프로그램과 ERP 프로그램 간 대여기구 수령/반납 업무 연동 시스템 개발','DB Link 및 스키마 연결 구조를 활용한 시스템 간 데이터 연계 처리','대여기구 업무 흐름을 분석하여 수령, 점검, 반납 처리 화면 및 기능 구현','ERwin을 활용한 ERD 작성 및 테이블 구조 설계','타 개발팀과 연동 기준, 데이터 항목, 처리 시점 등을 협의하며 인터페이스 구조 정리','실제 사용자 업무 방식을 기반으로 입력 항목, 조회 조건, 저장 흐름 개선'],areas:[['연동 개발','SCM-ERP 간 대여기구 데이터 연동 구조 구현'],['DB','DB Link, 스키마 연결, 테이블 설계, SQL 작성'],['설계','ERwin 기반 ERD 작성 및 데이터 흐름 정리'],['화면 개발','대여기구 수령, 점검, 반납 관련 화면 및 저장 로직 개발'],['협업','타 팀과 연동 항목, 데이터 기준, 처리 방식 협의'],['사용자 대응','실제 업무 흐름을 반영한 화면 구성 및 기능 개선']]},
+{title:'클라우드 기반 ERP 운영 및 SI 개발',period:'2024.01 - Present',summary:'4개 병원 통합 유지보수 경험을 기반으로, 이후 약 30개 병원 규모의 다수 병원 클라우드 ERP 운영/개발 프로젝트까지 수행한 클라우드 기반 ERP 운영 및 SI 개발 프로젝트',desc:'4개 병원 통합 유지보수 및 다수 병원 클라우드 ERP 운영 개발',pill:'클라우드 ERP / 운영개발 / 다수 병원',point:'4개 병원 운영 경험에서 다수 병원 클라우드 프로젝트로 확장',pointDesc:'병원별 운영 차이와 공통 ERP 구조를 함께 고려한 기능 개발, 장애 분석, 데이터 이슈 대응',env:'Spring Framework / Java / Oracle / MyBatis / JSP / IBSheet / Nginx / Jenkins',activity:'4개 병원 통합 유지보수 + 약 30개 병원 규모 클라우드 ERP 프로젝트 팀 참여 + SI 개발 + 운영 대응',items:['4개 병원 통합 유지보수 환경에서 병원 물류 ERP 신규 기능 개발 및 유지보수 수행','약 30개 병원 규모의 다수 병원 클라우드 운영/개발 프로젝트 팀 참여','사용자 요청사항을 분석하여 화면, 서비스 로직, SQL 수정 반영','운영 중 발생한 DB Timeout, 데이터 오류, 성능 저하 이슈 분석 및 개선','서버 로그와 SQL 실행 흐름을 기반으로 장애 원인 추적 및 재발 방지 반영','배포 및 운영 반영 후 서비스 상태 확인'],areas:[['4개 병원 통합 유지보수','병원 물류 ERP 기능 개발, 기존 기능 고도화, 사용자 요청 대응, 운영 장애 분석'],['다수 병원 클라우드 프로젝트','약 30개 병원 규모의 클라우드 운영/개발 프로젝트 팀에 참여하여 병원별 운영 차이와 공통 ERP 구조를 함께 고려'],['신규 개발','ERP 업무 화면 및 기능 개발, 서비스 로직 및 SQL 수정 반영'],['DB','SQL 작성, 성능 개선, DB Timeout 및 데이터 정합성 이슈 분석'],['운영','사용자 요청 대응, 장애 분석, 데이터 오류 처리, 운영 안정화'],['서버/배포','로그 확인, WAS / Nginx 운영 점검, Jenkins 배포 후 상태 확인'],['문서','업무 처리 기준, 운영 이슈, 장애 대응 내용 정리']]},
+{title:'차세대 통합 프로젝트 (9개 병원)',period:'2022.11 - 2023.12',summary:'기존 시스템을 최대한 활용하면서 9개 병원이 동시에 사용할 수 있도록 병원별 상이한 프로세스를 공통 구조로 통합하고 검증한 프로젝트',desc:'상이한 병원 환경을 공통 구조로 통합',pill:'통합 / 테스트 / 연동',point:'공통화와 검증 중심',pointDesc:'요구사항 통합, 테스트 문서화, 데이터 정합성 점검, 외부 API 협업',env:'Spring / MySQL / IBSheet / CLIP Report',activity:'9개 병원 프로세스 및 전산 통합, 테스트 체계 정비, 오픈 초기 안정화 지원',items:['병원별 상이한 요구사항을 공통 구조로 정리하고 반영','테스트 케이스 문서 작성 및 단위 테스트 수행','데이터 마이그레이션 정합성 검증 및 초기 세팅 지원','외부 업체와 협업하여 API 연동 진행','오픈 직전 및 직후 이슈 대응 흐름 정리'],areas:[['통합 설계','병원별 프로세스 차이를 정리하고 공통 구조로 통합'],['테스트','테스트 케이스 문서화, 단위 테스트 수행, 결과 점검'],['데이터','초기 데이터 이관 점검, 정합성 검증, 오픈 준비 지원'],['연동','외부 업체와 협업하여 API 연동 스펙 확인 및 검증'],['리포트','차세대 환경에 맞춘 출력물 점검 및 화면 연계 확인']]},
+{title:'MySQL → Oracle DB 변환 프로젝트',period:'2022.10',summary:'기존 시스템의 DB를 Oracle 환경으로 이전하며 데이터 구조, SQL 문법, 정합성 검증 포인트를 점검한 마이그레이션 프로젝트',desc:'기존 시스템의 DB 구조와 SQL을 재구성',pill:'마이그레이션 / SQL',point:'구조 차이 분석 및 정합성 검증',pointDesc:'문법 변환, 스크립트 준비, 데이터 무결성 확인',env:'DB 마이그레이션 / SQL 재구성 / 정합성 검증',activity:'기존 MySQL 기반 구조를 Oracle 환경에 맞게 재구성하고, 데이터 및 쿼리의 동작 일관성을 확인',items:['MySQL ↔ Oracle 구조 및 문법 차이 분석','테이블 구조 덤프 및 변환 스크립트 준비','운영에 필요한 주요 SQL 전면 재작성','데이터 정합성 및 예외 케이스 검증','이관 관점에서 확인해야 할 체크 포인트 정리'],areas:[['구조 분석','DBMS별 테이블 구조, 타입, 제약조건 차이를 점검'],['SQL 변환','기존 SQL을 Oracle 문법 기준으로 재작성하고 동작 여부 확인'],['검증','주요 화면 및 배치 기준으로 조회 결과와 데이터 일관성 확인'],['예외 대응','함수 차이, 날짜 처리, NULL 처리 등 변환 시 예외 포인트 정리']]}
+];
+const issues=[
+{cat:'인프라',title:'Nginx 환경에서 SSL 인증서 교체 및 적용',project:'4개 병원 통합 클라우드 ERP 운영/유지보수',tags:['SSL인증서','Nginx','서버설정'],s:'운영 중인 서비스에서 SSL 인증서 만료 시점이 도래하여, Nginx 기반 서버 환경에서 인증서 교체 작업이 필요했습니다. 작업 실패 시 서비스 접속 불가로 이어질 수 있는 상황이었습니다.',a:'인증서 파일 구성(cert, key)과 적용 방식에 대한 이해 부족 시 설정 오류 및 서비스 중단 가능성이 있었으며, 인증서 변환(OpenSSL) 및 적용 절차에 대한 문서가 부족한 상태였습니다.',m:'SSL 인증서 구조(cert.pem, key.pem)를 명확히 이해하고, OpenSSL을 활용하여 인증서 처리 작업을 수행했습니다. 이후 Nginx 설정에 정확히 반영하고, 적용 후 서비스 정상 동작 여부를 검증했습니다.',r:'서비스 중단 없이 SSL 인증서 교체를 완료하였으며, 인증서 적용 절차에 대한 이해를 기반으로 안정적인 운영 환경을 유지했습니다.'},
+{cat:'인프라',title:'SVN → Git 전환 및 Jenkins 배포 구조 정리',project:'30개 이상 병원 클라우드 ERP 운영/개발',tags:['SVN','Git','Jenkins','배포구조'],s:'SVN 기반으로 관리되던 프로젝트를 Git 기반으로 변경하고, 소스 관리 방식과 Jenkins 배포 흐름을 함께 정리해야 하는 상황이었습니다.',a:'단순히 소스를 옮기는 작업이 아니라, SVN의 커밋 히스토리까지 내려받아 Git으로 이관해야 했고 GitLab 프로젝트 자체도 새로 생성해야 했습니다. 또한 Git에 소스를 올린 뒤 Jenkins와 연동하여 기존 배포 흐름이 정상적으로 이어지도록 구성해야 했습니다.',m:'SVN 히스토리와 Git 히스토리를 관리하는 아이디 형태가 달라 SVN 커밋 사용자 정보를 Git에 맞는 아이디 형태로 변환했습니다. Git Bash와 Ubuntu 환경을 활용해 이관 작업을 진행했고, Jenkins Git 플러그인을 설치한 뒤 방화벽과 GitLab 연결 상태를 확인하여 배포 연동이 가능하도록 정리했습니다.',r:'SVN에서 Git으로의 소스 이관과 Jenkins 연동 구성을 완료하여 Git 기반 배포 흐름을 성공적으로 전환했습니다.'},
+{cat:'DB / 성능',title:'대용량 데이터 성능 개선',project:'30개 이상 병원 클라우드 ERP 운영/개발',tags:['대용량조회','성능튜닝','운영성능개선'],s:'특정 물류·재고 조회 화면에서 응답 시간이 과도하게 오래 걸린다는 문의가 접수되었고, 쿼리 분석 결과 비효율적인 SQL 구조로 인해 성능 저하가 심화된 상태였습니다.',a:'스칼라 서브쿼리와 사용자 정의 함수가 다수 포함되어 있었고, IN 조건 남용과 인덱스 컬럼 변형 함수 사용으로 인덱스 미사용 구간이 발생하고 있었습니다. 또한 반복 처리와 다중 update 문 수행이 성능 저하를 가중시키고 있었습니다.',m:'스칼라 서브쿼리와 함수를 JOIN 기반 구조로 변경하고, 조건절을 EXISTS 및 JOIN 방식으로 재검토했습니다. 인덱스 컬럼 변형 함수를 제거했으며, loop 기반 다수건 update는 임시 테이블을 활용한 단일 update 방식으로 개선했습니다.',r:'대용량 데이터 조회 성능 문제를 해결하고 사용자 체감 속도 및 운영 안정성을 개선했습니다.'},
+{cat:'DB / 성능',title:'Oracle 일반 Job 실행 중단 이슈 → DBMS_SCHEDULER 전환',project:'4개 병원 통합 클라우드 ERP 운영/유지보수',tags:['Batch','Oracle','안정화'],s:'일정 주기로 실행되는 Oracle Job이 TOAD 환경의 일반 Job 형태로 운영되고 있었으며, 데이터 처리량 증가로 인해 실행 시간이 길어지면서 간헐적으로 Job이 중단되는 문제가 발생했습니다.',a:'TOAD 일반 Job은 실행 시간이 길어질 경우 세션 및 실행 환경 제약으로 인해 안정적으로 완료되지 못하는 구조였고, 실행 중 중단 시 재시도 없이 실패 처리되는 한계가 있었습니다. 단순 로직 수정만으로는 해결이 어려운 구조적 문제였습니다.',m:'DBMS_SCHEDULER 기반 Job이 보다 안정적인 백그라운드 실행 환경을 제공하는 것을 확인하고, 기존 Job을 DBMS_SCHEDULER.CREATE_JOB 방식으로 재구성했습니다. 세션 의존도를 낮춘 구조로 전환하여 장시간 실행에도 중단되지 않도록 개선했습니다.',r:'장시간 배치 작업에서도 Job 중단 없이 안정적으로 수행되도록 개선하였으며, 배치 실행 신뢰성과 운영 안정성을 크게 향상시켰습니다.'},
+{cat:'DB / 성능',title:'대량 조회로 인한 WAS 서버 다운 이슈',project:'4개 병원 통합 클라우드 ERP 운영/유지보수',tags:['힙덤프파일분석','서버로그확인'],s:'조회 화면에서 1개월 기준 약 25만 건 이상의 데이터가 한 번에 조회되며, 특정 시점에 WAS 서버가 다운되는 장애가 발생했습니다. 사용자 요청 직후 발생하는 고위험 운영 장애였습니다.',a:'대량 데이터 조회 이후 서버가 비정상 종료되었으며, 로그만으로는 어떤 요청이 원인이었는지 추적이 어려운 상황이었습니다. Heap Dump 파일을 통해 분석한 결과, OutOfMemory 오류로 인한 JVM 메모리 부족이 원인이었습니다.',m:'WAS 서버 내 Heap Dump 파일을 분석하여 특정 조회 요청과의 연관성을 확인하고, 대량 데이터 조회 구조가 메모리에 과부하를 주는 문제를 식별했습니다. 이후 조회 범위 제한 및 처리 방식 개선을 통해 메모리 사용 구조를 최적화하고 운영 기준을 정비했습니다.',r:'대량 조회 상황에서도 서버 다운이 재발하지 않도록 안정성을 확보했으며, 장애 발생 시 원인 추적 및 대응 체계를 개선했습니다.'},
+{cat:'DB / 성능',title:'DB Timeout 발생 이슈 분석 및 처리 방식 개선',project:'30개 이상 병원 클라우드 ERP 운영/개발',tags:['DBTimeout','로그분석','성능개선'],s:'운영 환경에서 특정 데이터 처리 중 DB Timeout이 발생하며 정상 처리가 완료되지 않는 문제가 발생했습니다. 해당 시점에는 여러 사용자의 요청 로그가 동시에 섞여 있어, 일반 로그만으로는 어떤 사용자 요청이나 어떤 업무 처리에서 문제가 발생했는지 즉시 특정하기 어려운 상황이었습니다.',a:'문제 발생 시점과 사용자 IP 주소를 기준으로 서버 로그를 분리하여 정리했습니다. 해당 IP에서 수행한 요청만 따로 추적해 별도 로그 흐름으로 재구성했고, 시간 순서대로 어떤 화면 요청, 서비스 로직, SQL이 실행되었는지 확인했습니다. 그 결과 특정 insert 처리 과정에서 한 테이블에 대한 작업이 약 6분 이상 지연된 뒤 DB Timeout 오류가 발생한 것을 확인했습니다. 이를 통해 단순 화면 오류가 아니라 대량 데이터 insert 처리 구간에서 DB 처리 시간이 길어지며 Timeout으로 이어진 문제임을 파악했습니다.',m:'for each 처리 구간의 데이터 처리 단위를 파티션 방식으로 분리하여 한 번에 처리되는 데이터 양을 줄였습니다. 이를 통해 특정 insert 구간에 부하가 집중되는 문제를 완화하고, 장시간 DB 처리가 Timeout으로 이어지는 구조를 개선했습니다.',r:'대량 데이터 처리 중 발생하던 DB Timeout 문제를 해소했으며, 운영 환경에서 안정적으로 데이터 처리가 완료되도록 개선했습니다. 또한 여러 사용자의 로그가 섞인 상황에서도 문제 시점과 IP를 기준으로 요청 흐름을 재구성하여 원인을 추적하는 분석 방식을 정리했습니다.'},
+{cat:'API / 연동',title:'API 연동 오류의 DB Connection Pool 원인 분석',project:'30개 이상 병원 클라우드 ERP 운영/개발',tags:['ConnectionPool','API연동','WAS로그분석'],s:'외부 프로그램으로 API를 호출하는 과정에서 정상 응답이 오지 않는 문제가 발생했습니다. 일반적인 애플리케이션 운영 로그에서는 우리 시스템과 수신 시스템 모두 명확한 오류가 확인되지 않아, 어느 구간에서 문제가 발생했는지 특정하기 어려운 상황이었습니다.',a:'최초에는 API 요청/응답 흐름과 양쪽 애플리케이션 운영 로그를 기준으로 원인을 확인했으나, 관련 에러가 남아 있지 않았습니다. 이후 분석 범위를 일반 운영 로그에서 WAS 로그까지 확장하여 확인했고, 해당 로그에서 DB Connection Pool 관련 오류가 발생한 것을 확인했습니다. 이를 통해 단순 API 로직 오류나 요청 데이터 문제가 아니라, 수신 시스템의 DB 연결 자원이 정상적으로 확보되지 못해 API 처리에 실패한 문제임을 파악했습니다.',m:'확인된 WAS 로그를 근거로 수신 시스템 담당자에게 DB Connection Pool 관련 설정 점검 및 조정을 요청했습니다. 또한 애플리케이션 로그에 오류가 남지 않는 경우에도 WAS 로그, Tomcat 로그, DB 연결 설정까지 함께 확인해야 한다는 분석 기준을 정리했습니다.',r:'양쪽 애플리케이션 운영 로그에서 확인되지 않던 API 연동 오류의 원인을 DB Connection Pool 문제로 특정할 수 있었으며, 수신 시스템의 설정 변경 방향을 안내하여 장애 원인 분석과 후속 조치가 가능하도록 했습니다.'},
+{cat:'API / 연동',title:'외부 시스템 연동을 위한 API 설계 및 검증',project:'차세대 통합 프로젝트 (9개 병원)',tags:['외부시스템_API연동','Postman_API테스트'],s:'재고 이관 업무를 위해 외부 타사 시스템과의 연동이 필요했으며, 양사 간 데이터 구조와 처리 방식이 달라 API 최초 설계 단계부터 협업이 필요한 상황이었습니다.',a:'필수 파라미터, 상태값, 처리 기준이 명확히 정의되지 않을 경우 데이터 오류 발생 가능성이 높았으며, 처리 결과 및 예외 케이스에 대한 양사 간 기준 차이가 존재했습니다.',m:'타사 개발자와 직접 협업하여 API 목적과 데이터 흐름, 처리 시나리오를 정의하고, 요청/응답 구조 및 상태 코드를 공동 설계했습니다. Postman을 활용해 다양한 테스트 케이스를 검증하며 설계를 보완하고, 스테이징 환경에서 실제 이관 시나리오 기반 테스트를 통해 연동 안정성을 확보했습니다.',r:'API 설계 단계부터 협업하여 데이터 처리 기준을 명확히 정립하고, 안정적인 외부 시스템 연동을 구현했습니다.'},
+{cat:'데이터 / 오픈',title:'오픈 시 데이터 마이그레이션 검증 및 초기 데이터 프로세스 정립',project:'차세대 통합 프로젝트 (9개 병원)',tags:['데이터마이그레이션_검증','초기데이터_세팅'],s:'병원 신규 오픈 시마다 데이터 마이그레이션과 초기 데이터 세팅 작업이 반복적으로 발생했으며, 오픈 직후 정상 운영을 위해 사전 검증이 필수적인 상황이었습니다.',a:'데이터 이관 및 초기 세팅이 수작업 중심으로 진행되었고, 검증 기준과 절차가 명확하지 않아 담당자마다 방식이 달라 비효율이 발생했습니다.',m:'이관 데이터 검증 대상과 기준을 정의하고 정합성 검증 프로세스를 수립했습니다. 또한 반복적으로 필요한 초기 데이터를 정리하고, 수작업 SQL 대신 관리자 화면을 통해 데이터 입력 및 관리가 가능하도록 구조를 개선했습니다. 전체 과정을 문서화하여 표준화했습니다.',r:'데이터 마이그레이션과 초기 세팅 작업을 구조화하여 병원 오픈 시 일관된 기준으로 빠르고 안정적인 운영이 가능하도록 개선했습니다.'},
+{cat:'협업 / 설계 / 화면',title:'SCM-ERP 간 대여기구 연동 구조 설계 및 개발',project:'대여기구 수령/반납 연동 시스템 SI 개발',tags:['SCM-ERP연동','DBLink','인터페이스개발'],s:'대여기구 업무는 SCM 프로그램과 ERP 프로그램 양쪽의 데이터 흐름이 연결되어야 하는 구조였으며, 수령 및 반납 처리 과정에서 시스템 간 데이터 정합성이 중요한 업무였습니다.',a:'SCM과 ERP가 서로 다른 스키마 및 데이터 구조를 사용하고 있어, 단순 화면 개발만으로는 업무 처리가 어려웠습니다. 연동 대상 데이터, 기준 키, 처리 시점, 상태값 관리 방식 등을 명확히 정리해야 했습니다.',m:'DB Link 및 스키마 연결 구조를 활용하여 SCM-ERP 간 데이터를 조회하고 처리할 수 있도록 연동 구조를 구성했습니다. 연동 기준이 되는 출고 ID, 수령 ID, 업체 정보, 기구 정보, 상태값 등을 기준으로 데이터 흐름을 정리하고, 화면 및 저장 로직에 반영했습니다.',r:'SCM과 ERP 간 대여기구 업무 데이터가 하나의 흐름으로 처리될 수 있도록 연동 구조를 구축했으며, 사용자가 ERP 화면에서 수령 및 반납 업무를 안정적으로 처리할 수 있도록 개선했습니다.'},
+{cat:'협업 / 설계 / 화면',title:'ERwin 기반 ERD 작성 및 데이터 구조 설계',project:'대여기구 수령/반납 연동 시스템 SI 개발',tags:['ERD','ERwin','DB설계'],s:'대여기구 수령/반납 업무를 신규로 개발하기 위해서는 기존 SCM 데이터와 ERP 데이터 간 관계를 먼저 명확히 정의해야 했습니다.',a:'업무 흐름상 수령, 점검, 반납, 업체, 기구, 사용자 정보가 서로 연결되어 있었고, 각 테이블 간 관계를 명확히 정리하지 않으면 중복 데이터나 상태 불일치가 발생할 가능성이 있었습니다.',m:'ERwin을 활용하여 주요 테이블과 컬럼 관계를 ERD로 정리했습니다. 업무 기준이 되는 키 값과 연관 테이블 구조를 시각화하고, 수령/반납 처리 시 필요한 데이터 흐름을 기준으로 테이블 구조를 설계했습니다.',r:'개발 전 데이터 구조를 명확히 정리하여 화면, 서비스 로직, SQL 작성 기준을 통일할 수 있었으며, 이후 유지보수 및 타 팀 협업 시에도 기준 문서로 활용 가능한 구조를 마련했습니다.'},
+{cat:'협업 / 설계 / 화면',title:'타 팀 협업을 통한 연동 기준 정리',project:'대여기구 수령/반납 연동 시스템 SI 개발',tags:['협업','요구사항정리','연동기준수립'],s:'SCM과 ERP가 함께 사용되는 업무였기 때문에, 단일 시스템 기준으로만 개발할 수 없었고 타 팀과의 연동 기준 협의가 필수였습니다.',a:'각 시스템에서 사용하는 데이터 명칭, 상태값, 처리 순서가 다를 수 있어 개발 전 기준을 맞추지 않으면 연동 오류나 사용자 혼선이 발생할 수 있었습니다.',m:'타 팀과 연동 대상 항목, 조회 기준, 저장 시점, 상태 변경 기준을 협의하며 인터페이스 흐름을 정리했습니다. 협의된 내용을 바탕으로 화면 입력값, 조회 조건, 저장 파라미터, SQL 조건을 맞추어 구현했습니다.',r:'시스템 간 데이터 기준을 사전에 정리하여 연동 오류 가능성을 줄였고, SCM과 ERP가 하나의 업무 흐름처럼 동작할 수 있도록 개발 안정성을 확보했습니다.'},
+{cat:'협업 / 설계 / 화면',title:'사용자 업무 흐름 기반 화면 및 기능 구현',project:'대여기구 수령/반납 연동 시스템 SI 개발',tags:['사용자중심개발','업무분석','화면개발'],s:'대여기구 수령/반납 업무는 현장 사용자가 기구 정보, 수령 상태, 점검 결과를 빠르게 확인하고 입력해야 하는 업무였습니다. 단순히 요청받은 항목을 화면에 배치하는 것만으로는 실제 업무 속도와 사용 편의성을 충분히 확보하기 어려운 구조였습니다.',a:'실무자는 조회, 선택, 상세 확인, 점검 결과 입력, 저장을 반복적으로 수행해야 했기 때문에 화면 흐름이 복잡하거나 입력 동선이 길어질 경우 업무 효율이 떨어질 수 있었습니다. 이에 따라 기능 구현뿐 아니라 사용자가 어떤 순서로 정보를 확인하고 어떤 항목을 자주 입력하는지까지 고려해 화면 구조를 설계할 필요가 있었습니다.',m:'실무자의 업무 흐름을 기준으로 조회, 선택, 상세 확인, 점검 결과 입력, 저장 순서가 자연스럽게 이어지도록 화면을 구성했습니다. SCM에서 연동되어 넘어온 주요 데이터는 데이터 정합성을 위해 사용자가 임의로 수정하지 못하도록 처리했고, 사용자가 직접 입력해야 하는 항목만 수정 가능하도록 구분했습니다. 또한 목록 선택 시 상세 정보가 자동으로 표시되도록 구성하여 불필요한 재조회나 화면 이동을 줄였으며, 자주 사용하는 점검 결과 입력 영역은 한 화면 안에서 바로 처리할 수 있도록 배치했습니다. 저장 전 필수값과 상태값을 확인하도록 하여 누락 입력이나 잘못된 처리 상태가 저장되는 것을 방지했습니다.',r:'사용자가 실제 업무 순서에 맞춰 수령 및 점검 처리를 진행할 수 있도록 화면 흐름을 개선했으며, 업무 처리 편의성과 데이터 입력 정확성을 높였습니다.'},
+{cat:'코드 품질 개선',title:'더 나은 코드 품질을 위한 개선 노력',project:'공통 개발 / 운영 유지보수',tags:['유지보수성','일관성','보안성'],s:'기능 구현에만 머무르지 않고, 유지보수성·일관성·보안성을 높이기 위해 기존 코드와 개발 방식을 지속적으로 정리하고 개선했습니다.',a:'필드 주입, GET/POST 혼재, 컨트롤러와 서비스에 분산된 예외처리, JSP 출력 구문 등 운영 코드에서 유지보수성과 보안 관점의 개선 여지가 있었습니다.',m:'필드 주입 방식으로 혼재되어 있던 코드를 생성자 주입 방식으로 정리했습니다. 조회는 GET, 저장·수정은 POST로 구분하여 API 의도를 명확히 하고, REST 관점에서 일관된 구조로 정리했습니다. 컨트롤러와 서비스에 분산되어 있던 예외처리를 서비스 레이어 중심으로 정리했습니다. JSP 출력 구문을 점검하고 c:out으로 변경했습니다.',r:'객체 생성 시점의 의존성 구조가 명확해졌고, 요청 방식과 예외처리 흐름이 정리되었으며, 출력 보안 위험을 줄일 수 있도록 개선했습니다.'}
+];
+const skills=[
+{title:'Backend',stack:['Java','Spring Framework','MyBatis'],items:['Spring Framework 기반 SI 프로젝트 전반 개발 및 유지보수','병원 ERP 운영 환경에서 비즈니스 로직 구현, 기능 개선, 장애 대응, 로직 수정 수행','Controller · Service · DAO 구조 기반 개발','기존 시스템 유지보수와 신규 화면 개발, 요청 흐름 구성, DB 연동 처리 수행']},
+{title:'Frontend',stack:['JSP','JavaScript','jQuery','IBSheet'],items:['기존 시스템 화면 유지보수와 동적 제어 중심 개발','조회 조건 처리, 버튼 이벤트, 예외 케이스 대응, 사용자 인터랙션 로직 구현','서버 데이터 바인딩, 공통 영역 처리, 운영 화면 수정','그리드 기반 업무 화면 구현 및 데이터 처리']},
+{title:'Database',stack:['Oracle','MySQL','DBMS_SCHEDULER'],items:['운영 DB, 튜닝, 프로시저/트리거/잡 활용','실제 운영 데이터 기준 쿼리 작성, 정합성 검증, 장애 원인 추적, 성능 개선','MySQL 기반 기존 시스템 구조 분석, SQL 문법 차이 검토, 이관 스크립트 준비 및 정합성 점검']},
+{title:'Infra / DevOps',stack:['Nginx','Jenkins','SVN','Git','PuTTY','FileZilla'],items:['WAS 연동, 로그 확인, 기본 설정 관리','SSL 인증서 교체 및 서비스 정상 동작 검증','SVN → Git 전환 및 Jenkins 배포 구조 정리','운영 및 개발 서버 접속, Linux 명령어 기반 서버 환경 확인','서버 파일 전송 및 파일 구조 확인']},
+{title:'Tools / Report',stack:['Postman','Scouter','UBIFORM','CLIP Report','ERwin','Petra'],items:['API 테스트 및 외부 연동 검증','서버 모니터링 및 장애 사전 감지','병원 출력물 및 문서 생성, 기존 리포트 유지보수','차세대 프로젝트 리포트 출력 및 화면 연계','ERD 작성 및 테이블 관계 설계','보안 정책 기반 운영 DB 접근']}
+];
 
-  <script>
-    document.querySelectorAll('.skill-toggle').forEach(button => {
-      button.addEventListener('click', () => {
-        const item = button.closest('.skill-item');
-        const content = item.querySelector('.skill-content');
-        const isOpen = item.classList.contains('active');
-
-        const sameBox = item.closest('.skill-accordion');
-        sameBox.querySelectorAll('.skill-item').forEach(el => {
-          el.classList.remove('active');
-          el.querySelector('.skill-content').style.maxHeight = null;
-        });
-
-        if (!isOpen) {
-          item.classList.add('active');
-          content.style.maxHeight = content.scrollHeight + 'px';
-        }
-      });
-    });
-  </script>
+function esc(s){return String(s).replace(/[&<>"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]));}
+let currentProject=0; let currentIssueCategory=null;
+function renderNavDrops(){
+  document.getElementById('projectDrop').innerHTML='<div class="drop-title">PROJECT</div>'+projects.map((p,i)=>`<a class="drop-btn" href="#projects" data-project="${i}">${esc(p.title)}</a>`).join('');
+  const cats=[...new Set(issues.map(i=>i.cat))]; document.getElementById('issueDrop').innerHTML='<div class="drop-title">CASE CATEGORY</div>'+cats.map(c=>`<a class="drop-btn" href="#issues" data-issue-cat="${esc(c)}">${esc(c)}</a>`).join('');
+}
+function renderHome(){
+  document.getElementById('issueCount').textContent=issues.length;
+  const timelineItems=[
+    {year:'2022.10',title:'MySQL → Oracle DB 변환 프로젝트',desc:'DB 구조와 SQL 재구성'},
+    {year:'2022.11 - 2023.12',title:'차세대 통합 프로젝트 (9개 병원)',desc:'병원별 환경을 공통 구조로 통합'},
+    {year:'2024.01 - Present',title:'클라우드 기반 ERP 운영 및 SI 개발',desc:'4개 병원 통합 유지보수 · 약 30개 병원 규모 프로젝트 참여'},
+    {year:'2026.04 - Present',title:'대여기구 수령/반납 연동 시스템 SI 개발',desc:'SCM-ERP 대여기구 데이터 연동'}
+  ];
+  document.getElementById('homeTimeline').innerHTML=timelineItems.map((p)=>`<article class="t-node"><div class="t-year">${esc(p.year)}</div><h3>${esc(p.title)}</h3><p>${esc(p.desc)}</p></article>`).join('');
+}
+function renderProject(i=0){
+  currentProject=i;
+  const p=projects[i];
+  if(p.title==='클라우드 기반 ERP 운영 및 SI 개발'){
+    const cloudWorks=[
+      {
+        period:'2024.01 - 2026.01',
+        title:'4개 병원 통합 유지보수',
+        summary:'4개 병원 통합 유지보수 환경에서 병원 물류 ERP 기능 개발, 사용자 요청 대응, 데이터 이슈 처리, 운영 장애 분석을 수행했습니다.',
+        env:'Spring Framework / Java / Oracle / MyBatis / JSP / IBSheet / Nginx / Jenkins',
+        activity:'병원 물류 ERP 기능 개발 + 기존 기능 고도화 + 사용자 요청 대응 + 운영 장애 분석',
+        areas:[
+          ['신규 개발','ERP 업무 화면 및 기능 개발, 서비스 로직 및 SQL 수정 반영'],
+          ['운영 대응','사용자 요청 대응, 데이터 오류 처리, 운영 장애 분석'],
+          ['DB','SQL 작성, 성능 개선, DB Timeout 및 데이터 정합성 이슈 분석'],
+          ['서버/배포','로그 확인, WAS / Nginx 운영 점검, Jenkins 배포 후 상태 확인']
+        ]
+      },
+      {
+        period:'2026.01 - Present',
+        title:'약 30개 병원 규모 클라우드 프로젝트',
+        summary:'다수 병원 운영/개발 프로젝트 팀에 참여하여 공통 ERP 구조, 병원별 운영 차이, 외부사 서버 환경을 함께 고려한 기능 개발과 운영 대응을 수행했습니다.',
+        env:'Spring Framework / Java / Oracle / MyBatis / JSP / IBSheet / Nginx / Jenkins / Petra / AWS·Private Server',
+        activity:'다수 병원 클라우드 ERP 프로젝트 팀 참여 + 공통 구조 기반 SI 개발 + 외부사 협업 + 정기 배포 대응',
+        areas:[
+          ['다수 병원 구조','약 30개 병원 규모의 클라우드 운영/개발 프로젝트에서 공통 ERP 구조와 병원별 운영 차이를 함께 고려'],
+          ['외부사 협업','타사와 업무 범위, 배포 일정, 서버 반영 사항을 조율하며 정기 배포마다 필요한 내용을 확인하고 대응'],
+          ['서버 환경 대응','외부사가 사용하는 AWS 및 Private 서버 환경을 기준으로 접속 경로, 반영 위치, 운영 처리 흐름을 확인하며 업무 수행'],
+          ['보안 DB 접근','Petra를 활용해 보안 정책이 적용된 DB 환경에 접근하고 운영 데이터 확인 및 이슈 분석 진행'],
+          ['기능 개발','공통 화면과 병원별 요구사항을 함께 고려한 기능 개발 및 로직 수정'],
+          ['운영 분석','사용자 문의, 로그, SQL, 데이터 흐름을 기준으로 원인 분석'],
+          ['협업/정리','운영 처리 기준, 병원별 차이, 장애 대응 내용을 문서화']
+        ]
+      }
+    ];
+    document.getElementById('projectDetail').innerHTML=`<article class="card project-detail-card"><span class="project-kicker">${esc(p.period)}</span><h1>${esc(p.title)}</h1><p class="project-summary">${esc(p.summary)}</p><div class="cloud-compare">${cloudWorks.map(w=>`<section class="cloud-panel"><div class="cloud-panel-head"><small>${esc(w.period)}</small><h2>${esc(w.title)}</h2><p>${esc(w.summary)}</p></div><div class="cloud-panel-body"><h3>프로젝트 설명</h3><div class="info-table compact"><div class="info-row"><div>기간</div><div>${esc(w.period)}</div></div><div class="info-row"><div>환경</div><div>${esc(w.env)}</div></div><div class="info-row"><div>활동</div><div>${esc(w.activity)}</div></div></div><h3>상세 업무 영역</h3><div class="detail-table"><div class="detail-head"><div>영역</div><div>수행 내용</div></div>${w.areas.map(([a,b])=>`<div class="detail-row"><div>${esc(a)}</div><div>${esc(b)}</div></div>`).join('')}</div></div></section>`).join('')}</div></article>`;
+    return;
+  }
+  document.getElementById('projectDetail').innerHTML=`<article class="card project-detail-card"><span class="project-kicker">${esc(p.period)}</span><h1>${esc(p.title)}</h1><p class="project-summary">${esc(p.summary)}</p><div class="detail-grid"><div class="subbox wide"><h3>프로젝트 설명</h3><div class="info-table"><div class="info-row"><div>기간</div><div>${esc(p.period)}</div></div><div class="info-row"><div>환경</div><div>${esc(p.env)}</div></div><div class="info-row"><div>활동</div><div>${esc(p.activity)}</div></div></div></div><div class="subbox wide"><h3>상세 업무 영역</h3><div class="detail-table"><div class="detail-head"><div>영역</div><div>수행 내용</div></div>${p.areas.map(([a,b])=>`<div class="detail-row"><div>${esc(a)}</div><div>${esc(b)}</div></div>`).join('')}</div></div></div></article>`;
+}
+function issueCategories(){return [...new Set(issues.map(i=>i.cat))];}
+function issueMenuTitle(title){
+  const map={
+    'Nginx 환경에서 SSL 인증서 교체 및 적용':'SSL 인증서 교체',
+    'SVN → Git 전환 및 Jenkins 배포 구조 정리':'SVN → Git 전환',
+    '대용량 데이터 성능 개선':'대용량 조회 성능 개선',
+    'Oracle 일반 Job 실행 중단 이슈 → DBMS_SCHEDULER 전환':'Job 스케줄러 전환',
+    '대량 조회로 인한 WAS 서버 다운 이슈':'WAS 다운 분석',
+    'DB Timeout 발생 이슈 분석 및 처리 방식 개선':'DB Timeout 개선',
+    'API 연동 오류의 DB Connection Pool 원인 분석':'Connection Pool 분석',
+    '외부 시스템 연동을 위한 API 설계 및 검증':'외부 API 설계/검증',
+    '오픈 시 데이터 마이그레이션 검증 및 초기 데이터 프로세스 정립':'마이그레이션 검증',
+    'SCM-ERP 간 대여기구 연동 구조 설계 및 개발':'SCM-ERP 연동 설계',
+    'ERwin 기반 ERD 작성 및 데이터 구조 설계':'ERD 데이터 설계',
+    '타 팀 협업을 통한 연동 기준 정리':'연동 기준 협의',
+    '사용자 업무 흐름 기반 화면 및 기능 구현':'사용자 흐름 화면',
+    '더 나은 코드 품질을 위한 개선 노력':'코드 품질 개선'
+  };
+  return map[title]||title;
+}
+function renderIssueTabs(){renderIssueCategoryHome();}
+function renderIssueCategoryHome(){
+  currentIssueCategory=null;
+  const cats=issueCategories();
+  const side=document.getElementById('issueSide');
+  side.classList.remove('mode-cases');
+  document.getElementById('issueCatTabs').innerHTML=cats.map(c=>`<button class="cat-btn" type="button" data-cat="${esc(c)}">${esc(c)}</button>`).join('');
+  document.getElementById('issueMenu').innerHTML='';
+  document.querySelectorAll('.cat-btn').forEach(b=>b.addEventListener('click',()=>selectIssueCategory(b.dataset.cat)));
+  document.getElementById('issueDetail').innerHTML=`<div class="issue-start"><div class="page-title"><div class="eyebrow">Issue Case Map</div><h1>운영 이슈 & 개선 사례</h1><p>프로젝트 구분 없이 운영 과정에서 해결한 장애, 성능, 연동, 배포, 데이터 개선 사례입니다. 왼쪽에서 분류를 선택하면 해당 사례만 표시됩니다.</p></div><div class="issue-category-grid">${cats.map(c=>{const count=issues.filter(i=>i.cat===c).length;return `<button class="issue-category-card" type="button" data-cat="${esc(c)}"><strong>${esc(c)}</strong><span>${count}개 사례 보기</span></button>`}).join('')}</div></div>`;
+  document.querySelectorAll('.issue-category-card').forEach(b=>b.addEventListener('click',()=>selectIssueCategory(b.dataset.cat)));
+}
+function selectIssueCategory(cat){
+  currentIssueCategory=cat;
+  const side=document.getElementById('issueSide');
+  side.classList.add('mode-cases');
+  document.getElementById('issueCatTabs').innerHTML='';
+  const filtered=issues.map((it,idx)=>({it,idx})).filter(x=>x.it.cat===cat);
+  document.getElementById('issueMenu').innerHTML=filtered.map((x,n)=>`<button class="issue-btn" type="button" data-issue="${x.idx}">${esc(issueMenuTitle(x.it.title))}</button>`).join('');
+  document.querySelectorAll('.issue-btn').forEach(b=>b.addEventListener('click',()=>selectIssue(+b.dataset.issue)));
+  selectIssue(filtered[0].idx);
+}
+const flowSummary={
+'대용량 데이터 성능 개선':['비효율 SQL 구조로 성능 저하','인덱스 미사용·반복 update','JOIN 전환·함수 제거','조회 성능·운영 안정성 개선'],
+'Oracle 일반 Job 실행 중단 이슈 → DBMS_SCHEDULER 전환':['장시간 Job 간헐 중단','세션 의존·재시도 한계','DBMS_SCHEDULER 전환','배치 실행 안정화'],
+'대량 조회로 인한 WAS 서버 다운 이슈':['25만 건 이상 대량 조회','OutOfMemory·Heap Dump 확인','조회 범위 제한·처리 구조 개선','WAS 다운 재발 방지'],
+'DB Timeout 발생 이슈 분석 및 처리 방식 개선':['대량 처리 중 Timeout 발생','특정 insert 6분 이상 지연','처리 단위 파티션 분리','대량 데이터 처리 안정화'],
+'Nginx 환경에서 SSL 인증서 교체 및 적용':['SSL 인증서 만료 도래','설정 오류 시 접속 장애 위험','OpenSSL 처리·Nginx 반영','서비스 중단 없이 교체'],
+'SVN → Git 전환 및 Jenkins 배포 구조 정리':['SVN 프로젝트 Git 전환','히스토리·GitLab·Jenkins 연동 필요','사용자 매핑·Git Bash·Ubuntu·플러그인 설정','Git 기반 배포 전환 성공'],
+'API 연동 오류의 DB Connection Pool 원인 분석':['외부 API 정상 응답 실패','앱 로그에 원인 미노출','WAS 로그로 Pool 오류 확인','수신 시스템 설정 점검 유도'],
+'외부 시스템 연동을 위한 API 설계 및 검증':['재고 이관 API 연동 필요','파라미터·상태값 기준 불명확','Postman 테스트·스펙 협의','안정적 외부 연동 구현'],
+'오픈 시 데이터 마이그레이션 검증 및 초기 데이터 프로세스 정립':['병원 오픈마다 초기 세팅 반복','수작업·검증 기준 불일치','검증 기준·관리 화면 구조화','오픈 초기 운영 안정화'],
+'SCM-ERP 간 대여기구 연동 구조 설계 및 개발':['SCM·ERP 데이터 흐름 연결 필요','스키마·상태값 기준 차이','DB Link 기반 연동 구조 구성','수령·반납 업무 일원화'],
+'ERwin 기반 ERD 작성 및 데이터 구조 설계':['신규 업무 데이터 관계 정의 필요','중복·상태 불일치 가능성','ERwin으로 키·관계 시각화','개발·협업 기준 마련'],
+'타 팀 협업을 통한 연동 기준 정리':['단일 시스템 기준 개발 불가','명칭·상태값·처리 순서 차이','항목·저장 시점·상태 기준 협의','연동 오류 가능성 감소'],
+'사용자 업무 흐름 기반 화면 및 기능 구현':['현장 입력·확인 업무 반복','입력 동선 복잡 시 효율 저하','조회→상세→점검→저장 흐름 구성','입력 정확성·업무 편의 개선'],
+'더 나은 코드 품질을 위한 개선 노력':['운영 코드 개선 필요','주입·Method·예외·출력 혼재','생성자 주입·POST/GET·c:out 정리','유지보수성·보안성 개선']
+};
+function flowLabel(kind,it){
+  const labels={s:'상황',a:'문제 분석',m:'개선 조치',r:'결과'};
+  const arr=flowSummary[it.title]||[it.s,it.a,it.m,it.r];
+  const idx={s:0,a:1,m:2,r:3}[kind];
+  return [labels[kind],arr[idx]];
+}
+function selectIssue(idx){
+  const it=issues[idx];
+  if(it.cat!==currentIssueCategory){selectIssueCategory(it.cat);return}
+  document.querySelectorAll('.issue-btn').forEach(b=>b.classList.toggle('active',+b.dataset.issue===idx));
+  const steps=['s','a','m','r'].map(k=>flowLabel(k,it));
+  document.getElementById('issueDetail').innerHTML=`<div class="issue-hash">${it.tags.map(t=>`<span>#${esc(t)}</span>`).join('')}</div><div class="project-label">관련 프로젝트</div><p class="issue-project-name">${esc(it.project)}</p><h1>${esc(it.title)}</h1><div class="visual-flow simple"><div class="flow-title">요약 카드</div><div class="flow-track">${steps.map(([label,txt])=>`<div class="flow-step"><b>${esc(label)}</b><span>${esc(txt)}</span></div>`).join('')}</div></div><div class="story"><div class="story-block"><h3>상황</h3><p>${esc(it.s)}</p></div><div class="story-block"><h3>문제 분석</h3><p>${esc(it.a)}</p></div><div class="story-block"><h3>개선 및 조치</h3><p>${esc(it.m)}</p></div><div class="story-block"><h3>결과</h3><p>${esc(it.r)}</p></div></div>`;
+}
+function renderSkills(){document.getElementById('skillsGrid').innerHTML=skills.map(s=>`<article class="skill-card"><div class="skill-head"><h2>${esc(s.title)}</h2><div class="skill-stack">${s.stack.map(x=>`<span>${esc(x)}</span>`).join('')}</div></div><ul>${s.items.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></article>`).join('')}
+function show(view){document.querySelectorAll('.view').forEach(v=>v.classList.add('hidden'));document.getElementById(view).classList.remove('hidden');document.querySelectorAll('.nav-link').forEach(a=>a.classList.toggle('active',a.dataset.view===view));window.scrollTo({top:0,behavior:'smooth'})}
+document.addEventListener('click',e=>{const p=e.target.closest('[data-project]');if(p){e.preventDefault();show('projects');history.pushState(null,'','#projects');renderProject(+p.dataset.project);return}const c=e.target.closest('[data-issue-cat]');if(c){e.preventDefault();show('issues');history.pushState(null,'','#issues');selectIssueCategory(c.dataset.issueCat);return}const v=e.target.closest('[data-view]');if(v){e.preventDefault();show(v.dataset.view);history.pushState(null,'','#'+v.dataset.view);}});
+window.addEventListener('popstate',()=>show((location.hash||'#home').replace('#','')));
+function bindTimelineControls(){
+  const tl=document.getElementById('homeTimeline');
+  const prev=document.getElementById('timelinePrev');
+  const next=document.getElementById('timelineNext');
+  if(!tl||!prev||!next) return;
+  const move=()=>Math.max(280, Math.floor(tl.clientWidth*0.65));
+  prev.addEventListener('click',()=>tl.scrollBy({left:-move(),behavior:'smooth'}));
+  next.addEventListener('click',()=>tl.scrollBy({left:move(),behavior:'smooth'}));
+}
+renderNavDrops();renderHome();bindTimelineControls();renderProject(0);renderIssueTabs();renderSkills();show((location.hash||'#home').replace('#',''));
+</script>
 </body>
 </html>
