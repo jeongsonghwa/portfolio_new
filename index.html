@@ -421,6 +421,15 @@ a,button{font:inherit;color:inherit} button{border:0;background:transparent;curs
   #issues .issue-layout{display:block!important}
 }
 
+
+/* v14 touch dropdown fix */
+@media(max-width:760px){
+  .nav-link,.drop-btn{touch-action:manipulation!important;-webkit-tap-highlight-color:transparent}
+  .dropdown{pointer-events:none!important}
+  .nav-item.mobile-open .dropdown{pointer-events:auto!important}
+  .nav-item.mobile-open .nav-link{color:var(--primary)!important}
+}
+
 </style>
 </head>
 <body>
@@ -696,7 +705,38 @@ function bindTimelineControls(){
   prev.addEventListener('click',()=>tl.scrollBy({left:-move(),behavior:'smooth'}));
   next.addEventListener('click',()=>tl.scrollBy({left:move(),behavior:'smooth'}));
 }
-renderNavDrops();renderHome();bindTimelineControls();renderProject(0);renderIssueTabs();renderSkills();show((location.hash||'#home').replace('#',''));
+function openMobileTopDropdown(link){
+  if(!isMobileNav()) return false;
+  const item=link.closest('.nav-item');
+  if(!item || !item.querySelector('.dropdown')) return false;
+  const wasOpen=item.classList.contains('mobile-open');
+  closeMobileDropdowns();
+  show(link.dataset.view);
+  if(location.hash!=='#'+link.dataset.view) history.pushState(null,'','#'+link.dataset.view);
+  if(!wasOpen) item.classList.add('mobile-open');
+  return true;
+}
+function bindMobileDropdownTouch(){
+  document.querySelectorAll('.nav-link[data-view]').forEach(link=>{
+    const item=link.closest('.nav-item');
+    if(!item || !item.querySelector('.dropdown')) return;
+    const handler=e=>{
+      if(!isMobileNav()) return;
+      e.preventDefault();
+      e.stopPropagation();
+      openMobileTopDropdown(link);
+    };
+    link.addEventListener('touchstart',handler,{passive:false});
+    link.addEventListener('pointerdown',e=>{
+      if(e.pointerType==='touch') handler(e);
+    });
+  });
+  document.querySelectorAll('.dropdown').forEach(drop=>{
+    drop.addEventListener('touchstart',e=>e.stopPropagation(),{passive:true});
+    drop.addEventListener('pointerdown',e=>e.stopPropagation());
+  });
+}
+renderNavDrops();renderHome();bindTimelineControls();renderProject(0);renderIssueTabs();renderSkills();bindMobileDropdownTouch();show((location.hash||'#home').replace('#',''));
 </script>
 </body>
 </html>
