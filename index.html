@@ -303,6 +303,76 @@ a,button{font:inherit;color:inherit} button{border:0;background:transparent;curs
 }
 @media(max-width:1100px){.icon-stats .home-stat small,.icon-stats .home-stat strong,.icon-stats .home-stat span{white-space:normal!important}}
 
+
+
+/* v12 mobile submenu fix */
+@media(max-width:760px){
+  .topbar{height:auto;min-height:var(--nav);overflow:visible!important}
+  .nav-inner{height:var(--nav);overflow:visible!important}
+  .nav{overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;padding-bottom:0}
+
+  /* 모바일에서는 hover 드롭다운을 숨기고, 본문 소메뉴를 또렷하게 노출 */
+  .dropdown{display:none!important}
+
+  #issues .issue-layout{display:block!important}
+  #issues .issue-side{
+    display:block!important;
+    position:sticky!important;
+    top:0!important;
+    z-index:80!important;
+    margin:0 0 14px!important;
+    padding:14px 12px!important;
+    background:rgba(255,255,255,.98)!important;
+    border:1px solid var(--line)!important;
+    border-radius:18px!important;
+    box-shadow:0 10px 24px rgba(36,52,91,.08)!important;
+    opacity:1!important;
+    visibility:visible!important;
+  }
+  #issues .issue-side h2{
+    margin:0 0 10px!important;
+    font-size:18px!important;
+    color:var(--text)!important;
+    white-space:normal!important;
+  }
+  #issues .issue-cat-tabs,
+  #issues .issue-menu{
+    display:flex!important;
+    gap:8px!important;
+    overflow-x:auto!important;
+    overflow-y:hidden!important;
+    white-space:nowrap!important;
+    -webkit-overflow-scrolling:touch;
+    padding:2px 2px 8px!important;
+    margin:0!important;
+  }
+  #issues .cat-btn,
+  #issues .issue-btn{
+    flex:0 0 auto!important;
+    width:auto!important;
+    min-width:max-content!important;
+    padding:10px 13px!important;
+    border-radius:999px!important;
+    font-size:13px!important;
+    line-height:1.25!important;
+    background:#fff!important;
+    color:#3e4657!important;
+    border:1px solid var(--line)!important;
+    box-shadow:none!important;
+    opacity:1!important;
+  }
+  #issues .cat-btn.active,
+  #issues .issue-btn.active,
+  #issues .issue-btn:hover{
+    background:var(--primary)!important;
+    color:#fff!important;
+    border-color:var(--primary)!important;
+  }
+  #issues .issue-detail{padding:20px 16px!important;overflow:visible!important}
+  #issues .issue-start{padding:18px 0!important}
+  #issues .issue-category-grid{grid-template-columns:1fr!important;gap:10px!important;margin-top:16px!important}
+}
+
 </style>
 </head>
 <body>
