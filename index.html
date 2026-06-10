@@ -373,6 +373,54 @@ a,button{font:inherit;color:inherit} button{border:0;background:transparent;curs
   #issues .issue-category-grid{grid-template-columns:1fr!important;gap:10px!important;margin-top:16px!important}
 }
 
+
+/* v13 mobile top dropdown menu */
+@media(max-width:760px){
+  .topbar{height:var(--nav)!important;overflow:visible!important}
+  .nav-inner{height:var(--nav)!important;overflow:visible!important}
+  .nav{overflow-x:auto!important;overflow-y:visible!important;-webkit-overflow-scrolling:touch}
+  .nav-item{position:static!important}
+  .dropdown{
+    display:block!important;
+    position:fixed!important;
+    top:calc(var(--nav) + 8px)!important;
+    left:12px!important;
+    right:12px!important;
+    width:auto!important;
+    max-height:58vh!important;
+    overflow:auto!important;
+    transform:translateY(-8px)!important;
+    opacity:0!important;
+    visibility:hidden!important;
+    z-index:999!important;
+    padding:10px!important;
+    border-radius:18px!important;
+    background:rgba(255,255,255,.98)!important;
+    box-shadow:0 16px 36px rgba(36,52,91,.16)!important;
+  }
+  .nav-item:hover .dropdown{opacity:0!important;visibility:hidden!important;transform:translateY(-8px)!important}
+  .nav-item.mobile-open .dropdown{opacity:1!important;visibility:visible!important;transform:translateY(0)!important}
+  .drop-title{font-size:12px!important;color:var(--primary)!important;padding:8px 10px!important}
+  .drop-btn{
+    display:block!important;
+    width:100%!important;
+    padding:13px 14px!important;
+    margin:2px 0!important;
+    border-radius:13px!important;
+    background:#fff!important;
+    border:1px solid var(--line)!important;
+    color:#3e4657!important;
+    font-size:14px!important;
+    line-height:1.35!important;
+    font-weight:850!important;
+  }
+  .drop-btn:active{background:var(--soft2)!important;color:var(--primary)!important}
+
+  /* 모바일에서는 본문 고정 소메뉴를 숨기고 상단 드롭다운으로 선택 */
+  #issues .issue-side{display:none!important}
+  #issues .issue-layout{display:block!important}
+}
+
 </style>
 </head>
 <body>
@@ -609,8 +657,36 @@ function selectIssue(idx){
 }
 function renderSkills(){document.getElementById('skillsGrid').innerHTML=skills.map(s=>`<article class="skill-card"><div class="skill-head"><h2>${esc(s.title)}</h2><div class="skill-stack">${s.stack.map(x=>`<span>${esc(x)}</span>`).join('')}</div></div><ul>${s.items.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></article>`).join('')}
 function show(view){document.querySelectorAll('.view').forEach(v=>v.classList.add('hidden'));document.getElementById(view).classList.remove('hidden');document.querySelectorAll('.nav-link').forEach(a=>a.classList.toggle('active',a.dataset.view===view));window.scrollTo({top:0,behavior:'smooth'})}
-document.addEventListener('click',e=>{const p=e.target.closest('[data-project]');if(p){e.preventDefault();show('projects');history.pushState(null,'','#projects');renderProject(+p.dataset.project);return}const c=e.target.closest('[data-issue-cat]');if(c){e.preventDefault();show('issues');history.pushState(null,'','#issues');selectIssueCategory(c.dataset.issueCat);return}const v=e.target.closest('[data-view]');if(v){e.preventDefault();show(v.dataset.view);history.pushState(null,'','#'+v.dataset.view);}});
-window.addEventListener('popstate',()=>show((location.hash||'#home').replace('#','')));
+function isMobileNav(){return window.matchMedia('(max-width:760px)').matches;}
+function closeMobileDropdowns(){document.querySelectorAll('.nav-item.mobile-open').forEach(x=>x.classList.remove('mobile-open'));}
+document.addEventListener('click',e=>{
+  const p=e.target.closest('[data-project]');
+  if(p){e.preventDefault();closeMobileDropdowns();show('projects');if(location.hash!=='#projects') history.pushState(null,'','#projects');renderProject(+p.dataset.project);return}
+
+  const c=e.target.closest('[data-issue-cat]');
+  if(c){e.preventDefault();closeMobileDropdowns();show('issues');if(location.hash!=='#issues') history.pushState(null,'','#issues');selectIssueCategory(c.dataset.issueCat);return}
+
+  const v=e.target.closest('[data-view]');
+  if(v){
+    e.preventDefault();
+    const item=v.closest('.nav-item');
+    const hasDrop=item&&item.querySelector('.dropdown');
+    if(isMobileNav()&&hasDrop){
+      const wasOpen=item.classList.contains('mobile-open');
+      closeMobileDropdowns();
+      show(v.dataset.view);
+      if(location.hash!=='#'+v.dataset.view) history.pushState(null,'','#'+v.dataset.view);
+      if(!wasOpen) item.classList.add('mobile-open');
+      return;
+    }
+    closeMobileDropdowns();
+    show(v.dataset.view);
+    if(location.hash!=='#'+v.dataset.view) history.pushState(null,'','#'+v.dataset.view);
+    return;
+  }
+  if(!e.target.closest('.dropdown')) closeMobileDropdowns();
+});
+window.addEventListener('popstate',()=>{closeMobileDropdowns();show((location.hash||'#home').replace('#',''));});
 function bindTimelineControls(){
   const tl=document.getElementById('homeTimeline');
   const prev=document.getElementById('timelinePrev');
