@@ -305,129 +305,154 @@ a,button{font:inherit;color:inherit} button{border:0;background:transparent;curs
 
 
 
-/* v12 mobile submenu fix */
+/* v15 mobile-only clean dropdown panel */
+.mobile-panel{
+  display:none;
+}
+
 @media(max-width:760px){
-  .topbar{height:auto;min-height:var(--nav);overflow:visible!important}
-  .nav-inner{height:var(--nav);overflow:visible!important}
-  .nav{overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;padding-bottom:0}
-
-  /* 모바일에서는 hover 드롭다운을 숨기고, 본문 소메뉴를 또렷하게 노출 */
-  .dropdown{display:none!important}
-
-  #issues .issue-layout{display:block!important}
-  #issues .issue-side{
-    display:block!important;
-    position:sticky!important;
-    top:0!important;
-    z-index:80!important;
-    margin:0 0 14px!important;
-    padding:14px 12px!important;
-    background:rgba(255,255,255,.98)!important;
-    border:1px solid var(--line)!important;
-    border-radius:18px!important;
-    box-shadow:0 10px 24px rgba(36,52,91,.08)!important;
-    opacity:1!important;
-    visibility:visible!important;
+  .topbar{
+    z-index:3000;
   }
-  #issues .issue-side h2{
-    margin:0 0 10px!important;
-    font-size:18px!important;
-    color:var(--text)!important;
-    white-space:normal!important;
+
+  .nav-inner{
+    gap:10px;
   }
-  #issues .issue-cat-tabs,
-  #issues .issue-menu{
-    display:flex!important;
-    gap:8px!important;
-    overflow-x:auto!important;
-    overflow-y:hidden!important;
-    white-space:nowrap!important;
+
+  .nav{
+    overflow-x:auto;
+    overflow-y:hidden;
     -webkit-overflow-scrolling:touch;
-    padding:2px 2px 8px!important;
-    margin:0!important;
   }
-  #issues .cat-btn,
-  #issues .issue-btn{
-    flex:0 0 auto!important;
-    width:auto!important;
-    min-width:max-content!important;
-    padding:10px 13px!important;
-    border-radius:999px!important;
-    font-size:13px!important;
-    line-height:1.25!important;
-    background:#fff!important;
-    color:#3e4657!important;
-    border:1px solid var(--line)!important;
-    box-shadow:none!important;
-    opacity:1!important;
+
+  .nav-item .dropdown{
+    display:none !important;
   }
-  #issues .cat-btn.active,
-  #issues .issue-btn.active,
-  #issues .issue-btn:hover{
-    background:var(--primary)!important;
-    color:#fff!important;
-    border-color:var(--primary)!important;
+
+  .nav-link.has-mobile-menu::after{
+    content:'▾';
+    display:inline-block;
+    margin-left:6px;
+    font-size:12px;
+    line-height:1;
+    transition:transform .18s ease;
   }
-  #issues .issue-detail{padding:20px 16px!important;overflow:visible!important}
-  #issues .issue-start{padding:18px 0!important}
-  #issues .issue-category-grid{grid-template-columns:1fr!important;gap:10px!important;margin-top:16px!important}
-}
 
-
-/* v13 mobile top dropdown menu */
-@media(max-width:760px){
-  .topbar{height:var(--nav)!important;overflow:visible!important}
-  .nav-inner{height:var(--nav)!important;overflow:visible!important}
-  .nav{overflow-x:auto!important;overflow-y:visible!important;-webkit-overflow-scrolling:touch}
-  .nav-item{position:static!important}
-  .dropdown{
-    display:block!important;
-    position:fixed!important;
-    top:calc(var(--nav) + 8px)!important;
-    left:12px!important;
-    right:12px!important;
-    width:auto!important;
-    max-height:58vh!important;
-    overflow:auto!important;
-    transform:translateY(-8px)!important;
-    opacity:0!important;
-    visibility:hidden!important;
-    z-index:999!important;
-    padding:10px!important;
-    border-radius:18px!important;
-    background:rgba(255,255,255,.98)!important;
-    box-shadow:0 16px 36px rgba(36,52,91,.16)!important;
+  .nav-link.mobile-panel-active::after{
+    transform:rotate(180deg);
   }
-  .nav-item:hover .dropdown{opacity:0!important;visibility:hidden!important;transform:translateY(-8px)!important}
-  .nav-item.mobile-open .dropdown{opacity:1!important;visibility:visible!important;transform:translateY(0)!important}
-  .drop-title{font-size:12px!important;color:var(--primary)!important;padding:8px 10px!important}
-  .drop-btn{
-    display:block!important;
-    width:100%!important;
-    padding:13px 14px!important;
-    margin:2px 0!important;
-    border-radius:13px!important;
-    background:#fff!important;
-    border:1px solid var(--line)!important;
-    color:#3e4657!important;
-    font-size:14px!important;
-    line-height:1.35!important;
-    font-weight:850!important;
+
+  .mobile-panel{
+    position:fixed;
+    top:var(--nav);
+    left:10px;
+    right:10px;
+    z-index:2999;
+    display:none;
+    padding:12px;
+    border:1px solid var(--line);
+    border-radius:0 0 22px 22px;
+    background:rgba(255,255,255,.98);
+    box-shadow:0 18px 36px rgba(36,52,91,.16);
+    max-height:calc(100vh - var(--nav) - 18px);
+    overflow:auto;
+    -webkit-overflow-scrolling:touch;
   }
-  .drop-btn:active{background:var(--soft2)!important;color:var(--primary)!important}
 
-  /* 모바일에서는 본문 고정 소메뉴를 숨기고 상단 드롭다운으로 선택 */
-  #issues .issue-side{display:none!important}
-  #issues .issue-layout{display:block!important}
-}
+  .mobile-panel.open{
+    display:block;
+  }
 
+  .mobile-panel-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:12px;
+    padding:6px 4px 12px;
+    border-bottom:1px solid var(--line);
+    margin-bottom:10px;
+  }
 
-/* v14 touch dropdown fix */
-@media(max-width:760px){
-  .nav-link,.drop-btn{touch-action:manipulation!important;-webkit-tap-highlight-color:transparent}
-  .dropdown{pointer-events:none!important}
-  .nav-item.mobile-open .dropdown{pointer-events:auto!important}
-  .nav-item.mobile-open .nav-link{color:var(--primary)!important}
+  .mobile-panel-title{
+    margin:0;
+    font-size:17px;
+    line-height:1.35;
+    font-weight:950;
+    color:var(--text);
+  }
+
+  .mobile-panel-desc{
+    margin:3px 0 0;
+    font-size:12px;
+    color:var(--muted);
+    line-height:1.45;
+  }
+
+  .mobile-panel-close{
+    flex:0 0 auto;
+    width:34px;
+    height:34px;
+    border-radius:999px;
+    background:var(--soft2);
+    color:var(--primary);
+    font-size:22px;
+    font-weight:900;
+    display:grid;
+    place-items:center;
+  }
+
+  .mobile-panel-list{
+    display:grid;
+    gap:8px;
+  }
+
+  .mobile-panel-btn{
+    width:100%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:12px;
+    padding:13px 14px;
+    border:1px solid var(--line);
+    border-radius:15px;
+    background:#fff;
+    text-align:left;
+    box-shadow:0 8px 18px rgba(36,52,91,.045);
+  }
+
+  .mobile-panel-btn strong{
+    display:block;
+    font-size:14px;
+    line-height:1.35;
+    font-weight:900;
+    color:#343b4d;
+    word-break:keep-all;
+  }
+
+  .mobile-panel-btn small{
+    display:block;
+    margin-top:3px;
+    color:var(--muted);
+    font-size:11px;
+    line-height:1.35;
+  }
+
+  .mobile-panel-btn::after{
+    content:'›';
+    flex:0 0 auto;
+    color:var(--primary);
+    font-size:22px;
+    font-weight:900;
+  }
+
+  .mobile-panel-btn.active{
+    border-color:#cfd5ff;
+    background:var(--soft2);
+  }
+
+  .mobile-panel-btn.active strong{
+    color:var(--primary);
+  }
 }
 
 </style>
@@ -440,6 +465,7 @@ a,button{font:inherit;color:inherit} button{border:0;background:transparent;curs
   <div class="nav-item"><a class="nav-link" href="#skills" data-view="skills">Technical Skills</a></div>
   <div class="nav-item"><a class="nav-link" href="#about" data-view="about">About</a></div>
 </nav></div></header>
+<div class="mobile-panel" id="mobilePanel" aria-hidden="true"></div>
 <div class="wrap">
 <section id="home" class="view">
   <div class="hero">
@@ -665,78 +691,498 @@ function selectIssue(idx){
   document.getElementById('issueDetail').innerHTML=`<div class="issue-hash">${it.tags.map(t=>`<span>#${esc(t)}</span>`).join('')}</div><div class="project-label">관련 프로젝트</div><p class="issue-project-name">${esc(it.project)}</p><h1>${esc(it.title)}</h1><div class="visual-flow simple"><div class="flow-title">요약 카드</div><div class="flow-track">${steps.map(([label,txt])=>`<div class="flow-step"><b>${esc(label)}</b><span>${esc(txt)}</span></div>`).join('')}</div></div><div class="story"><div class="story-block"><h3>상황</h3><p>${esc(it.s)}</p></div><div class="story-block"><h3>문제 분석</h3><p>${esc(it.a)}</p></div><div class="story-block"><h3>개선 및 조치</h3><p>${esc(it.m)}</p></div><div class="story-block"><h3>결과</h3><p>${esc(it.r)}</p></div></div>`;
 }
 function renderSkills(){document.getElementById('skillsGrid').innerHTML=skills.map(s=>`<article class="skill-card"><div class="skill-head"><h2>${esc(s.title)}</h2><div class="skill-stack">${s.stack.map(x=>`<span>${esc(x)}</span>`).join('')}</div></div><ul>${s.items.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></article>`).join('')}
-function show(view){document.querySelectorAll('.view').forEach(v=>v.classList.add('hidden'));document.getElementById(view).classList.remove('hidden');document.querySelectorAll('.nav-link').forEach(a=>a.classList.toggle('active',a.dataset.view===view));window.scrollTo({top:0,behavior:'smooth'})}
-function isMobileNav(){return window.matchMedia('(max-width:760px)').matches;}
-function closeMobileDropdowns(){document.querySelectorAll('.nav-item.mobile-open').forEach(x=>x.classList.remove('mobile-open'));}
-document.addEventListener('click',e=>{
-  const p=e.target.closest('[data-project]');
-  if(p){e.preventDefault();closeMobileDropdowns();show('projects');if(location.hash!=='#projects') history.pushState(null,'','#projects');renderProject(+p.dataset.project);return}
 
-  const c=e.target.closest('[data-issue-cat]');
-  if(c){e.preventDefault();closeMobileDropdowns();show('issues');if(location.hash!=='#issues') history.pushState(null,'','#issues');selectIssueCategory(c.dataset.issueCat);return}
+function show(view, shouldScroll=true) {
+  document.querySelectorAll('.view').forEach(v => {
+    v.classList.add('hidden');
+  });
 
-  const v=e.target.closest('[data-view]');
-  if(v){
-    e.preventDefault();
-    const item=v.closest('.nav-item');
-    const hasDrop=item&&item.querySelector('.dropdown');
-    if(isMobileNav()&&hasDrop){
-      const wasOpen=item.classList.contains('mobile-open');
-      closeMobileDropdowns();
-      show(v.dataset.view);
-      if(location.hash!=='#'+v.dataset.view) history.pushState(null,'','#'+v.dataset.view);
-      if(!wasOpen) item.classList.add('mobile-open');
-      return;
+  document.getElementById(view).classList.remove('hidden');
+
+  document.querySelectorAll('.nav-link').forEach(a => {
+    a.classList.toggle('active', a.dataset.view === view);
+  });
+
+  if (shouldScroll) {
+    window.scrollTo({
+      top:0,
+      behavior:'smooth'
+    });
+  }
+}
+
+function isMobile() {
+  return window.matchMedia('(max-width:760px)').matches;
+}
+
+function parseRoute() {
+  const raw = location.hash || '#home';
+  const body = raw.slice(1);
+  const parts = body.split('?');
+  const view = parts[0] || 'home';
+  const params = new URLSearchParams(parts[1] || '');
+
+  return {
+    view,
+    params
+  };
+}
+
+function buildHash(view, params={}) {
+  const query = new URLSearchParams();
+
+  Object.entries(params).forEach(([key, value]) => {
+    if (value !== undefined && value !== null && value !== '') {
+      query.set(key, value);
     }
-    closeMobileDropdowns();
-    show(v.dataset.view);
-    if(location.hash!=='#'+v.dataset.view) history.pushState(null,'','#'+v.dataset.view);
+  });
+
+  const q = query.toString();
+
+  if (q) {
+    return `#${view}?${q}`;
+  }
+
+  return `#${view}`;
+}
+
+function go(hash) {
+  closeMobilePanel();
+
+  if (location.hash === hash) {
+    renderRoute(true);
     return;
   }
-  if(!e.target.closest('.dropdown')) closeMobileDropdowns();
-});
-window.addEventListener('popstate',()=>{closeMobileDropdowns();show((location.hash||'#home').replace('#',''));});
-function bindTimelineControls(){
-  const tl=document.getElementById('homeTimeline');
-  const prev=document.getElementById('timelinePrev');
-  const next=document.getElementById('timelineNext');
-  if(!tl||!prev||!next) return;
-  const move=()=>Math.max(280, Math.floor(tl.clientWidth*0.65));
-  prev.addEventListener('click',()=>tl.scrollBy({left:-move(),behavior:'smooth'}));
-  next.addEventListener('click',()=>tl.scrollBy({left:move(),behavior:'smooth'}));
+
+  history.pushState(null, '', hash);
+  renderRoute(true);
 }
-function openMobileTopDropdown(link){
-  if(!isMobileNav()) return false;
-  const item=link.closest('.nav-item');
-  if(!item || !item.querySelector('.dropdown')) return false;
-  const wasOpen=item.classList.contains('mobile-open');
-  closeMobileDropdowns();
-  show(link.dataset.view);
-  if(location.hash!=='#'+link.dataset.view) history.pushState(null,'','#'+link.dataset.view);
-  if(!wasOpen) item.classList.add('mobile-open');
-  return true;
+
+function goProject(index) {
+  go(buildHash('projects', {
+    project:index
+  }));
 }
-function bindMobileDropdownTouch(){
-  document.querySelectorAll('.nav-link[data-view]').forEach(link=>{
-    const item=link.closest('.nav-item');
-    if(!item || !item.querySelector('.dropdown')) return;
-    const handler=e=>{
-      if(!isMobileNav()) return;
-      e.preventDefault();
-      e.stopPropagation();
-      openMobileTopDropdown(link);
-    };
-    link.addEventListener('touchstart',handler,{passive:false});
-    link.addEventListener('pointerdown',e=>{
-      if(e.pointerType==='touch') handler(e);
+
+function goIssueCategory(cat) {
+  go(buildHash('issues', {
+    cat
+  }));
+}
+
+function goIssue(index) {
+  const it = issues[index];
+
+  go(buildHash('issues', {
+    cat:it.cat,
+    issue:index
+  }));
+}
+
+function renderRoute(shouldScroll=false) {
+  const route = parseRoute();
+  const view = ['home', 'projects', 'issues', 'skills', 'about'].includes(route.view)
+    ? route.view
+    : 'home';
+
+  show(view, shouldScroll);
+
+  if (view === 'projects') {
+    const projectIndex = Number(route.params.get('project') || 0);
+    const safeProjectIndex = projects[projectIndex] ? projectIndex : 0;
+
+    renderProject(safeProjectIndex);
+  }
+
+  if (view === 'issues') {
+    const cat = route.params.get('cat');
+    const issueParam = route.params.get('issue');
+
+    if (cat) {
+      const issueIndex = issueParam !== null ? Number(issueParam) : null;
+
+      selectIssueCategory(cat, issueIndex);
+    } else {
+      renderIssueCategoryHome();
+    }
+  }
+
+  updateMobileMenuMarkers();
+}
+
+function issueCategories() {
+  return [...new Set(issues.map(i => i.cat))];
+}
+
+function selectIssueCategory(cat, issueIndex=null) {
+  currentIssueCategory = cat;
+
+  const side = document.getElementById('issueSide');
+  side.classList.add('mode-cases');
+
+  document.getElementById('issueCatTabs').innerHTML = '';
+
+  const filtered = issues
+    .map((it, idx) => ({
+      it,
+      idx
+    }))
+    .filter(x => x.it.cat === cat);
+
+  document.getElementById('issueMenu').innerHTML = filtered.map(x => `
+    <button class="issue-btn" type="button" data-issue="${x.idx}">
+      ${esc(issueMenuTitle(x.it.title))}
+    </button>
+  `).join('');
+
+  document.querySelectorAll('.issue-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      goIssue(Number(btn.dataset.issue));
     });
   });
-  document.querySelectorAll('.dropdown').forEach(drop=>{
-    drop.addEventListener('touchstart',e=>e.stopPropagation(),{passive:true});
-    drop.addEventListener('pointerdown',e=>e.stopPropagation());
+
+  const safeIssueIndex = filtered.some(x => x.idx === issueIndex)
+    ? issueIndex
+    : filtered[0].idx;
+
+  selectIssue(safeIssueIndex, false);
+}
+
+function selectIssue(idx, push=true) {
+  const it = issues[idx];
+
+  if (!it) {
+    return;
+  }
+
+  if (it.cat !== currentIssueCategory) {
+    selectIssueCategory(it.cat, idx);
+    return;
+  }
+
+  if (push) {
+    goIssue(idx);
+    return;
+  }
+
+  document.querySelectorAll('.issue-btn').forEach(btn => {
+    btn.classList.toggle('active', Number(btn.dataset.issue) === idx);
+  });
+
+  const steps = ['s', 'a', 'm', 'r'].map(k => flowLabel(k, it));
+
+  document.getElementById('issueDetail').innerHTML = `
+    <div class="issue-hash">
+      ${it.tags.map(t => `<span>#${esc(t)}</span>`).join('')}
+    </div>
+    <div class="project-label">관련 프로젝트</div>
+    <p class="issue-project-name">${esc(it.project)}</p>
+    <h1>${esc(it.title)}</h1>
+    <div class="visual-flow simple">
+      <div class="flow-title">요약 카드</div>
+      <div class="flow-track">
+        ${steps.map(([label, txt]) => `
+          <div class="flow-step">
+            <b>${esc(label)}</b>
+            <span>${esc(txt)}</span>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+    <div class="story">
+      <div class="story-block">
+        <h3>상황</h3>
+        <p>${esc(it.s)}</p>
+      </div>
+      <div class="story-block">
+        <h3>문제 분석</h3>
+        <p>${esc(it.a)}</p>
+      </div>
+      <div class="story-block">
+        <h3>개선 및 조치</h3>
+        <p>${esc(it.m)}</p>
+      </div>
+      <div class="story-block">
+        <h3>결과</h3>
+        <p>${esc(it.r)}</p>
+      </div>
+    </div>
+  `;
+}
+
+function renderIssueCategoryHome() {
+  currentIssueCategory = null;
+
+  const cats = issueCategories();
+  const side = document.getElementById('issueSide');
+
+  side.classList.remove('mode-cases');
+
+  document.getElementById('issueCatTabs').innerHTML = cats.map(c => `
+    <button class="cat-btn" type="button" data-issue-cat="${esc(c)}">
+      ${esc(c)}
+    </button>
+  `).join('');
+
+  document.getElementById('issueMenu').innerHTML = '';
+
+  document.getElementById('issueDetail').innerHTML = `
+    <div class="issue-start">
+      <div class="page-title">
+        <div class="eyebrow">Issue Case Map</div>
+        <h1>운영 이슈 & 개선 사례</h1>
+        <p>프로젝트 구분 없이 운영 과정에서 해결한 장애, 성능, 연동, 배포, 데이터 개선 사례입니다. 왼쪽에서 분류를 선택하면 해당 사례만 표시됩니다.</p>
+      </div>
+      <div class="issue-category-grid">
+        ${cats.map(c => {
+          const count = issues.filter(i => i.cat === c).length;
+
+          return `
+            <button class="issue-category-card" type="button" data-issue-cat="${esc(c)}">
+              <strong>${esc(c)}</strong>
+              <span>${count}개 사례 보기</span>
+            </button>
+          `;
+        }).join('')}
+      </div>
+    </div>
+  `;
+
+  bindContentButtons();
+}
+
+function mobilePanelData(type) {
+  if (type === 'projects') {
+    return {
+      title:'프로젝트 선택',
+      desc:'보고 싶은 프로젝트를 선택하면 해당 상세 화면으로 이동합니다.',
+      items:projects.map((p, index) => ({
+        label:p.title,
+        sub:p.period,
+        active:currentProject === index,
+        action:() => goProject(index)
+      }))
+    };
+  }
+
+  if (type === 'issues') {
+    return {
+      title:'운영 이슈 분류 선택',
+      desc:'분류를 고르면 해당 사례 상세 화면으로 이동합니다.',
+      items:issueCategories().map(cat => ({
+        label:cat,
+        sub:`${issues.filter(i => i.cat === cat).length}개 사례`,
+        active:currentIssueCategory === cat,
+        action:() => goIssueCategory(cat)
+      }))
+    };
+  }
+
+  return null;
+}
+
+function openMobilePanel(type) {
+  const panel = document.getElementById('mobilePanel');
+  const data = mobilePanelData(type);
+
+  if (!panel || !data) {
+    return;
+  }
+
+  panel.dataset.type = type;
+  panel.setAttribute('aria-hidden', 'false');
+
+  panel.innerHTML = `
+    <div class="mobile-panel-head">
+      <div>
+        <h2 class="mobile-panel-title">${esc(data.title)}</h2>
+        <p class="mobile-panel-desc">${esc(data.desc)}</p>
+      </div>
+      <button class="mobile-panel-close" type="button" aria-label="메뉴 닫기">×</button>
+    </div>
+    <div class="mobile-panel-list">
+      ${data.items.map((item, index) => `
+        <button class="mobile-panel-btn ${item.active ? 'active' : ''}" type="button" data-mobile-index="${index}">
+          <span>
+            <strong>${esc(item.label)}</strong>
+            <small>${esc(item.sub)}</small>
+          </span>
+        </button>
+      `).join('')}
+    </div>
+  `;
+
+  panel.classList.add('open');
+
+  panel.querySelector('.mobile-panel-close').addEventListener('click', () => {
+    closeMobilePanel();
+  });
+
+  panel.querySelectorAll('[data-mobile-index]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = data.items[Number(btn.dataset.mobileIndex)];
+
+      if (item) {
+        item.action();
+      }
+    });
+  });
+
+  updateMobileMenuMarkers(type);
+}
+
+function closeMobilePanel() {
+  const panel = document.getElementById('mobilePanel');
+
+  if (!panel) {
+    return;
+  }
+
+  panel.classList.remove('open');
+  panel.setAttribute('aria-hidden', 'true');
+  panel.innerHTML = '';
+
+  updateMobileMenuMarkers();
+}
+
+function toggleMobilePanel(type) {
+  const panel = document.getElementById('mobilePanel');
+
+  if (panel && panel.classList.contains('open') && panel.dataset.type === type) {
+    closeMobilePanel();
+    return;
+  }
+
+  openMobilePanel(type);
+}
+
+function updateMobileMenuMarkers(openType=null) {
+  document.querySelectorAll('.nav-link').forEach(link => {
+    link.classList.toggle(
+      'has-mobile-menu',
+      link.dataset.view === 'projects' || link.dataset.view === 'issues'
+    );
+
+    link.classList.toggle(
+      'mobile-panel-active',
+      (openType === 'projects' && link.dataset.view === 'projects') ||
+      (openType === 'issues' && link.dataset.view === 'issues')
+    );
   });
 }
-renderNavDrops();renderHome();bindTimelineControls();renderProject(0);renderIssueTabs();renderSkills();bindMobileDropdownTouch();show((location.hash||'#home').replace('#',''));
+
+function bindContentButtons() {
+  document.querySelectorAll('[data-project]').forEach(btn => {
+    btn.onclick = e => {
+      e.preventDefault();
+      goProject(Number(btn.dataset.project));
+    };
+  });
+
+  document.querySelectorAll('[data-issue-cat]').forEach(btn => {
+    btn.onclick = e => {
+      e.preventDefault();
+      goIssueCategory(btn.dataset.issueCat);
+    };
+  });
+}
+
+function bindGlobalNavigation() {
+  document.addEventListener('click', e => {
+    const projectBtn = e.target.closest('[data-project]');
+
+    if (projectBtn) {
+      e.preventDefault();
+      goProject(Number(projectBtn.dataset.project));
+      return;
+    }
+
+    const issueCatBtn = e.target.closest('[data-issue-cat]');
+
+    if (issueCatBtn) {
+      e.preventDefault();
+      goIssueCategory(issueCatBtn.dataset.issueCat);
+      return;
+    }
+
+    const navLink = e.target.closest('[data-view]');
+
+    if (navLink) {
+      e.preventDefault();
+
+      const view = navLink.dataset.view;
+
+      if (isMobile() && (view === 'projects' || view === 'issues')) {
+        toggleMobilePanel(view);
+        return;
+      }
+
+      closeMobilePanel();
+      go(buildHash(view));
+    }
+  });
+
+  document.addEventListener('click', e => {
+    const panel = document.getElementById('mobilePanel');
+
+    if (!panel || !panel.classList.contains('open')) {
+      return;
+    }
+
+    if (e.target.closest('#mobilePanel') || e.target.closest('[data-view]')) {
+      return;
+    }
+
+    closeMobilePanel();
+  });
+
+  window.addEventListener('resize', () => {
+    if (!isMobile()) {
+      closeMobilePanel();
+    }
+  });
+
+  window.addEventListener('popstate', () => {
+    closeMobilePanel();
+    renderRoute(true);
+  });
+}
+
+function bindTimelineControls() {
+  const tl = document.getElementById('homeTimeline');
+  const prev = document.getElementById('timelinePrev');
+  const next = document.getElementById('timelineNext');
+
+  if (!tl || !prev || !next) {
+    return;
+  }
+
+  const move = () => Math.max(280, Math.floor(tl.clientWidth * 0.65));
+
+  prev.addEventListener('click', () => {
+    tl.scrollBy({
+      left:-move(),
+      behavior:'smooth'
+    });
+  });
+
+  next.addEventListener('click', () => {
+    tl.scrollBy({
+      left:move(),
+      behavior:'smooth'
+    });
+  });
+}
+
+renderNavDrops();
+renderHome();
+bindTimelineControls();
+renderProject(0);
+renderIssueCategoryHome();
+renderSkills();
+bindGlobalNavigation();
+renderRoute(false);
+
 </script>
 </body>
 </html>
